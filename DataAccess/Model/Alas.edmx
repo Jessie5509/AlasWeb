@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AlasPUMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AlasPUMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="documento" />
@@ -12,6 +12,9 @@
           <Property Name="documento" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Aeronave">
           <Key>
@@ -245,19 +248,10 @@
             <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlasPUMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Administrador">
-          <Key>
-            <PropertyRef Name="documento" />
-          </Key>
-          <Property Name="documento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="Aeronave">
           <Key>
             <PropertyRef Name="numeroAeronave" />
@@ -465,7 +459,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AlasPUMEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
           <EntitySet Name="Aeronave" EntityType="Self.Aeronave" />
           <EntitySet Name="Asiento" EntityType="Self.Asiento" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
@@ -503,22 +496,25 @@
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
+          <EntitySet Name="Administrador" EntityType="AlasPUMModel.Administrador" />
         </EntityContainer>
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="documento" />
+          </Key>
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AlasPUMModelStoreContainer" CdmEntityContainer="AlasPUMEntities">
-          <EntitySetMapping Name="Administrador">
-            <EntityTypeMapping TypeName="AlasPUMModel.Administrador">
-              <MappingFragment StoreEntitySet="Administrador">
-                <ScalarProperty Name="documento" ColumnName="documento" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Aeronave">
             <EntityTypeMapping TypeName="AlasPUMModel.Aeronave">
               <MappingFragment StoreEntitySet="Aeronave">
@@ -633,6 +629,18 @@
                 <ScalarProperty Name="UrlAeronave" ColumnName="UrlAeronave" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="visitas" ColumnName="visitas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="AlasPUMModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
