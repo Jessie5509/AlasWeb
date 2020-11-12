@@ -17,26 +17,27 @@ namespace Common.DTO
 
         [DisplayName("Email")]
         [Required(ErrorMessage = "El {0} del empleado es requerido!")]
-        [StringLength(75, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
+        [StringLength(100, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
         public string email { get; set; }
 
         [DisplayName("Contraseña")]
         [Required(ErrorMessage = "La {0} del empleado es requerida!")]
+        [StringLength(50, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
         public string contraseña { get; set; }
 
         [DisplayName("Usuario")]
         [Required(ErrorMessage = "El {0} del empleado es requerido!")]
-        [StringLength(20, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
+        [StringLength(50, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
         public string NombreUsuario { get; set; }
 
         [DisplayName("Nombre")]
         [Required(ErrorMessage = "El {0} del empleado es requerido!")]
-        [StringLength(20, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
+        [StringLength(50, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
         public string nombre { get; set; }
 
         [DisplayName("Apellido")]
         [Required(ErrorMessage = "El {0} del empleado es requerido!")]
-        [StringLength(20, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
+        [StringLength(50, ErrorMessage = "El {0} del empleado no debe superar los {1} caracteres")]
         public string apellido { get; set; }
     }
 }
