@@ -95,6 +95,7 @@
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\PAdmin.cs" />
+    <Compile Include="Persistencia\PAeronave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Regional.cs">
       <DependentUpon>Alas.tt</DependentUpon>
