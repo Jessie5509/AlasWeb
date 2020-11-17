@@ -26,15 +26,15 @@ namespace Common.DTO
         public string destino { get; set; }
 
         [DisplayName("dtLlegada")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]        
+        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public System.DateTime dtLlegada { get; set; }
 
         [DisplayName("dtSalida")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]      
+        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public System.DateTime dtSalida { get; set; }
 
         [DisplayName("HorasTotales")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]        
+        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double HorasTotales { get; set; }
 
         [DisplayName("numeroAeronaveAsignada")]
