@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\DtoAdm.cs" />
+    <Compile Include="DTO\DtoIntercontinental.cs" />
     <Compile Include="DTO\DtoLogin.cs" />
+    <Compile Include="DTO\DtoNacional.cs" />
+    <Compile Include="DTO\DtoRegional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
