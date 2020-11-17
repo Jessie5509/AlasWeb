@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\DtoAdm.cs" />
+    <Compile Include="DTO\DtoAeronave.cs" />
     <Compile Include="DTO\DtoLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
