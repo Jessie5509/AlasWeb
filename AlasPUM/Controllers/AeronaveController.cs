@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace AlasPUM.Controllers
 {
-    public class AeronaveController : Controller
+    public class AeronaveController : Controller 
     {
         // GET: Aeronave
         public ActionResult Index()
@@ -42,6 +42,12 @@ namespace AlasPUM.Controllers
             }
 
             return RedirectToAction("AltaAeronave");
+        }
+
+        public ActionResult AsignarAsientos()
+        {
+
+            return View();
         }
 
 

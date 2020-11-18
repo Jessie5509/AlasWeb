@@ -177,6 +177,7 @@
     <Content Include="Views\Administrador\RegistroAdm.cshtml" />
     <Content Include="Views\Usuario\LoginV.cshtml" />
     <Content Include="Views\Aeronave\AltaAeronave.cshtml" />
+    <Content Include="Views\Aeronave\AsignarAsientos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
