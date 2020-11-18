@@ -14,13 +14,14 @@ namespace DataAccess.Model
     
     public partial class Asiento
     {
-        public string numeroAsiento { get; set; }
+        public int numeroAsiento { get; set; }
         public string tipo { get; set; }
         public Nullable<int> cantidad { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<bool> seleccionado { get; set; }
         public int idCompraAsi { get; set; }
         public int aeronaveNum { get; set; }
+        public string fila { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
         public virtual Compra Compra { get; set; }

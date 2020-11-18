@@ -29,6 +29,8 @@ namespace DataAccess.Persistencia
                     
                         //Agregar la lista de asientos.
 
+
+
                         context.Aeronave.Add(nuevaAeronave);
                         context.SaveChanges();
 

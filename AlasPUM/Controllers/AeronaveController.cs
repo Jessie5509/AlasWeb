@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace AlasPUM.Controllers
 {
-    public class AeronaveController : Controller
+    public class AeronaveController : Controller 
     {
         // GET: Aeronave
         public ActionResult Index()

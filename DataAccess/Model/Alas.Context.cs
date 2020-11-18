@@ -26,7 +26,6 @@ namespace DataAccess.Model
         }
     
         public virtual DbSet<Aeronave> Aeronave { get; set; }
-        public virtual DbSet<Asiento> Asiento { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Intercontinental> Intercontinental { get; set; }
@@ -35,5 +34,6 @@ namespace DataAccess.Model
         public virtual DbSet<Regional> Regional { get; set; }
         public virtual DbSet<Video> Video { get; set; }
         public virtual DbSet<Administrador> Administrador { get; set; }
+        public virtual DbSet<Asiento> Asiento { get; set; }
     }
 }
