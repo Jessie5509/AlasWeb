@@ -44,6 +44,12 @@ namespace AlasPUM.Controllers
             return RedirectToAction("AltaAeronave");
         }
 
+        public ActionResult AsignarAsientos()
+        {
+
+            return View();
+        }
+
 
     }
 }

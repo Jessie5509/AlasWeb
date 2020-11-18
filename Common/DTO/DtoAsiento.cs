@@ -14,5 +14,7 @@ namespace Common.DTO
         public Nullable<double> precio { get; set; }
         public Nullable<bool> seleccionado { get; set; }
         public string fila { get; set; }
+        public int desde { get; set; }
+        public int hasta { get; set; }
     }
 }
