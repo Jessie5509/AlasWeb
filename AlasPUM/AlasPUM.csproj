@@ -129,6 +129,9 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AeronaveController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntercontinentalController.cs" />
+    <Compile Include="Controllers\NacionalController.cs" />
+    <Compile Include="Controllers\RegionalController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +181,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Intercontinental\" />
+    <Folder Include="Views\Nacional\" />
+    <Folder Include="Views\Regional\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
