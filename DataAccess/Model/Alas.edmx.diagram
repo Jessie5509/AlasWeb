@@ -19,10 +19,10 @@
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="AlasPUMModel.FKPago_Compra" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AlasPUMModel.Administrador" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.5" PointY="3" />
+        <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.25" PointY="2.875" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

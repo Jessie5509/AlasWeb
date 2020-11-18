@@ -38,6 +38,8 @@
           <Property Name="idCompraAsi" Type="int" Nullable="false" />
           <Property Name="aeronaveNum" Type="int" Nullable="false" />
           <Property Name="fila" Type="varchar" MaxLength="15" />
+          <Property Name="desde" Type="int" Nullable="false" />
+          <Property Name="hasta" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -460,7 +462,7 @@
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Asiento" EntitySet="Asiento" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="documento" />
@@ -484,6 +486,8 @@
           <Property Name="idCompraAsi" Type="Int32" Nullable="false" />
           <Property Name="aeronaveNum" Type="Int32" Nullable="false" />
           <Property Name="fila" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="desde" Type="Int32" Nullable="false" />
+          <Property Name="hasta" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Asiento" ToRole="Aeronave" />
           <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKAsiento_Compra" FromRole="Asiento" ToRole="Compra" />
         </EntityType>
@@ -511,7 +515,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -636,6 +640,8 @@
           <EntitySetMapping Name="Asiento">
             <EntityTypeMapping TypeName="AlasPUMModel.Asiento">
               <MappingFragment StoreEntitySet="Asiento">
+                <ScalarProperty Name="hasta" ColumnName="hasta" />
+                <ScalarProperty Name="desde" ColumnName="desde" />
                 <ScalarProperty Name="fila" ColumnName="fila" />
                 <ScalarProperty Name="aeronaveNum" ColumnName="aeronaveNum" />
                 <ScalarProperty Name="idCompraAsi" ColumnName="idCompraAsi" />

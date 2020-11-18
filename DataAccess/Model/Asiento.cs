@@ -22,6 +22,8 @@ namespace DataAccess.Model
         public int idCompraAsi { get; set; }
         public int aeronaveNum { get; set; }
         public string fila { get; set; }
+        public int desde { get; set; }
+        public int hasta { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
         public virtual Compra Compra { get; set; }
