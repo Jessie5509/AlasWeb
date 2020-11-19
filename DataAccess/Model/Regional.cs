@@ -14,18 +14,12 @@ namespace DataAccess.Model
     
     public partial class Regional
     {
-        public string numeroVuelo { get; set; }
-        public string origen { get; set; }
-        public string destino { get; set; }
-        public System.DateTime dtLlegada { get; set; }
-        public System.DateTime dtSalida { get; set; }
-        public double HorasTotales { get; set; }
-        public Nullable<int> numeroAeronaveAsignada { get; set; }
-        public double precio { get; set; }
         public string documentacion { get; set; }
         public double tasaRegional { get; set; }
         public int NumAeroR { get; set; }
+        public string numVueloR { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
+        public virtual Vuelo Vuelo { get; set; }
     }
 }
