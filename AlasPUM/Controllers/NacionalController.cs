@@ -1,4 +1,5 @@
 ﻿using BussinesLogic.Helpers;
+using Common.Clase;
 using Common.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,11 @@ namespace AlasPUM.Controllers
         {
             return View();
         }
-        public ActionResult AddNacional()
+        public ActionResult AddNacional(CNacional nac)
         {
-            if (TempData["Message"] != null)
-            {
-                ViewBag.Message = TempData["Message"].ToString();
 
-            }
 
-            return View();
+            return View;
         }
 
         [HttpPost]

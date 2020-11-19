@@ -8,6 +8,15 @@ namespace Common.Clase
 {
     public class CRegional : Vuelo
     {
+        public override void AgregarVuelo() 
+        {
+        
+        }
+
+        public override void ListarVuelo()
+        {
+
+        }
 
         public string numeroVuelo { get; set; }
         public string origen { get; set; }
