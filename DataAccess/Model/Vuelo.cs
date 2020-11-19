@@ -12,30 +12,30 @@ namespace DataAccess.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Aeronave
+    public partial class Vuelo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Aeronave()
+        public Vuelo()
         {
-            this.Asiento = new HashSet<Asiento>();
             this.Intercontinental = new HashSet<Intercontinental>();
-            this.Regional = new HashSet<Regional>();
             this.Nacional = new HashSet<Nacional>();
+            this.Regional = new HashSet<Regional>();
         }
     
-        public int numeroAeronave { get; set; }
-        public Nullable<int> anioIngreso { get; set; }
-        public Nullable<int> horasVuelo { get; set; }
-        public string modelo { get; set; }
-        public int cantAsientos { get; set; }
+        public string numeroVuelo { get; set; }
+        public string origen { get; set; }
+        public string destino { get; set; }
+        public System.DateTime dtLlegada { get; set; }
+        public System.DateTime dtSalida { get; set; }
+        public double HorasTotales { get; set; }
+        public Nullable<int> numeroAeronaveAsignada { get; set; }
+        public double precio { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Asiento> Asiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intercontinental> Intercontinental { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Regional> Regional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nacional> Nacional { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Regional> Regional { get; set; }
     }
 }

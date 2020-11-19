@@ -28,7 +28,7 @@ namespace DataAccess.Persistencia
                         nuevaAeronave.modelo = dto.modelo;
                     
                         //Agregar la lista de asientos.
-
+                        
 
 
                         context.Aeronave.Add(nuevaAeronave);
@@ -49,6 +49,12 @@ namespace DataAccess.Persistencia
 
             }
         }
+
+        //public bool Asientos(DtoAsiento asiento)
+        //{ 
+
+
+        //}
 
 
     }

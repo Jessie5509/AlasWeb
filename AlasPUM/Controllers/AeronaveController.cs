@@ -46,10 +46,31 @@ namespace AlasPUM.Controllers
 
         public ActionResult AsignarAsientos()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
 
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult AsignAsientos(DtoAsiento asiento)
+        //{
+        //    bool msg = HAeronave.getInstace().AsignAsientos(asiento);
+
+        //    if (msg == true)
+        //    {
+        //        TempData["Message"] = "Aeronave guardada satisfactoriamente!";
+        //    }
+        //    else
+        //    {
+        //        TempData["Message"] = "Completa todos los campos por favor!";
+        //    }
+
+        //    return RedirectToAction("AltaAeronave");
+        //}
 
     }
 }
