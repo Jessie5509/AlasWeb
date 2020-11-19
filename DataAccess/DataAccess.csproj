@@ -94,6 +94,9 @@
     <Compile Include="Model\Pago.cs">
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Vuelo.cs">
+      <DependentUpon>Alas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Persistencia\PAdmin.cs" />
     <Compile Include="Persistencia\PAeronave.cs" />
     <Compile Include="Persistencia\PIntercontinental.cs" />
