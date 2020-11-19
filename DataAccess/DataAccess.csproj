@@ -96,6 +96,9 @@
     </Compile>
     <Compile Include="Persistencia\PAdmin.cs" />
     <Compile Include="Persistencia\PAeronave.cs" />
+    <Compile Include="Persistencia\PIntercontinental.cs" />
+    <Compile Include="Persistencia\PNacional.cs" />
+    <Compile Include="Persistencia\PRegional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Regional.cs">
       <DependentUpon>Alas.tt</DependentUpon>
