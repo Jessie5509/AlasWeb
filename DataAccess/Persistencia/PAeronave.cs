@@ -26,11 +26,9 @@ namespace DataAccess.Persistencia
                         nuevaAeronave.cantAsientos = dto.cantAsientos;
                         nuevaAeronave.horasVuelo = dto.horasVuelo;
                         nuevaAeronave.modelo = dto.modelo;
-                    
+
                         //Agregar la lista de asientos.
-                        
-
-
+                      
                         context.Aeronave.Add(nuevaAeronave);
                         context.SaveChanges();
 
@@ -50,11 +48,45 @@ namespace DataAccess.Persistencia
             }
         }
 
-        //public bool Asientos(DtoAsiento asiento)
-        //{ 
+        public List<DtoAsiento> Asientos(DtoAsiento asiento)
+        {
+            List<DtoAsiento> lstAsientos = new List<DtoAsiento>();
 
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Asiento nuevoAsiento = new Asiento();
+                        nuevoAsiento.tipo = asiento.tipo;
+                        nuevoAsiento.fila = asiento.fila;
+                        nuevoAsiento.desde = asiento.desde;
+                        nuevoAsiento.hasta = asiento.hasta;
 
-        //}
+                        //Mapper
+
+                        //lstAsientos.Add(nuevoAsiento);
+
+                        
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                        
+
+                    }
+
+                    return lstAsientos;
+                }
+
+            }
+
+        }
 
 
     }

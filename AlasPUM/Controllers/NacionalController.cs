@@ -20,7 +20,7 @@ namespace AlasPUM.Controllers
         {
 
 
-            return View;
+            return View();
         }
 
         [HttpPost]

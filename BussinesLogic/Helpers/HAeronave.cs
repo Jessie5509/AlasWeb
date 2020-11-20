@@ -28,13 +28,13 @@ namespace BussinesLogic.Helpers
 
         }
 
-        //public bool AsignAsientos(DtoAsiento dto)
-        //{
-        //    PAeronave pe = new PAeronave();
-        //    return pe.Asientos(dto);
+        public List<DtoAsiento> AsignAsientos(DtoAsiento dto)
+        {
+            PAeronave pe = new PAeronave();
+            return pe.Asientos(dto);
 
-        //}
-        
+        }
+
 
 
     }

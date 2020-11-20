@@ -29,5 +29,10 @@ namespace Common.DTO
         [DisplayName("Hasta")]
         [Required(ErrorMessage = "Se debe ingresar hasta que número de asiento finaliza!")]
         public int hasta { get; set; }
+
+
+      
     }
+
+  
 }

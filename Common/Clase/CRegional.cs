@@ -8,15 +8,7 @@ namespace Common.Clase
 {
     public class CRegional : Vuelo
     {
-        public override void AgregarVuelo() 
-        {
-        
-        }
-
-        public override void ListarVuelo()
-        {
-
-        }
+     
 
         public string numeroVuelo { get; set; }
         public string origen { get; set; }
@@ -30,8 +22,14 @@ namespace Common.Clase
         public double tasaRegional { get; set; }
         public int NumAero { get; set; }
 
+        public override void AgregarVuelo()
+        {
+            throw new NotImplementedException();
+        }
 
-
-
+        protected override Vuelo ListarVuelo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -24,14 +24,14 @@ namespace DataAccess.Persistencia
                     {
                         
                         Nacional Nac = new Nacional();
-                        Nac.numeroVuelo = dto.numeroVuelo;
-                        Nac.origen = dto.origen;
-                        Nac.destino = dto.destino;
-                        Nac.dtLlegada = dto.dtLlegada;
-                        Nac.dtSalida = dto.dtSalida;
-                        Nac.HorasTotales = dto.HorasTotales;
-                        Nac.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        Nac.NumAero = dto.NumAero;
+                        //Nac.numeroVuelo = dto.numeroVuelo;
+                        //Nac.origen = dto.origen;
+                        //Nac.destino = dto.destino;
+                        //Nac.dtLlegada = dto.dtLlegada;
+                        //Nac.dtSalida = dto.dtSalida;
+                        //Nac.HorasTotales = dto.HorasTotales;
+                        //Nac.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        //Nac.NumAero = dto.NumAero;
 
                         context.Nacional.Add(Nac);
                         context.SaveChanges();

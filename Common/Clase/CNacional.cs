@@ -19,5 +19,14 @@ namespace Common.Clase
         public double precio { get; set; }
         public int NumAero { get; set; }
 
+        public override void AgregarVuelo()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Vuelo ListarVuelo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,35 @@
+﻿using Common.DTO;
+using DataAccess.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccess.Mappers
+{
+    public class MAsiento
+    {
+        public static DtoAsiento MapToDto(Asiento entity)
+        {
+            DtoAsiento dto = new DtoAsiento();
+            dto.desde = entity.desde;
+            dto.hasta = entity.hasta;
+            dto.tipo = entity.tipo;
+            dto.fila = entity.fila;
+            
+            return dto;
+        }
+
+        public static Asiento MapToEntity(DtoAsiento dto)
+        {
+            Asiento entity = new Asiento();
+            entity.hasta = dto.hasta;
+            entity.desde = dto.desde;
+            entity.tipo = dto.tipo;
+            entity.fila = dto.fila;
+            
+            return entity;
+        }
+    }
+}
