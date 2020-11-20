@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace AlasPUM.Controllers
 {
-    public class RegionalController : Controller
+    public class VueloController : Controller
     {
-        // GET: Regional
-        public ActionResult Index()
+        // GET: Vuelo
+        public ActionResult AgregarVuelo()
         {
             return View();
         }

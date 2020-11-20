@@ -53,6 +53,7 @@
     <Compile Include="DTO\DtoLogin.cs" />
     <Compile Include="DTO\DtoNacional.cs" />
     <Compile Include="DTO\DtoRegional.cs" />
+    <Compile Include="DTO\DtoVuelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

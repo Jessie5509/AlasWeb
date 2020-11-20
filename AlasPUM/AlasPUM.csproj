@@ -129,10 +129,8 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AeronaveController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IntercontinentalController.cs" />
-    <Compile Include="Controllers\NacionalController.cs" />
-    <Compile Include="Controllers\RegionalController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VueloController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +176,7 @@
     <Content Include="Views\Usuario\LoginV.cshtml" />
     <Content Include="Views\Aeronave\AltaAeronave.cshtml" />
     <Content Include="Views\Aeronave\AsignarAsientos.cshtml" />
+    <Content Include="Views\Vuelo\AgregarVuelo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

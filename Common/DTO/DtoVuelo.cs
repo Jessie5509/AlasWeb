@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.DTO 
+namespace Common.DTO
 {
-    public class DtoIntercontinental
+    public class DtoVuelo
     {
 
         [DisplayName("numero Vuelo")]
@@ -41,27 +41,17 @@ namespace Common.DTO
         [DisplayName("numeroAeronaveAsignada")]
         public Nullable<int> numeroAeronaveAsignada { get; set; }
 
-        [DisplayName("destino")]
+        [DisplayName("precio")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double precio { get; set; }
 
-        [DisplayName("documentacion")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        [StringLength(75, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
-        public string documentacion { get; set; }
-
-        [DisplayName("tasaInter")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        public double tasaIntercontinental { get; set; }
-
-        [DisplayName("visa")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
-        public string visa { get; set; }
-
-        [DisplayName("destino")]
+        [DisplayName("NumAero")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public int NumAero { get; set; }
 
+        public DtoIntercontinental Intercontinental { get; set; }
+
+        public DtoRegional Regional { get; set; }
+        public DtoNacional Nacional { get; set; }
     }
 }

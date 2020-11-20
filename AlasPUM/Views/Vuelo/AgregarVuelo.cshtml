@@ -1,0 +1,166 @@
+﻿@model Common.DTO.DtoVuelo
+
+@{
+    ViewBag.Title = "AgregarVuelo";
+}
+
+<h2>AgregarVuelo</h2>
+
+<script>
+
+    function pepe() {
+
+        //Creamos el listener del boton
+        $(document).on('click', 'input[type="radio"]', function () {
+
+            //Traemos los radio que tengan el mismo name, únicamente los que estén seleccionados y sacamos el valor
+            let radio = $('input[name="tipoVuelo"]:checked').val();
+
+            if (radio === "Nacional") {
+                document.getElementById("docuR").style.display = 'none';
+                document.getElementById("tasaR").style.display = 'none';
+                //--------------------------------------------
+                document.getElementById("docuI").style.display = 'none';
+                document.getElementById("tasaI").style.display = 'none';
+                document.getElementById("visaI").style.display = 'none';
+            } else if (radio === "Regional") {
+                document.getElementById("docuR").style.display = 'inline';
+                document.getElementById("tasaR").style.display = 'inline';
+                //--------------------------------------------
+                document.getElementById("docuI").style.display = 'none';
+                document.getElementById("tasaI").style.display = 'none';
+                document.getElementById("visaI").style.display = 'none';
+            } else if (radio === "Intercontinental") {
+                document.getElementById("docuR").style.display = 'none';
+                document.getElementById("tasaR").style.display = 'none';
+                //--------------------------------------------
+                document.getElementById("docuI").style.display = 'inline';
+                document.getElementById("tasaI").style.display = 'inline';
+                document.getElementById("visaI").style.display = 'inline';
+            } else {
+                document.getElementById("docuR").style.display = 'none';
+                document.getElementById("tasaR").style.display = 'none';
+                //--------------------------------------------
+                document.getElementById("docuI").style.display = 'none';
+                document.getElementById("tasaI").style.display = 'none';
+                document.getElementById("visaI").style.display = 'none';
+            }
+        });
+    };
+
+</script>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>DtoVuelo</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.numeroVuelo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.numeroVuelo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.numeroVuelo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.origen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.origen, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.origen, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.destino, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.destino, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.destino, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dtLlegada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dtLlegada, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dtLlegada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dtSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dtSalida, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dtSalida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HorasTotales, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HorasTotales, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HorasTotales, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.numeroAeronaveAsignada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.numeroAeronaveAsignada, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.numeroAeronaveAsignada, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.precio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumAero, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumAero, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumAero, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="custom-control custom-radio">
+            <input type="radio" onclick="pepe()" checked class="custom-control-input" id="defaultGroupExample1" value="Nacional" name="tipoVuelo">
+            <label class="custom-control-label" for="defaultGroupExample1">Nacional</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" onclick="pepe()" class="custom-control-input" id="defaultGroupExample2" value="Regional" name="tipoVuelo">
+            <label class="custom-control-label" for="defaultGroupExample2">Regional</label>
+            @Html.EditorFor(model => model.Regional.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuR", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
+            @Html.EditorFor(model => model.Regional.tasaRegional, new { htmlAttributes = new { @class = "form-control", @id = "tasaR", @placeholder = "Tasa Regional...", @style = "display:none;" } })
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" onclick="pepe()" class="custom-control-input" id="defaultGroupExample3" value="Intercontinental" name="tipoVuelo">
+            <label class="custom-control-label" for="defaultGroupExample3">Intercontinental</label>
+            @Html.EditorFor(model => model.Intercontinental.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuI", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
+            @Html.EditorFor(model => model.Intercontinental.tasaIntercontinental, new { htmlAttributes = new { @class = "form-control", @id = "tasaI", @placeholder = "Tasa Intercontinental...", @style = "display:none;" } })
+            @Html.EditorFor(model => model.Intercontinental.visa, new { htmlAttributes = new { @class = "form-control", @id = "visaI", @placeholder = "Visa...", @style = "display:none;" } })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
