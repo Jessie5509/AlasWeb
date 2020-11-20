@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\MAsiento.cs" />
     <Compile Include="Model\Administrador.cs">
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
@@ -110,9 +111,7 @@
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Model\Alas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
