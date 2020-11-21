@@ -12,7 +12,7 @@ namespace DataAccess.Persistencia
    public class PNacional
     {
 
-        public bool RegistarNacional(DtoNacional dto)
+        public bool VueloNacional( DtoVuelo dto)
         {
             bool msg = true;
 
@@ -24,14 +24,15 @@ namespace DataAccess.Persistencia
                     {
                         
                         Nacional Nac = new Nacional();
-                        //Nac.numeroVuelo = dto.numeroVuelo;
-                        //Nac.origen = dto.origen;
-                        //Nac.destino = dto.destino;
-                        //Nac.dtLlegada = dto.dtLlegada;
-                        //Nac.dtSalida = dto.dtSalida;
-                        //Nac.HorasTotales = dto.HorasTotales;
-                        //Nac.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        //Nac.NumAero = dto.NumAero;
+                        Nac.numVuelo = dto.Nacional.numeroVuelo;
+                        Nac.Vuelo.origen = dto.origen;
+                        Nac.Vuelo.destino = dto.destino;
+                        Nac.Vuelo.dtLlegada = dto.dtLlegada;
+                        Nac.Vuelo.dtSalida = dto.dtSalida;
+                        Nac.Vuelo.HorasTotales = dto.HorasTotales;
+                        Nac.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        Nac.NumAero = dto.NumAero;
+
 
                         context.Nacional.Add(Nac);
                         context.SaveChanges();

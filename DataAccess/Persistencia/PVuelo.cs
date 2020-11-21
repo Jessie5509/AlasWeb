@@ -9,10 +9,10 @@ using System.Transactions;
 
 namespace DataAccess.Persistencia
 {
-    public class PRegional
+    public class PVuelo
     {
-       
-        public bool VueloRegional(DtoVuelo dto)
+
+        public bool Vuelo(DtoVuelo dto)
         {
             bool msg = true;
 
@@ -23,20 +23,18 @@ namespace DataAccess.Persistencia
                     try
                     {
 
-                        Regional Reg = new Regional();
-                        Reg.numVueloR = dto.Regional.numeroVuelo;
-                        Reg.Vuelo.origen = dto.origen;
-                        Reg.Vuelo.destino = dto.destino;
-                        Reg.Vuelo.dtLlegada = dto.dtLlegada;
-                        Reg.Vuelo.dtSalida = dto.dtSalida;
-                        Reg.Vuelo.HorasTotales = dto.HorasTotales;
-                        Reg.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        Reg.NumAeroR = dto.NumAero;
-                        Reg.tasaRegional = dto.Regional.tasaRegional;
-                        Reg.documentacion = dto.Regional.documentacion;
+                        Vuelo vc = new Vuelo();
+                        vc.numeroVuelo = dto.numeroVuelo;
+                        vc.origen = dto.origen;
+                        vc.destino = dto.destino;
+                        vc.dtLlegada = dto.dtLlegada;
+                        vc.dtSalida = dto.dtSalida;
+                        vc.HorasTotales = dto.HorasTotales;
+                        vc.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vc.numeroAeronaveAsignada = dto.NumAero;
 
 
-                        context.Regional.Add(Reg);
+                        context.Vuelo.Add(vc);
                         context.SaveChanges();
 
                         scope.Complete();
@@ -55,5 +53,6 @@ namespace DataAccess.Persistencia
 
             }
         }
+
     }
 }
