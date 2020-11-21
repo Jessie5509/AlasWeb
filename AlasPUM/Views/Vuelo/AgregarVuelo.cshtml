@@ -5,15 +5,15 @@
 }
 
 <h2>AgregarVuelo</h2>
-
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
 
-    function pepe() {
+    function function1() {
 
-        //Creamos el listener del boton
+
         $(document).on('click', 'input[type="radio"]', function () {
 
-            //Traemos los radio que tengan el mismo name, únicamente los que estén seleccionados y sacamos el valor
+            r
             let radio = $('input[name="tipoVuelo"]:checked').val();
 
             if (radio === "Nacional") {
@@ -48,117 +48,224 @@
         });
     };
 
+    function tomarDias() {
+        var days = [];
+        var frecuencia = document.getElementById("frecuencia");
+        frecuencia = frecuencia.options[frecuencia.selectedIndex].value;
+
+        if (frecuencia === "Diario") {
+            days == null;
+        } else if (frecuencia === "Semanal") {
+            var arr = $('[name="semanal"]:checked').map(function () {
+                return this.value;
+            }).get();
+            days = arr;
+            document.getElementById('Lunes').checked = false;
+            document.getElementById('Martes').checked = false;
+            document.getElementById('Miercoles').checked = false;
+            document.getElementById('Jueves').checked = false;
+            document.getElementById('Viernes').checked = false;
+            document.getElementById('Sabado').checked = false;
+            document.getElementById('Domingo').checked = false;
+        } else if (frecuencia === "Mensual") {
+            var mensual = $("#mensualInput").val();
+            days.push(mensual);
+            $("#mensualInput").val(null);
+        }
+        console.log(days);
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(days),
+            contentType: "application/json",
+            url: "https://localhost:44317/Vuelo/FrecuenciaVuelo",
+            success: function (respuesta) {
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+            }
+        })
+    };
+
+    $(document).ready(function () {
+        var select = document.getElementById('frecuencia');
+        select.addEventListener('change',
+            function () {
+                var selectedOption = this.options[select.selectedIndex];
+                if (selectedOption.value === "Diario" || selectedOption.value == " ") {
+                    document.getElementById("divSemanal").style.display = 'none';
+                    document.getElementById("divMensual").style.display = 'none';
+                } else if (selectedOption.value === "Semanal") {
+                    document.getElementById("divSemanal").style.display = 'inline';
+                    document.getElementById("divMensual").style.display = 'none';
+                } else if (selectedOption.value === "Mensual") {
+                    document.getElementById("divSemanal").style.display = 'none';
+                    document.getElementById("divMensual").style.display = 'inline';
+                } else {
+                    document.getElementById("divSemanal").style.display = 'none';
+                    document.getElementById("divMensual").style.display = 'none';
+                }
+            });
+    });
+
 </script>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>DtoVuelo</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.numeroVuelo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.numeroVuelo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numeroVuelo, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <h4>DtoVuelo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.numeroVuelo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numeroVuelo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numeroVuelo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.origen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.origen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.origen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.destino, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.destino, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.destino, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtLlegada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtLlegada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtLlegada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtSalida, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtSalida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HorasTotales, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HorasTotales, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HorasTotales, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.numeroAeronaveAsignada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numeroAeronaveAsignada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numeroAeronaveAsignada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.precio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumAero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumAero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumAero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="custom-control custom-radio">
+                <input type="radio" onclick="function1()" checked class="custom-control-input" id="defaultGroupExample1" value="Nacional" name="tipoVuelo">
+                <label class="custom-control-label" for="defaultGroupExample1">Nacional</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" onclick="function1()" class="custom-control-input" id="defaultGroupExample2" value="Regional" name="tipoVuelo">
+                <label class="custom-control-label" for="defaultGroupExample2">Regional</label>
+                @Html.EditorFor(model => model.Regional.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuR", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
+                @Html.EditorFor(model => model.Regional.tasaRegional, new { htmlAttributes = new { @class = "form-control", @id = "tasaR", @placeholder = "Tasa Regional...", @style = "display:none;" } })
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" onclick="function1()" class="custom-control-input" id="defaultGroupExample3" value="Intercontinental" name="tipoVuelo">
+                <label class="custom-control-label" for="defaultGroupExample3">Intercontinental</label>
+                @Html.EditorFor(model => model.Intercontinental.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuI", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
+                @Html.EditorFor(model => model.Intercontinental.tasaIntercontinental, new { htmlAttributes = new { @class = "form-control", @id = "tasaI", @placeholder = "Tasa Intercontinental...", @style = "display:none;" } })
+                @Html.EditorFor(model => model.Intercontinental.visa, new { htmlAttributes = new { @class = "form-control", @id = "visaI", @placeholder = "Visa...", @style = "display:none;" } })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Frecuencias de los vuelos</label>
+            <select class="form-control" id="frecuencia">
+                <option value="" selected>Frecuencias..</option>
+                <option id="FDiario" value="Diario">Diario</option>
+                <option id="FSemanal" value="Semanal">Semanal</option>
+                <option id="FMensual" value="Mensual">Mensual</option>
+            </select>
+            <div id="divSemanal" style="display:none;">
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Lunes" value="Monday" />
+                    <label class="form-check-label">Lunes</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Martes" value="Tuesday" />
+                    <label class="form-check-label">Martes</label>
+
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Miercoles" value="Wednesday" />
+                    <label class="form-check-label">Miercoles</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Jueves" value="Thursday" />
+                    <label class="form-check-label">Jueves</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Viernes" value="Friday" />
+                    <label class="form-check-label">Viernes</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Sabado" value="Saturday" />
+                    <label class="form-check-label">Sabado</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="semanal" class="form-check-input" id="Domingo" value="Sunday" />
+                    <label class="form-check-label">Domingo</label>
+                </div>
+            </div>
+
+            <div id="divMensual" style="display:none;">
+                <label class="form-check-label">Dia del mes</label>
+                <input type="text" id="Domingo" />
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.origen, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.origen, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.origen, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.destino, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.destino, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.destino, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.dtLlegada, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.dtLlegada, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.dtLlegada, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.dtSalida, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.dtSalida, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.dtSalida, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.HorasTotales, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.HorasTotales, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.HorasTotales, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.numeroAeronaveAsignada, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.numeroAeronaveAsignada, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numeroAeronaveAsignada, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.precio, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.NumAero, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.NumAero, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NumAero, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="custom-control custom-radio">
-            <input type="radio" onclick="pepe()" checked class="custom-control-input" id="defaultGroupExample1" value="Nacional" name="tipoVuelo">
-            <label class="custom-control-label" for="defaultGroupExample1">Nacional</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" onclick="pepe()" class="custom-control-input" id="defaultGroupExample2" value="Regional" name="tipoVuelo">
-            <label class="custom-control-label" for="defaultGroupExample2">Regional</label>
-            @Html.EditorFor(model => model.Regional.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuR", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
-            @Html.EditorFor(model => model.Regional.tasaRegional, new { htmlAttributes = new { @class = "form-control", @id = "tasaR", @placeholder = "Tasa Regional...", @style = "display:none;" } })
-        </div>
-        <div class="custom-control custom-radio">
-            <input type="radio" onclick="pepe()" class="custom-control-input" id="defaultGroupExample3" value="Intercontinental" name="tipoVuelo">
-            <label class="custom-control-label" for="defaultGroupExample3">Intercontinental</label>
-            @Html.EditorFor(model => model.Intercontinental.documentacion, new { htmlAttributes = new { @class = "form-control", @id = "docuI", @placeholder = "Documentacion para ingresar...", @style = "display:none;" } })
-            @Html.EditorFor(model => model.Intercontinental.tasaIntercontinental, new { htmlAttributes = new { @class = "form-control", @id = "tasaI", @placeholder = "Tasa Intercontinental...", @style = "display:none;" } })
-            @Html.EditorFor(model => model.Intercontinental.visa, new { htmlAttributes = new { @class = "form-control", @id = "visaI", @placeholder = "Visa...", @style = "display:none;" } })
-        </div>
-    </div>
-
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>

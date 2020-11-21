@@ -47,9 +47,7 @@
   <ItemGroup>
     <Compile Include="Helpers\HAdmin.cs" />
     <Compile Include="Helpers\HAeronave.cs" />
-    <Compile Include="Helpers\HIntercontinental.cs" />
-    <Compile Include="Helpers\HNacional.cs" />
-    <Compile Include="Helpers\HRegional.cs" />
+    <Compile Include="Helpers\HVuelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
