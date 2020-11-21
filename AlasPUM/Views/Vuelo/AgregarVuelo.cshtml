@@ -145,7 +145,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dtLlegada, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dtLlegada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.dtLlegada, new { htmlAttributes = new { @class = "form-control"  , type="date"} })
                 @Html.ValidationMessageFor(model => model.dtLlegada, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -153,7 +153,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dtSalida, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dtSalida, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.dtSalida, new { htmlAttributes = new { @class = "form-control", type="datetime-local" } })
                 @Html.ValidationMessageFor(model => model.dtSalida, "", new { @class = "text-danger" })
             </div>
         </div>
