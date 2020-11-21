@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace DataAccess.Persistencia
 {
     public class PAeronave
     {
-        public bool AddAeronave(DtoAeronave dto)
+        public bool AddAeronave(DtoAeronave dto, List<DtoAsiento> asientos)
         {
             bool msg;
 
@@ -22,13 +23,40 @@ namespace DataAccess.Persistencia
                     try
                     {
                         Aeronave nuevaAeronave = new Aeronave();
+                        int cantA = 0;
+
+                        //Agregar la lista de asientos.
+
+                      
+
+                        foreach (DtoAsiento dt in asientos)
+                        {
+                            //for (int i = dt.desde; i < dt.hasta; i++)
+                            //{
+                            //    dt.numeroAsiento = i;
+                            //    Asiento DBasiento = MAsiento.MapToEntity(dt);
+
+                            //    context.Asiento.Add(DBasiento);
+
+                            //}
+               
+                            Asiento asiento = MAsiento.MapToEntity(dt);
+                            nuevaAeronave.Asiento.Add(asiento);
+
+                            if (cantA < dt.hasta)
+                            {
+                                cantA = dt.hasta;
+
+                            }
+
+
+                        }
+
                         nuevaAeronave.anioIngreso = dto.anioIngreso;
-                        nuevaAeronave.cantAsientos = dto.cantAsientos;
+                        nuevaAeronave.cantAsientos = cantA;
                         nuevaAeronave.horasVuelo = dto.horasVuelo;
                         nuevaAeronave.modelo = dto.modelo;
 
-                        //Agregar la lista de asientos.
-                      
                         context.Aeronave.Add(nuevaAeronave);
                         context.SaveChanges();
 
@@ -48,43 +76,44 @@ namespace DataAccess.Persistencia
             }
         }
 
-        public List<DtoAsiento> Asientos(DtoAsiento asiento)
+        public DtoAsiento Asientos(DtoAsiento asiento)
         {
-            List<DtoAsiento> lstAsientos = new List<DtoAsiento>();
+            DtoAsiento asientos = new DtoAsiento();
+            asientos = asiento;
 
-            using (AlasPUMEntities context = new AlasPUMEntities())
-            {
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    try
-                    {
-                        Asiento nuevoAsiento = new Asiento();
-                        nuevoAsiento.tipo = asiento.tipo;
-                        nuevoAsiento.fila = asiento.fila;
-                        nuevoAsiento.desde = asiento.desde;
-                        nuevoAsiento.hasta = asiento.hasta;
+            //using (AlasPUMEntities context = new AlasPUMEntities())
+            //{
+            //    using (TransactionScope scope = new TransactionScope())
+            //    {
+            //        try
+            //        {
+            //            Asiento nuevoAsiento = new Asiento();
+            //            nuevoAsiento.tipo = asiento.tipo;
+            //            nuevoAsiento.fila = asiento.fila;
+            //            nuevoAsiento.desde = asiento.desde;
+            //            nuevoAsiento.hasta = asiento.hasta;
 
-                        //Mapper
+            //            //Mapper
+            //            DtoAsiento dto = MAsiento.MapToDto(nuevoAsiento);
+            //            lstAsientos.Add(dto);
 
-                        //lstAsientos.Add(nuevoAsiento);
+            //            context.SaveChanges();
 
-                        
-                        context.SaveChanges();
+            //            scope.Complete();
 
-                        scope.Complete();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            scope.Dispose();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        scope.Dispose();
-                        
+            //        }
 
-                    }
+            //        return asientos;
+            //    }
 
-                    return lstAsientos;
-                }
+            //}
 
-            }
+            return asientos;
 
         }
 

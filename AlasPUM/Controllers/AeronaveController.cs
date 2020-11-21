@@ -18,6 +18,7 @@ namespace AlasPUM.Controllers
 
         public ActionResult AltaAeronave()
         {
+           
             if (TempData["Message"] != null)
             {
                 ViewBag.Message = TempData["Message"].ToString();
@@ -30,7 +31,11 @@ namespace AlasPUM.Controllers
         [HttpPost]
         public ActionResult AddAeronave(DtoAeronave nuevaAero)
         {
-            bool msg = HAeronave.getInstace().AddAeronave(nuevaAero);
+            List<DtoAsiento> asientos = (List<DtoAsiento>)Session["lstAsientos"];
+
+            bool msg = HAeronave.getInstace().AddAeronave(nuevaAero, asientos);
+
+            Session.Clear();
 
             if (msg == true)
             {
@@ -59,9 +64,33 @@ namespace AlasPUM.Controllers
         [HttpPost]
         public ActionResult AsignAsientos(DtoAsiento asiento)
         {
+            //string tipo = asiento.tipo;
+            List<DtoAsiento> asientos = null;
             //Usar session para mantener esa lista y luego pasarla por parametro en addaeronave.
-            List<DtoAsiento> asientos = HAeronave.getInstace().AsignAsientos(asiento);
-          
+            if (Session["lstAsientos"] == null)
+            {
+                asientos = new List<DtoAsiento>();
+
+            }
+            else
+            {
+                asientos = (List<DtoAsiento>)Session["lstAsientos"];
+
+            }
+       
+            DtoAsiento dtoAsiento = new DtoAsiento();
+            dtoAsiento = HAeronave.getInstace().AsignAsientos(asiento);
+            asientos.Add(dtoAsiento);
+
+            if (asientos.Count >= 4)
+            {
+                return RedirectToAction("AltaAeronave");
+            }
+
+            Session["lstAsientos"] = asientos;
+
+            //Remove select values
+
 
             return RedirectToAction("AsignarAsientos");
         }

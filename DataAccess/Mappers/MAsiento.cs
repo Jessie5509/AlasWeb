@@ -13,6 +13,7 @@ namespace DataAccess.Mappers
         public static DtoAsiento MapToDto(Asiento entity)
         {
             DtoAsiento dto = new DtoAsiento();
+            dto.numeroAsiento = entity.numeroAsiento;
             dto.desde = entity.desde;
             dto.hasta = entity.hasta;
             dto.tipo = entity.tipo;
@@ -24,6 +25,7 @@ namespace DataAccess.Mappers
         public static Asiento MapToEntity(DtoAsiento dto)
         {
             Asiento entity = new Asiento();
+            entity.numeroAsiento = dto.numeroAsiento;
             entity.hasta = dto.hasta;
             entity.desde = dto.desde;
             entity.tipo = dto.tipo;

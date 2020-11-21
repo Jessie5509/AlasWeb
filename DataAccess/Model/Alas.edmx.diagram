@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Compra" Width="1.5" PointX="3.125" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Pago" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlasPUMModel.Video" Width="1.5" PointX="2.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlasPUMModel.Video" Width="1.5" PointX="2.25" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="AlasPUMModel.FKPago_Compra" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AlasPUMModel.Administrador" Width="1.5" PointX="0.5" PointY="0.5" />

@@ -21,14 +21,14 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public bool AddAeronave(DtoAeronave dto)
+        public bool AddAeronave(DtoAeronave dto, List<DtoAsiento> asientos)
         {
             PAeronave pe = new PAeronave();
-            return pe.AddAeronave(dto);
+            return pe.AddAeronave(dto, asientos);
 
         }
 
-        public List<DtoAsiento> AsignAsientos(DtoAsiento dto)
+        public DtoAsiento AsignAsientos(DtoAsiento dto)
         {
             PAeronave pe = new PAeronave();
             return pe.Asientos(dto);
