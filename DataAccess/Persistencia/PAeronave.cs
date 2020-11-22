@@ -27,21 +27,28 @@ namespace DataAccess.Persistencia
 
                         //Agregar la lista de asientos.
 
-                      
-
                         foreach (DtoAsiento dt in asientos)
                         {
-                            //for (int i = dt.desde; i < dt.hasta; i++)
-                            //{
-                            //    dt.numeroAsiento = i;
-                            //    Asiento DBasiento = MAsiento.MapToEntity(dt);
+                            for (int i = dt.desde; i < dt.hasta; i++)
+                            {
+                                if (dt.numeroAsiento != dt.desde)
+                                {
+                                    dt.numeroAsiento = dt.desde;
+                                }
+                                else
+                                {
+                                    dt.numeroAsiento = dt.numeroAsiento + 1;
+                                }
+  
+                                Asiento DBasiento = MAsiento.MapToEntity(dt);
 
-                            //    context.Asiento.Add(DBasiento);
+                                //context.Asiento.Add(DBasiento);
+                                nuevaAeronave.Asiento.Add(DBasiento);
 
-                            //}
+                            }
                
-                            Asiento asiento = MAsiento.MapToEntity(dt);
-                            nuevaAeronave.Asiento.Add(asiento);
+                            //Asiento asiento = MAsiento.MapToEntity(dt);
+                            //nuevaAeronave.Asiento.Add(asiento);
 
                             if (cantA < dt.hasta)
                             {
