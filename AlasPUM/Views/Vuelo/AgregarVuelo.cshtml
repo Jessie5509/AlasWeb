@@ -13,7 +13,7 @@
 
         $(document).on('click', 'input[type="radio"]', function () {
 
-            r
+            
             let radio = $('input[name="tipoVuelo"]:checked').val();
 
             if (radio === "Nacional") {
@@ -110,7 +110,7 @@
 
 </script>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddVuelo", "Vuelo"))
 {
     @Html.AntiForgeryToken()
 

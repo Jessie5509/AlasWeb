@@ -22,7 +22,6 @@ namespace DataAccess.Persistencia
                 {
                     try
                     {
-                        
                         Nacional Nac = new Nacional();
                         Nac.numVuelo = dto.Nacional.numeroVuelo;
                         Nac.Vuelo.origen = dto.origen;
@@ -33,8 +32,20 @@ namespace DataAccess.Persistencia
                         Nac.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         Nac.NumAero = dto.NumAero;
 
+                        Vuelo vuel = new Vuelo();
+                        vuel.numeroVuelo = dto.numeroVuelo;
+                        vuel.origen = dto.origen;
+                        vuel.destino = dto.destino;
+                        vuel.dtLlegada = dto.dtLlegada;
+                        vuel.dtSalida = dto.dtSalida;
+                        vuel.HorasTotales = dto.HorasTotales;
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vuel.numeroAeronaveAsignada = dto.NumAero;
+                        vuel.Nacional.Add(Nac);
 
-                        context.Nacional.Add(Nac);
+
+
+                        context.Vuelo.Add(vuel);
                         context.SaveChanges();
 
                         scope.Complete();
