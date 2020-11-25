@@ -35,7 +35,7 @@
           <Property Name="cantidad" Type="int" />
           <Property Name="precio" Type="float" />
           <Property Name="seleccionado" Type="bit" />
-          <Property Name="idCompraAsi" Type="int" Nullable="false" />
+          <Property Name="idCompraAsi" Type="int" />
           <Property Name="aeronaveNum" Type="int" Nullable="false" />
           <Property Name="fila" Type="varchar" MaxLength="15" />
           <Property Name="desde" Type="int" Nullable="false" />
@@ -147,7 +147,7 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           </ReferentialConstraint>
         </Association>
         <Association Name="FKAsiento_Compra">
-          <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="0..1" />
           <End Role="Asiento" Type="Self.Asiento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Compra">
@@ -341,10 +341,10 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <Property Name="horasVuelo" Type="Int32" />
           <Property Name="modelo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="cantAsientos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
           <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Aeronave" ToRole="Intercontinental" />
           <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Aeronave" ToRole="Regional" />
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Aeronave" FromRole="Aeronave" ToRole="Nacional" />
+          <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -429,15 +429,6 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <EntitySet Name="Administrador" EntityType="AlasPUMModel.Administrador" />
-          <EntitySet Name="Asiento" EntityType="AlasPUMModel.Asiento" />
-          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Asiento" EntitySet="Asiento" />
-          </AssociationSet>
-          <AssociationSet Name="FKAsiento_Compra" Association="AlasPUMModel.FKAsiento_Compra">
-            <End Role="Compra" EntitySet="Compra" />
-            <End Role="Asiento" EntitySet="Asiento" />
-          </AssociationSet>
           <EntitySet Name="Intercontinental" EntityType="AlasPUMModel.Intercontinental" />
           <AssociationSet Name="FKInt_Aeronave" Association="AlasPUMModel.FKInt_Aeronave">
             <End Role="Aeronave" EntitySet="Aeronave" />
@@ -466,6 +457,15 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
+          <EntitySet Name="Asiento" EntityType="AlasPUMModel.Asiento" />
+          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FKAsiento_Compra" Association="AlasPUMModel.FKAsiento_Compra">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Administrador">
           <Key>
@@ -478,47 +478,6 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Asiento">
-          <Key>
-            <PropertyRef Name="numeroAsiento" />
-          </Key>
-          <Property Name="numeroAsiento" Type="Int32" Nullable="false" />
-          <Property Name="tipo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="cantidad" Type="Int32" />
-          <Property Name="precio" Type="Double" />
-          <Property Name="seleccionado" Type="Boolean" />
-          <Property Name="idCompraAsi" Type="Int32" Nullable="false" />
-          <Property Name="aeronaveNum" Type="Int32" Nullable="false" />
-          <Property Name="fila" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="desde" Type="Int32" Nullable="false" />
-          <Property Name="hasta" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Asiento" ToRole="Aeronave" />
-          <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKAsiento_Compra" FromRole="Asiento" ToRole="Compra" />
-        </EntityType>
-        <Association Name="FKAsiento_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Asiento">
-              <PropertyRef Name="aeronaveNum" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKAsiento_Compra">
-          <End Type="AlasPUMModel.Compra" Role="Compra" Multiplicity="1" />
-          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Compra">
-              <PropertyRef Name="idCompra" />
-            </Principal>
-            <Dependent Role="Asiento">
-              <PropertyRef Name="idCompraAsi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Intercontinental">
           <Key>
             <PropertyRef Name="documentacion" />
@@ -648,6 +607,47 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Asiento">
+          <Key>
+            <PropertyRef Name="numeroAsiento" />
+          </Key>
+          <Property Name="numeroAsiento" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="precio" Type="Double" />
+          <Property Name="seleccionado" Type="Boolean" />
+          <Property Name="idCompraAsi" Type="Int32" />
+          <Property Name="aeronaveNum" Type="Int32" Nullable="false" />
+          <Property Name="fila" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="desde" Type="Int32" Nullable="false" />
+          <Property Name="hasta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Asiento" ToRole="Aeronave" />
+          <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKAsiento_Compra" FromRole="Asiento" ToRole="Compra" />
+        </EntityType>
+        <Association Name="FKAsiento_Aeronave">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
+          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Asiento">
+              <PropertyRef Name="aeronaveNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAsiento_Compra">
+          <End Type="AlasPUMModel.Compra" Role="Compra" Multiplicity="0..1" />
+          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="idCompra" />
+            </Principal>
+            <Dependent Role="Asiento">
+              <PropertyRef Name="idCompraAsi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -720,22 +720,6 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Asiento">
-            <EntityTypeMapping TypeName="AlasPUMModel.Asiento">
-              <MappingFragment StoreEntitySet="Asiento">
-                <ScalarProperty Name="hasta" ColumnName="hasta" />
-                <ScalarProperty Name="desde" ColumnName="desde" />
-                <ScalarProperty Name="fila" ColumnName="fila" />
-                <ScalarProperty Name="aeronaveNum" ColumnName="aeronaveNum" />
-                <ScalarProperty Name="idCompraAsi" ColumnName="idCompraAsi" />
-                <ScalarProperty Name="seleccionado" ColumnName="seleccionado" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="numeroAsiento" ColumnName="numeroAsiento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Intercontinental">
             <EntityTypeMapping TypeName="AlasPUMModel.Intercontinental">
               <MappingFragment StoreEntitySet="Intercontinental">
@@ -777,6 +761,22 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
                 <ScalarProperty Name="departamento" ColumnName="departamento" />
                 <ScalarProperty Name="numVuelo" ColumnName="numVuelo" />
                 <ScalarProperty Name="NumAero" ColumnName="NumAero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asiento">
+            <EntityTypeMapping TypeName="AlasPUMModel.Asiento">
+              <MappingFragment StoreEntitySet="Asiento">
+                <ScalarProperty Name="hasta" ColumnName="hasta" />
+                <ScalarProperty Name="desde" ColumnName="desde" />
+                <ScalarProperty Name="fila" ColumnName="fila" />
+                <ScalarProperty Name="aeronaveNum" ColumnName="aeronaveNum" />
+                <ScalarProperty Name="idCompraAsi" ColumnName="idCompraAsi" />
+                <ScalarProperty Name="seleccionado" ColumnName="seleccionado" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="numeroAsiento" ColumnName="numeroAsiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

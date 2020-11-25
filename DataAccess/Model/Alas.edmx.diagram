@@ -13,9 +13,6 @@
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="AlasPUMModel.FKPago_Compra" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AlasPUMModel.Administrador" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.25" PointY="2.875" />
-        <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
-        <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
         <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="4.75" PointY="8.625" />
         <AssociationConnector Association="AlasPUMModel.FKInt_Aeronave" />
         <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="2.75" PointY="6.25" />
@@ -26,6 +23,9 @@
         <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKReg_Vuelo" />
+        <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.25" PointY="3" />
+        <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
+        <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

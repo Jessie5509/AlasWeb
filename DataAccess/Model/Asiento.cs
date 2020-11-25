@@ -19,7 +19,7 @@ namespace DataAccess.Model
         public Nullable<int> cantidad { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<bool> seleccionado { get; set; }
-        public int idCompraAsi { get; set; }
+        public Nullable<int> idCompraAsi { get; set; }
         public int aeronaveNum { get; set; }
         public string fila { get; set; }
         public int desde { get; set; }
