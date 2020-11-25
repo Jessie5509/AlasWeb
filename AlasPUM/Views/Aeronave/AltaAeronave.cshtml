@@ -57,9 +57,12 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Agregar" class="btn btn-success" />
-                @*
-        @Html.ActionLink("Asignar asientos", "AsignarAsientos", "Aeronave", new { @class = "btn btn-primary" })
-                *@
+                <br />
+                <br />
+                @if (ViewBag.Message != null)
+                {
+                    <h4>@Html.Label("", (string)ViewBag.Message, new { @class = "label label-primary" })</h4>
+                }
             </div>
                 </div>
 

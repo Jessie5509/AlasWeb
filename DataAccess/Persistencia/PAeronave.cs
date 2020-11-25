@@ -24,29 +24,35 @@ namespace DataAccess.Persistencia
                     {
                         Aeronave nuevaAeronave = new Aeronave();
                         int cantA = 0;
+                        int num = 1;
 
                         //Agregar la lista de asientos.
 
                         foreach (DtoAsiento dt in asientos)
                         {
-                            for (int i = dt.desde; i < dt.hasta; i++)
+
+                            for (int i = dt.desde; i <= dt.hasta; i++)
                             {
-                                if (dt.numeroAsiento != dt.desde)
+                          
+                                if (dt.numeroAsiento == 0)
                                 {
-                                    dt.numeroAsiento = dt.desde;
+                                    dt.numeroAsiento = num;
+                                    num = num + 1;
                                 }
                                 else
                                 {
-                                    dt.numeroAsiento = dt.numeroAsiento + 1;
+                                    dt.numeroAsiento = num;
+                                    num = num + 1;
                                 }
-  
-                                Asiento DBasiento = MAsiento.MapToEntity(dt);
+         
+                                Asiento DBasiento = new Asiento();
+                                DBasiento = MAsiento.MapToEntity(dt);
 
                                 //context.Asiento.Add(DBasiento);
                                 nuevaAeronave.Asiento.Add(DBasiento);
 
                             }
-               
+
                             //Asiento asiento = MAsiento.MapToEntity(dt);
                             //nuevaAeronave.Asiento.Add(asiento);
 
