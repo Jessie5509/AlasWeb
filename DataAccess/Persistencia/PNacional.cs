@@ -24,12 +24,7 @@ namespace DataAccess.Persistencia
                     {
                         Nacional Nac = new Nacional();
                         Nac.numVuelo = dto.Nacional.numeroVuelo;
-                        Nac.Vuelo.origen = dto.origen;
-                        Nac.Vuelo.destino = dto.destino;
-                        Nac.Vuelo.dtLlegada = dto.dtLlegada;
-                        Nac.Vuelo.dtSalida = dto.dtSalida;
-                        Nac.Vuelo.HorasTotales = dto.HorasTotales;
-                        Nac.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        Nac.departamento = "prueba";
                         Nac.NumAero = dto.NumAero;
 
                         Vuelo vuel = new Vuelo();
@@ -64,6 +59,69 @@ namespace DataAccess.Persistencia
 
             }
         }
+
+
+
+        public bool Frecuencia(DtoVuelo dto)
+        {
+            bool msg = true;
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        DateTime fechaS = (DateTime)dto.dtSalida;
+                        DateTime fechaLL = (DateTime)dto.dtLlegada;
+                        TimeSpan diferencia = fechaLL - fechaS;
+
+                        List<DateTime> colDate = new List<DateTime>();
+                        for (int i = 0; i < 90; i++)
+                        {
+                            fechaS = fechaS.AddHours(24);
+                            colDate.Add(fechaS);
+                        }
+
+                        if ( days.Count == 0) // Diario Para tres Meses
+                        {
+                            vueloDiario(colDate, dto, context, diferencia);
+                        }
+                        else if (days.Count > 0 && days[0].ToCharArray().Count() > 2) // Semanal para Tres Meses
+                        {
+                            vueloSemanal(days, colDate, dto, context, diferencia);
+                        }
+                        else if (days.Count == 1 && days[0].ToCharArray().Count() <= 2) // Mensual para tres meses
+                        {
+                            string day = days.FirstOrDefault();
+                            DateTime date = DateTime.Now;
+                            day = date.Year + "-" + date.Month + "-" + day;
+                            DateTime myDate = DateTime.ParseExact(day, "yyyy-MM-dd",
+                                               System.Globalization.CultureInfo.InvariantCulture);
+
+                            vueloMensual(dto, context, diferencia, myDate);
+                        }
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                        return msg = false;
+                    }
+
+                    return msg = true;
+
+
+                }
+
+            }
+        }
+
+
+     
 
     }
 }
