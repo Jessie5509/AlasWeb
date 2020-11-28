@@ -17,6 +17,7 @@ namespace DataAccess.Model
         public int NumAero { get; set; }
         public string numVuelo { get; set; }
         public string departamento { get; set; }
+        public int idNacional { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
         public virtual Vuelo Vuelo { get; set; }

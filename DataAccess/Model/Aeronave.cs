@@ -18,8 +18,8 @@ namespace DataAccess.Model
         public Aeronave()
         {
             this.Intercontinental = new HashSet<Intercontinental>();
-            this.Regional = new HashSet<Regional>();
             this.Nacional = new HashSet<Nacional>();
+            this.Regional = new HashSet<Regional>();
             this.Asiento = new HashSet<Asiento>();
         }
     
@@ -32,9 +32,9 @@ namespace DataAccess.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intercontinental> Intercontinental { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Regional> Regional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nacional> Nacional { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Regional> Regional { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiento> Asiento { get; set; }
     }

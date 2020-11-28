@@ -11,17 +11,17 @@ namespace Common.DTO
     public class DtoVuelo
     {
 
-        [DisplayName("numero Vuelo")]
+        [DisplayName("Numero Vuelo")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(75, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string numeroVuelo { get; set; }
 
-        [DisplayName("origen")]
+        [DisplayName("Origen")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string origen { get; set; }
 
-        [DisplayName("destino")]
+        [DisplayName("Destino")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string destino { get; set; }
@@ -41,7 +41,7 @@ namespace Common.DTO
         [DisplayName("numeroAeronaveAsignada")]
         public Nullable<int> numeroAeronaveAsignada { get; set; }
 
-        [DisplayName("precio")]
+        [DisplayName("Precio")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double precio { get; set; }
 
