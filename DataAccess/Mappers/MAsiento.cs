@@ -18,7 +18,8 @@ namespace DataAccess.Mappers
             dto.hasta = entity.hasta;
             dto.tipo = entity.tipo;
             dto.fila = entity.fila;
-            
+            dto.cantidad = entity.cantidad;
+
             return dto;
         }
 
@@ -30,6 +31,7 @@ namespace DataAccess.Mappers
             entity.desde = dto.desde;
             entity.tipo = dto.tipo;
             entity.fila = dto.fila;
+            entity.cantidad = dto.cantidad;
             
             return entity;
         }

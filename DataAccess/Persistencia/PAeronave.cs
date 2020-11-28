@@ -46,9 +46,10 @@ namespace DataAccess.Persistencia
                                 }
          
                                 Asiento DBasiento = new Asiento();
+                                //dt.cantidad = dt.desde - dt.hasta;
                                 DBasiento = MAsiento.MapToEntity(dt);
 
-                                //context.Asiento.Add(DBasiento);
+                                //Por cada tipo agregar su cantidad
                                 nuevaAeronave.Asiento.Add(DBasiento);
 
                             }
