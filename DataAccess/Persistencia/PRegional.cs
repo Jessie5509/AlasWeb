@@ -21,22 +21,25 @@ namespace DataAccess.Persistencia
                 using (TransactionScope scope = new TransactionScope())
                 {
                     try
-                    {
+                    {                                            
 
                         Regional Reg = new Regional();
-                        Reg.numVueloR = dto.Regional.numeroVuelo;
-                        Reg.Vuelo.origen = dto.origen;
-                        Reg.Vuelo.destino = dto.destino;
-                        Reg.Vuelo.dtLlegada = dto.dtLlegada;
-                        Reg.Vuelo.dtSalida = dto.dtSalida;
-                        Reg.Vuelo.HorasTotales = dto.HorasTotales;
-                        Reg.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        Reg.NumAeroR = dto.NumAero;
                         Reg.tasaRegional = dto.Regional.tasaRegional;
                         Reg.documentacion = dto.Regional.documentacion;
 
+                        Vuelo vuel = new Vuelo();
+                        vuel.numeroVuelo = dto.numeroVuelo;
+                        vuel.origen = dto.origen;
+                        vuel.destino = dto.destino;
+                        vuel.dtLlegada = dto.dtLlegada;
+                        vuel.dtSalida = dto.dtSalida;
+                        vuel.HorasTotales = dto.HorasTotales;
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vuel.Regional.Add(Reg);
 
-                        context.Regional.Add(Reg);
+
+
+                        context.Vuelo.Add(vuel);
                         context.SaveChanges();
 
                         scope.Complete();

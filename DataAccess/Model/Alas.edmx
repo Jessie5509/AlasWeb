@@ -68,7 +68,6 @@
           <Property Name="documentacion" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="tasaInter" Type="float" Nullable="false" />
           <Property Name="visa" Type="varchar" MaxLength="125" Nullable="false" />
-          <Property Name="NumAeroI" Type="int" Nullable="false" />
           <Property Name="numVueloI" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="idIntercontinental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -76,7 +75,6 @@
           <Key>
             <PropertyRef Name="idNacional" />
           </Key>
-          <Property Name="NumAero" Type="int" Nullable="false" />
           <Property Name="numVuelo" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="departamento" Type="varchar" MaxLength="75" />
           <Property Name="idNacional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
@@ -97,7 +95,6 @@
           </Key>
           <Property Name="documentacion" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="tasaRegional" Type="float" Nullable="false" />
-          <Property Name="NumAeroR" Type="int" Nullable="false" />
           <Property Name="numVueloR" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="idRegional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -120,9 +117,21 @@
           <Property Name="dtLlegada" Type="datetime" Nullable="false" />
           <Property Name="dtSalida" Type="datetime" Nullable="false" />
           <Property Name="HorasTotales" Type="float" Nullable="false" />
-          <Property Name="numeroAeronaveAsignada" Type="int" />
           <Property Name="precio" Type="float" Nullable="false" />
+          <Property Name="numeroAeronaveAsignada" Type="int" />
         </EntityType>
+        <Association Name="FKAero_Vuelo">
+          <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="0..1" />
+          <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Vuelo">
+              <PropertyRef Name="numeroAeronaveAsignada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKAsiento_Aeronave">
           <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="1" />
           <End Role="Asiento" Type="Self.Asiento" Multiplicity="*" />
@@ -159,18 +168,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKInt_Aeronave">
-          <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="1" />
-          <End Role="Intercontinental" Type="Self.Intercontinental" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Intercontinental">
-              <PropertyRef Name="NumAeroI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKInt_Vuelo">
           <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="1" />
           <End Role="Intercontinental" Type="Self.Intercontinental" Multiplicity="*" />
@@ -180,18 +177,6 @@
             </Principal>
             <Dependent Role="Intercontinental">
               <PropertyRef Name="numVueloI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKNacional_Aeronave">
-          <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="1" />
-          <End Role="Nacional" Type="Self.Nacional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Nacional">
-              <PropertyRef Name="NumAero" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -219,18 +204,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKReg_Aeronave">
-          <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="1" />
-          <End Role="Regional" Type="Self.Regional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Regional">
-              <PropertyRef Name="NumAeroR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKReg_Vuelo">
           <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="1" />
           <End Role="Regional" Type="Self.Regional" Multiplicity="*" />
@@ -255,6 +228,10 @@
           <EntitySet Name="Regional" EntityType="Self.Regional" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vuelo" EntityType="Self.Vuelo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKAero_Vuelo" Association="Self.FKAero_Vuelo">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Vuelo" EntitySet="Vuelo" />
+          </AssociationSet>
           <AssociationSet Name="FKAsiento_Aeronave" Association="Self.FKAsiento_Aeronave">
             <End Role="Aeronave" EntitySet="Aeronave" />
             <End Role="Asiento" EntitySet="Asiento" />
@@ -267,17 +244,9 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FKInt_Aeronave" Association="Self.FKInt_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Intercontinental" EntitySet="Intercontinental" />
-          </AssociationSet>
           <AssociationSet Name="FKInt_Vuelo" Association="Self.FKInt_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Intercontinental" EntitySet="Intercontinental" />
-          </AssociationSet>
-          <AssociationSet Name="FKNacional_Aeronave" Association="Self.FKNacional_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Nacional" EntitySet="Nacional" />
           </AssociationSet>
           <AssociationSet Name="FKNacional_Vuelo" Association="Self.FKNacional_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
@@ -286,10 +255,6 @@
           <AssociationSet Name="FKPago_Compra" Association="Self.FKPago_Compra">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="FKReg_Aeronave" Association="Self.FKReg_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
           <AssociationSet Name="FKReg_Vuelo" Association="Self.FKReg_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
@@ -309,10 +274,8 @@
           <Property Name="horasVuelo" Type="Int32" />
           <Property Name="modelo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="cantAsientos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Aeronave" ToRole="Intercontinental" />
-          <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Aeronave" FromRole="Aeronave" ToRole="Nacional" />
-          <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Aeronave" ToRole="Regional" />
           <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Aeronave" ToRole="Vuelo" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -397,21 +360,22 @@
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <EntitySet Name="Administrador" EntityType="AlasPUMModel.Administrador" />
-          <EntitySet Name="Vuelo" EntityType="AlasPUMModel.Vuelo" />
+          <EntitySet Name="Asiento" EntityType="AlasPUMModel.Asiento" />
+          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FKAsiento_Compra" Association="AlasPUMModel.FKAsiento_Compra">
+            <End Role="Compra" EntitySet="Compra" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
           <EntitySet Name="Intercontinental" EntityType="AlasPUMModel.Intercontinental" />
           <EntitySet Name="Nacional" EntityType="AlasPUMModel.Nacional" />
           <EntitySet Name="Regional" EntityType="AlasPUMModel.Regional" />
-          <AssociationSet Name="FKInt_Aeronave" Association="AlasPUMModel.FKInt_Aeronave">
+          <EntitySet Name="Vuelo" EntityType="AlasPUMModel.Vuelo" />
+          <AssociationSet Name="FKAero_Vuelo" Association="AlasPUMModel.FKAero_Vuelo">
             <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Intercontinental" EntitySet="Intercontinental" />
-          </AssociationSet>
-          <AssociationSet Name="FKNacional_Aeronave" Association="AlasPUMModel.FKNacional_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Nacional" EntitySet="Nacional" />
-          </AssociationSet>
-          <AssociationSet Name="FKReg_Aeronave" Association="AlasPUMModel.FKReg_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Regional" EntitySet="Regional" />
+            <End Role="Vuelo" EntitySet="Vuelo" />
           </AssociationSet>
           <AssociationSet Name="FKInt_Vuelo" Association="AlasPUMModel.FKInt_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
@@ -425,15 +389,6 @@
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
-          <EntitySet Name="Asiento" EntityType="AlasPUMModel.Asiento" />
-          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Asiento" EntitySet="Asiento" />
-          </AssociationSet>
-          <AssociationSet Name="FKAsiento_Compra" Association="AlasPUMModel.FKAsiento_Compra">
-            <End Role="Compra" EntitySet="Compra" />
-            <End Role="Asiento" EntitySet="Asiento" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Administrador">
           <Key>
@@ -446,130 +401,6 @@
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Vuelo">
-          <Key>
-            <PropertyRef Name="numeroVuelo" />
-          </Key>
-          <Property Name="numeroVuelo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="origen" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
-          <Property Name="destino" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
-          <Property Name="dtLlegada" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dtSalida" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HorasTotales" Type="Double" Nullable="false" />
-          <Property Name="numeroAeronaveAsignada" Type="Int32" />
-          <Property Name="precio" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Vuelo" ToRole="Intercontinental" />
-          <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
-          <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Vuelo" ToRole="Regional" />
-        </EntityType>
-        <EntityType Name="Intercontinental">
-          <Key>
-            <PropertyRef Name="idIntercontinental" />
-          </Key>
-          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="tasaInter" Type="Double" Nullable="false" />
-          <Property Name="visa" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
-          <Property Name="NumAeroI" Type="Int32" Nullable="false" />
-          <Property Name="numVueloI" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="idIntercontinental" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Intercontinental" ToRole="Aeronave" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Intercontinental" ToRole="Vuelo" />
-        </EntityType>
-        <EntityType Name="Nacional">
-          <Key>
-            <PropertyRef Name="idNacional" />
-          </Key>
-          <Property Name="NumAero" Type="Int32" Nullable="false" />
-          <Property Name="numVuelo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="departamento" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="idNacional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKNacional_Aeronave" FromRole="Nacional" ToRole="Aeronave" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Nacional" ToRole="Vuelo" />
-        </EntityType>
-        <EntityType Name="Regional">
-          <Key>
-            <PropertyRef Name="idRegional" />
-          </Key>
-          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="tasaRegional" Type="Double" Nullable="false" />
-          <Property Name="NumAeroR" Type="Int32" Nullable="false" />
-          <Property Name="numVueloR" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="idRegional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Regional" ToRole="Aeronave" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Regional" ToRole="Vuelo" />
-        </EntityType>
-        <Association Name="FKInt_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Intercontinental">
-              <PropertyRef Name="NumAeroI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKNacional_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Nacional" Role="Nacional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Nacional">
-              <PropertyRef Name="NumAero" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKReg_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Regional" Role="Regional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Regional">
-              <PropertyRef Name="NumAeroR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKInt_Vuelo">
-          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
-          <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vuelo">
-              <PropertyRef Name="numeroVuelo" />
-            </Principal>
-            <Dependent Role="Intercontinental">
-              <PropertyRef Name="numVueloI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKNacional_Vuelo">
-          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
-          <End Type="AlasPUMModel.Nacional" Role="Nacional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vuelo">
-              <PropertyRef Name="numeroVuelo" />
-            </Principal>
-            <Dependent Role="Nacional">
-              <PropertyRef Name="numVuelo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKReg_Vuelo">
-          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
-          <End Type="AlasPUMModel.Regional" Role="Regional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vuelo">
-              <PropertyRef Name="numeroVuelo" />
-            </Principal>
-            <Dependent Role="Regional">
-              <PropertyRef Name="numVueloR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Asiento">
           <Key>
             <PropertyRef Name="numeroAsiento" />
@@ -608,6 +439,101 @@
             </Principal>
             <Dependent Role="Asiento">
               <PropertyRef Name="idCompraAsi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Intercontinental">
+          <Key>
+            <PropertyRef Name="idIntercontinental" />
+          </Key>
+          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tasaInter" Type="Double" Nullable="false" />
+          <Property Name="visa" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="numVueloI" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idIntercontinental" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Intercontinental" ToRole="Vuelo" />
+        </EntityType>
+        <EntityType Name="Nacional">
+          <Key>
+            <PropertyRef Name="idNacional" />
+          </Key>
+          <Property Name="numVuelo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="departamento" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idNacional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Nacional" ToRole="Vuelo" />
+        </EntityType>
+        <EntityType Name="Regional">
+          <Key>
+            <PropertyRef Name="idRegional" />
+          </Key>
+          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tasaRegional" Type="Double" Nullable="false" />
+          <Property Name="numVueloR" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idRegional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Regional" ToRole="Vuelo" />
+        </EntityType>
+        <EntityType Name="Vuelo">
+          <Key>
+            <PropertyRef Name="numeroVuelo" />
+          </Key>
+          <Property Name="numeroVuelo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="origen" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="destino" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="dtLlegada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dtSalida" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HorasTotales" Type="Double" Nullable="false" />
+          <Property Name="precio" Type="Double" Nullable="false" />
+          <Property Name="numeroAeronaveAsignada" Type="Int32" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Vuelo" ToRole="Aeronave" />
+          <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Vuelo" ToRole="Intercontinental" />
+          <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
+          <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Vuelo" ToRole="Regional" />
+        </EntityType>
+        <Association Name="FKAero_Vuelo">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="0..1" />
+          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Vuelo">
+              <PropertyRef Name="numeroAeronaveAsignada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKInt_Vuelo">
+          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
+          <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelo">
+              <PropertyRef Name="numeroVuelo" />
+            </Principal>
+            <Dependent Role="Intercontinental">
+              <PropertyRef Name="numVueloI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKNacional_Vuelo">
+          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
+          <End Type="AlasPUMModel.Nacional" Role="Nacional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelo">
+              <PropertyRef Name="numeroVuelo" />
+            </Principal>
+            <Dependent Role="Nacional">
+              <PropertyRef Name="numVuelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReg_Vuelo">
+          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
+          <End Type="AlasPUMModel.Regional" Role="Regional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vuelo">
+              <PropertyRef Name="numeroVuelo" />
+            </Principal>
+            <Dependent Role="Regional">
+              <PropertyRef Name="numVueloR" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -683,53 +609,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Vuelo">
-            <EntityTypeMapping TypeName="AlasPUMModel.Vuelo">
-              <MappingFragment StoreEntitySet="Vuelo">
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="numeroAeronaveAsignada" ColumnName="numeroAeronaveAsignada" />
-                <ScalarProperty Name="HorasTotales" ColumnName="HorasTotales" />
-                <ScalarProperty Name="dtSalida" ColumnName="dtSalida" />
-                <ScalarProperty Name="dtLlegada" ColumnName="dtLlegada" />
-                <ScalarProperty Name="destino" ColumnName="destino" />
-                <ScalarProperty Name="origen" ColumnName="origen" />
-                <ScalarProperty Name="numeroVuelo" ColumnName="numeroVuelo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Intercontinental">
-            <EntityTypeMapping TypeName="AlasPUMModel.Intercontinental">
-              <MappingFragment StoreEntitySet="Intercontinental">
-                <ScalarProperty Name="idIntercontinental" ColumnName="idIntercontinental" />
-                <ScalarProperty Name="numVueloI" ColumnName="numVueloI" />
-                <ScalarProperty Name="NumAeroI" ColumnName="NumAeroI" />
-                <ScalarProperty Name="visa" ColumnName="visa" />
-                <ScalarProperty Name="tasaInter" ColumnName="tasaInter" />
-                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Nacional">
-            <EntityTypeMapping TypeName="AlasPUMModel.Nacional">
-              <MappingFragment StoreEntitySet="Nacional">
-                <ScalarProperty Name="idNacional" ColumnName="idNacional" />
-                <ScalarProperty Name="departamento" ColumnName="departamento" />
-                <ScalarProperty Name="numVuelo" ColumnName="numVuelo" />
-                <ScalarProperty Name="NumAero" ColumnName="NumAero" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Regional">
-            <EntityTypeMapping TypeName="AlasPUMModel.Regional">
-              <MappingFragment StoreEntitySet="Regional">
-                <ScalarProperty Name="idRegional" ColumnName="idRegional" />
-                <ScalarProperty Name="numVueloR" ColumnName="numVueloR" />
-                <ScalarProperty Name="NumAeroR" ColumnName="NumAeroR" />
-                <ScalarProperty Name="tasaRegional" ColumnName="tasaRegional" />
-                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Asiento">
             <EntityTypeMapping TypeName="AlasPUMModel.Asiento">
               <MappingFragment StoreEntitySet="Asiento">
@@ -743,6 +622,50 @@
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="numeroAsiento" ColumnName="numeroAsiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intercontinental">
+            <EntityTypeMapping TypeName="AlasPUMModel.Intercontinental">
+              <MappingFragment StoreEntitySet="Intercontinental">
+                <ScalarProperty Name="idIntercontinental" ColumnName="idIntercontinental" />
+                <ScalarProperty Name="numVueloI" ColumnName="numVueloI" />
+                <ScalarProperty Name="visa" ColumnName="visa" />
+                <ScalarProperty Name="tasaInter" ColumnName="tasaInter" />
+                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nacional">
+            <EntityTypeMapping TypeName="AlasPUMModel.Nacional">
+              <MappingFragment StoreEntitySet="Nacional">
+                <ScalarProperty Name="idNacional" ColumnName="idNacional" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="numVuelo" ColumnName="numVuelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regional">
+            <EntityTypeMapping TypeName="AlasPUMModel.Regional">
+              <MappingFragment StoreEntitySet="Regional">
+                <ScalarProperty Name="idRegional" ColumnName="idRegional" />
+                <ScalarProperty Name="numVueloR" ColumnName="numVueloR" />
+                <ScalarProperty Name="tasaRegional" ColumnName="tasaRegional" />
+                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vuelo">
+            <EntityTypeMapping TypeName="AlasPUMModel.Vuelo">
+              <MappingFragment StoreEntitySet="Vuelo">
+                <ScalarProperty Name="numeroAeronaveAsignada" ColumnName="numeroAeronaveAsignada" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="HorasTotales" ColumnName="HorasTotales" />
+                <ScalarProperty Name="dtSalida" ColumnName="dtSalida" />
+                <ScalarProperty Name="dtLlegada" ColumnName="dtLlegada" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="numeroVuelo" ColumnName="numeroVuelo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -28,9 +28,10 @@ namespace DataAccess.Model
         public System.DateTime dtLlegada { get; set; }
         public System.DateTime dtSalida { get; set; }
         public double HorasTotales { get; set; }
-        public Nullable<int> numeroAeronaveAsignada { get; set; }
         public double precio { get; set; }
+        public Nullable<int> numeroAeronaveAsignada { get; set; }
     
+        public virtual Aeronave Aeronave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intercontinental> Intercontinental { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

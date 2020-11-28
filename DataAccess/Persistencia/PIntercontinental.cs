@@ -24,19 +24,23 @@ namespace DataAccess.Persistencia
                     {
 
                         Intercontinental Inter = new Intercontinental();
-                        Inter.numVueloI = dto.Intercontinental.numeroVuelo;
-                        Inter.Vuelo.origen = dto.origen;
-                        Inter.Vuelo.destino = dto.destino;
-                        Inter.Vuelo.dtLlegada = dto.dtLlegada;
-                        Inter.Vuelo.dtSalida = dto.dtSalida;
-                        Inter.Vuelo.HorasTotales = dto.HorasTotales;
-                        Inter.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        Inter.NumAeroI = dto.NumAero;
                         Inter.tasaInter = dto.Regional.tasaRegional;
                         Inter.documentacion = dto.Regional.documentacion;
                         Inter.visa = dto.Intercontinental.visa;
 
-                        context.Intercontinental.Add(Inter);
+                        Vuelo vuel = new Vuelo();
+                        vuel.numeroVuelo = dto.numeroVuelo;
+                        vuel.origen = dto.origen;
+                        vuel.destino = dto.destino;
+                        vuel.dtLlegada = dto.dtLlegada;
+                        vuel.dtSalida = dto.dtSalida;
+                        vuel.HorasTotales = dto.HorasTotales;
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vuel.Intercontinental.Add(Inter);
+
+
+
+                        context.Vuelo.Add(vuel);
                         context.SaveChanges();
 
                         scope.Complete();

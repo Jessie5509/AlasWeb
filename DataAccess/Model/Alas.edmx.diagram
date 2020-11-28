@@ -13,19 +13,17 @@
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" ManuallyRouted="false" />
         <AssociationConnector Association="AlasPUMModel.FKPago_Compra" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AlasPUMModel.Administrador" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="0.5" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="13.125" PointY="5.875" />
-        <EntityTypeShape EntityType="AlasPUMModel.Nacional" Width="1.5" PointX="10.125" PointY="6" />
-        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="10.125" PointY="3" />
-        <AssociationConnector Association="AlasPUMModel.FKInt_Aeronave" />
-        <AssociationConnector Association="AlasPUMModel.FKNacional_Aeronave" />
-        <AssociationConnector Association="AlasPUMModel.FKReg_Aeronave" />
-        <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
-        <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />
-        <AssociationConnector Association="AlasPUMModel.FKReg_Vuelo" />
         <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="7.125" PointY="1.25" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
+        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="12.375" PointY="5.5" />
+        <EntityTypeShape EntityType="AlasPUMModel.Nacional" Width="1.5" PointX="12.375" PointY="3" />
+        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="12.375" PointY="8.375" />
+        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="10.125" PointY="5" />
+        <AssociationConnector Association="AlasPUMModel.FKAero_Vuelo" />
+        <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
+        <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />
+        <AssociationConnector Association="AlasPUMModel.FKReg_Vuelo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

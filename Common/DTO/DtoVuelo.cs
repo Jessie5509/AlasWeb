@@ -38,17 +38,12 @@ namespace Common.DTO
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double HorasTotales { get; set; }
 
-        [DisplayName("numeroAeronaveAsignada")]
-        public Nullable<int> numeroAeronaveAsignada { get; set; }
-
         [DisplayName("Precio")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double precio { get; set; }
 
-        [DisplayName("NumAero")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        public int NumAero { get; set; }
-
+        [DisplayName("numero Aeronave Asignada")]
+        public Nullable<int> numeroAeronaveAsignada { get; set; }
         public DtoIntercontinental Intercontinental { get; set; }
 
         public DtoRegional Regional { get; set; }
