@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="39cfa60a6d2043f6b73817f3e8f0a07b" Name="Diagram1">
-        <EntityTypeShape EntityType="AlasPUMModel.Aeronave" Width="1.5" PointX="7.875" PointY="5.5" IsExpanded="true" FillColor="192, 0, 0" />
+        <EntityTypeShape EntityType="AlasPUMModel.Aeronave" Width="1.5" PointX="3.375" PointY="7.875" IsExpanded="true" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Compra" Width="1.5" PointX="3.125" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Pago" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
