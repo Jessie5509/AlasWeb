@@ -18,6 +18,7 @@ namespace DataAccess.Model
         public double tasaRegional { get; set; }
         public int NumAeroR { get; set; }
         public string numVueloR { get; set; }
+        public int idRegional { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
         public virtual Vuelo Vuelo { get; set; }

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -61,32 +61,25 @@
           <Property Name="precioTotal" Type="float" Nullable="false" />
           <Property Name="DocumentoCli" Type="varchar" MaxLength="75" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'AlasPUM.dbo.Intercontinental' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Intercontinental">
           <Key>
-            <PropertyRef Name="documentacion" />
-            <PropertyRef Name="tasaInter" />
-            <PropertyRef Name="visa" />
-            <PropertyRef Name="NumAeroI" />
-            <PropertyRef Name="numVueloI" />
+            <PropertyRef Name="idIntercontinental" />
           </Key>
           <Property Name="documentacion" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="tasaInter" Type="float" Nullable="false" />
           <Property Name="visa" Type="varchar" MaxLength="125" Nullable="false" />
           <Property Name="NumAeroI" Type="int" Nullable="false" />
           <Property Name="numVueloI" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="idIntercontinental" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'AlasPUM.dbo.Nacional' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Nacional">
           <Key>
-            <PropertyRef Name="NumAero" />
-            <PropertyRef Name="numVuelo" />
+            <PropertyRef Name="idNacional" />
           </Key>
           <Property Name="NumAero" Type="int" Nullable="false" />
           <Property Name="numVuelo" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="departamento" Type="varchar" MaxLength="75" />
+          <Property Name="idNacional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -98,19 +91,15 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Nacional' no tiene definida ning
           <Property Name="dtVencimiento" Type="datetime" Nullable="false" />
           <Property Name="idCompraFk" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Regional">
           <Key>
-            <PropertyRef Name="documentacion" />
-            <PropertyRef Name="tasaRegional" />
-            <PropertyRef Name="NumAeroR" />
-            <PropertyRef Name="numVueloR" />
+            <PropertyRef Name="idRegional" />
           </Key>
           <Property Name="documentacion" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="tasaRegional" Type="float" Nullable="false" />
           <Property Name="NumAeroR" Type="int" Nullable="false" />
           <Property Name="numVueloR" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="idRegional" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -260,33 +249,12 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <EntitySet Name="Asiento" EntityType="Self.Asiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intercontinental" EntityType="Self.Intercontinental" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nacional" EntityType="Self.Nacional" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regional" EntityType="Self.Regional" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vuelo" EntityType="Self.Vuelo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Intercontinental" EntityType="Self.Intercontinental" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Intercontinental].[documentacion] AS [documentacion], 
-    [Intercontinental].[tasaInter] AS [tasaInter], 
-    [Intercontinental].[visa] AS [visa], 
-    [Intercontinental].[NumAeroI] AS [NumAeroI], 
-    [Intercontinental].[numVueloI] AS [numVueloI]
-    FROM [dbo].[Intercontinental] AS [Intercontinental]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Nacional" EntityType="Self.Nacional" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Nacional].[NumAero] AS [NumAero], 
-    [Nacional].[numVuelo] AS [numVuelo], 
-    [Nacional].[departamento] AS [departamento]
-    FROM [dbo].[Nacional] AS [Nacional]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Regional" EntityType="Self.Regional" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Regional].[documentacion] AS [documentacion], 
-    [Regional].[tasaRegional] AS [tasaRegional], 
-    [Regional].[NumAeroR] AS [NumAeroR], 
-    [Regional].[numVueloR] AS [numVueloR]
-    FROM [dbo].[Regional] AS [Regional]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FKAsiento_Aeronave" Association="Self.FKAsiento_Aeronave">
             <End Role="Aeronave" EntitySet="Aeronave" />
             <End Role="Asiento" EntitySet="Asiento" />
@@ -342,8 +310,8 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <Property Name="modelo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="cantAsientos" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Aeronave" ToRole="Intercontinental" />
-          <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Aeronave" ToRole="Regional" />
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Aeronave" FromRole="Aeronave" ToRole="Nacional" />
+          <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Aeronave" ToRole="Regional" />
           <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
         </EntityType>
         <EntityType Name="Cliente">
@@ -429,21 +397,21 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
           <EntitySet Name="Administrador" EntityType="AlasPUMModel.Administrador" />
+          <EntitySet Name="Vuelo" EntityType="AlasPUMModel.Vuelo" />
           <EntitySet Name="Intercontinental" EntityType="AlasPUMModel.Intercontinental" />
+          <EntitySet Name="Nacional" EntityType="AlasPUMModel.Nacional" />
+          <EntitySet Name="Regional" EntityType="AlasPUMModel.Regional" />
           <AssociationSet Name="FKInt_Aeronave" Association="AlasPUMModel.FKInt_Aeronave">
             <End Role="Aeronave" EntitySet="Aeronave" />
             <End Role="Intercontinental" EntitySet="Intercontinental" />
           </AssociationSet>
-          <EntitySet Name="Regional" EntityType="AlasPUMModel.Regional" />
-          <AssociationSet Name="FKReg_Aeronave" Association="AlasPUMModel.FKReg_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Regional" EntitySet="Regional" />
-          </AssociationSet>
-          <EntitySet Name="Vuelo" EntityType="AlasPUMModel.Vuelo" />
-          <EntitySet Name="Nacional" EntityType="AlasPUMModel.Nacional" />
           <AssociationSet Name="FKNacional_Aeronave" Association="AlasPUMModel.FKNacional_Aeronave">
             <End Role="Aeronave" EntitySet="Aeronave" />
             <End Role="Nacional" EntitySet="Nacional" />
+          </AssociationSet>
+          <AssociationSet Name="FKReg_Aeronave" Association="AlasPUMModel.FKReg_Aeronave">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
           <AssociationSet Name="FKInt_Vuelo" Association="AlasPUMModel.FKInt_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
@@ -471,67 +439,13 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Intercontinental">
-          <Key>
-            <PropertyRef Name="documentacion" />
-            <PropertyRef Name="tasaInter" />
-            <PropertyRef Name="visa" />
-            <PropertyRef Name="NumAeroI" />
-            <PropertyRef Name="numVueloI" />
-          </Key>
-          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="tasaInter" Type="Double" Nullable="false" />
-          <Property Name="visa" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
-          <Property Name="NumAeroI" Type="Int32" Nullable="false" />
-          <Property Name="numVueloI" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Intercontinental" ToRole="Aeronave" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Intercontinental" ToRole="Vuelo" />
-        </EntityType>
-        <Association Name="FKInt_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Intercontinental">
-              <PropertyRef Name="NumAeroI" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Regional">
-          <Key>
-            <PropertyRef Name="documentacion" />
-            <PropertyRef Name="tasaRegional" />
-            <PropertyRef Name="NumAeroR" />
-            <PropertyRef Name="numVueloR" />
-          </Key>
-          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="tasaRegional" Type="Double" Nullable="false" />
-          <Property Name="NumAeroR" Type="Int32" Nullable="false" />
-          <Property Name="numVueloR" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Regional" ToRole="Aeronave" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Regional" ToRole="Vuelo" />
-        </EntityType>
-        <Association Name="FKReg_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Regional" Role="Regional" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Regional">
-              <PropertyRef Name="NumAeroR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Vuelo">
           <Key>
             <PropertyRef Name="numeroVuelo" />
@@ -548,17 +462,54 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
           <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Vuelo" ToRole="Regional" />
         </EntityType>
+        <EntityType Name="Intercontinental">
+          <Key>
+            <PropertyRef Name="idIntercontinental" />
+          </Key>
+          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tasaInter" Type="Double" Nullable="false" />
+          <Property Name="visa" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="NumAeroI" Type="Int32" Nullable="false" />
+          <Property Name="numVueloI" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idIntercontinental" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKInt_Aeronave" FromRole="Intercontinental" ToRole="Aeronave" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Intercontinental" ToRole="Vuelo" />
+        </EntityType>
         <EntityType Name="Nacional">
           <Key>
-            <PropertyRef Name="NumAero" />
-            <PropertyRef Name="numVuelo" />
+            <PropertyRef Name="idNacional" />
           </Key>
           <Property Name="NumAero" Type="Int32" Nullable="false" />
           <Property Name="numVuelo" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="departamento" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idNacional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKNacional_Aeronave" FromRole="Nacional" ToRole="Aeronave" />
           <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Nacional" ToRole="Vuelo" />
         </EntityType>
+        <EntityType Name="Regional">
+          <Key>
+            <PropertyRef Name="idRegional" />
+          </Key>
+          <Property Name="documentacion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="tasaRegional" Type="Double" Nullable="false" />
+          <Property Name="NumAeroR" Type="Int32" Nullable="false" />
+          <Property Name="numVueloR" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="idRegional" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKReg_Aeronave" FromRole="Regional" ToRole="Aeronave" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Regional" ToRole="Vuelo" />
+        </EntityType>
+        <Association Name="FKInt_Aeronave">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
+          <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Intercontinental">
+              <PropertyRef Name="NumAeroI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKNacional_Aeronave">
           <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
           <End Type="AlasPUMModel.Nacional" Role="Nacional" Multiplicity="*" />
@@ -568,6 +519,18 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
             </Principal>
             <Dependent Role="Nacional">
               <PropertyRef Name="NumAero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReg_Aeronave">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
+          <End Type="AlasPUMModel.Regional" Role="Regional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Regional">
+              <PropertyRef Name="NumAeroR" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -720,27 +683,6 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Intercontinental">
-            <EntityTypeMapping TypeName="AlasPUMModel.Intercontinental">
-              <MappingFragment StoreEntitySet="Intercontinental">
-                <ScalarProperty Name="numVueloI" ColumnName="numVueloI" />
-                <ScalarProperty Name="NumAeroI" ColumnName="NumAeroI" />
-                <ScalarProperty Name="visa" ColumnName="visa" />
-                <ScalarProperty Name="tasaInter" ColumnName="tasaInter" />
-                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Regional">
-            <EntityTypeMapping TypeName="AlasPUMModel.Regional">
-              <MappingFragment StoreEntitySet="Regional">
-                <ScalarProperty Name="numVueloR" ColumnName="numVueloR" />
-                <ScalarProperty Name="NumAeroR" ColumnName="NumAeroR" />
-                <ScalarProperty Name="tasaRegional" ColumnName="tasaRegional" />
-                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Vuelo">
             <EntityTypeMapping TypeName="AlasPUMModel.Vuelo">
               <MappingFragment StoreEntitySet="Vuelo">
@@ -755,12 +697,36 @@ advertencia 6002: La tabla o vista 'AlasPUM.dbo.Regional' no tiene definida ning
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Intercontinental">
+            <EntityTypeMapping TypeName="AlasPUMModel.Intercontinental">
+              <MappingFragment StoreEntitySet="Intercontinental">
+                <ScalarProperty Name="idIntercontinental" ColumnName="idIntercontinental" />
+                <ScalarProperty Name="numVueloI" ColumnName="numVueloI" />
+                <ScalarProperty Name="NumAeroI" ColumnName="NumAeroI" />
+                <ScalarProperty Name="visa" ColumnName="visa" />
+                <ScalarProperty Name="tasaInter" ColumnName="tasaInter" />
+                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Nacional">
             <EntityTypeMapping TypeName="AlasPUMModel.Nacional">
               <MappingFragment StoreEntitySet="Nacional">
+                <ScalarProperty Name="idNacional" ColumnName="idNacional" />
                 <ScalarProperty Name="departamento" ColumnName="departamento" />
                 <ScalarProperty Name="numVuelo" ColumnName="numVuelo" />
                 <ScalarProperty Name="NumAero" ColumnName="NumAero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regional">
+            <EntityTypeMapping TypeName="AlasPUMModel.Regional">
+              <MappingFragment StoreEntitySet="Regional">
+                <ScalarProperty Name="idRegional" ColumnName="idRegional" />
+                <ScalarProperty Name="numVueloR" ColumnName="numVueloR" />
+                <ScalarProperty Name="NumAeroR" ColumnName="NumAeroR" />
+                <ScalarProperty Name="tasaRegional" ColumnName="tasaRegional" />
+                <ScalarProperty Name="documentacion" ColumnName="documentacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

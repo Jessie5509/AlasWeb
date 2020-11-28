@@ -23,7 +23,6 @@ namespace DataAccess.Persistencia
                     try
                     {
                         Nacional Nac = new Nacional();
-                        Nac.numVuelo = dto.Nacional.numeroVuelo;
                         Nac.departamento = "prueba";
                         Nac.NumAero = dto.NumAero;
 
@@ -34,8 +33,7 @@ namespace DataAccess.Persistencia
                         vuel.dtLlegada = dto.dtLlegada;
                         vuel.dtSalida = dto.dtSalida;
                         vuel.HorasTotales = dto.HorasTotales;
-                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        vuel.numeroAeronaveAsignada = dto.NumAero;
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;                       
                         vuel.Nacional.Add(Nac);
 
 
@@ -61,7 +59,7 @@ namespace DataAccess.Persistencia
         }
 
 
-
+/*
         public bool Frecuencia(DtoVuelo dto)
         {
             bool msg = true;
@@ -120,7 +118,7 @@ namespace DataAccess.Persistencia
             }
         }
 
-
+        */
      
 
     }
