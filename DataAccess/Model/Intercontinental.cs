@@ -17,11 +17,9 @@ namespace DataAccess.Model
         public string documentacion { get; set; }
         public double tasaInter { get; set; }
         public string visa { get; set; }
-        public int NumAeroI { get; set; }
         public string numVueloI { get; set; }
         public int idIntercontinental { get; set; }
     
-        public virtual Aeronave Aeronave { get; set; }
         public virtual Vuelo Vuelo { get; set; }
     }
 }

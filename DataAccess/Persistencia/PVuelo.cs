@@ -30,8 +30,7 @@ namespace DataAccess.Persistencia
                         vc.dtLlegada = dto.dtLlegada;
                         vc.dtSalida = dto.dtSalida;
                         vc.HorasTotales = dto.HorasTotales;
-                        vc.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
-                        vc.numeroAeronaveAsignada = dto.NumAero;
+
 
 
                         context.Vuelo.Add(vc);

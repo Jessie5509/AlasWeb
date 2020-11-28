@@ -38,8 +38,6 @@ namespace Common.DTO
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double HorasTotales { get; set; }
 
-        [DisplayName("numeroAeronaveAsignada")]
-        public Nullable<int> numeroAeronaveAsignada { get; set; }
 
         [DisplayName("destino")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
@@ -59,9 +57,6 @@ namespace Common.DTO
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string visa { get; set; }
 
-        [DisplayName("destino")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        public int NumAero { get; set; }
 
     }
 }

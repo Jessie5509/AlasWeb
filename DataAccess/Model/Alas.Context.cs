@@ -31,10 +31,10 @@ namespace DataAccess.Model
         public virtual DbSet<Pago> Pago { get; set; }
         public virtual DbSet<Video> Video { get; set; }
         public virtual DbSet<Administrador> Administrador { get; set; }
-        public virtual DbSet<Vuelo> Vuelo { get; set; }
+        public virtual DbSet<Asiento> Asiento { get; set; }
         public virtual DbSet<Intercontinental> Intercontinental { get; set; }
         public virtual DbSet<Nacional> Nacional { get; set; }
         public virtual DbSet<Regional> Regional { get; set; }
-        public virtual DbSet<Asiento> Asiento { get; set; }
+        public virtual DbSet<Vuelo> Vuelo { get; set; }
     }
 }

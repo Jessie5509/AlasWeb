@@ -17,10 +17,8 @@ namespace DataAccess.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Aeronave()
         {
-            this.Intercontinental = new HashSet<Intercontinental>();
-            this.Nacional = new HashSet<Nacional>();
-            this.Regional = new HashSet<Regional>();
             this.Asiento = new HashSet<Asiento>();
+            this.Vuelo = new HashSet<Vuelo>();
         }
     
         public int numeroAeronave { get; set; }
@@ -30,12 +28,8 @@ namespace DataAccess.Model
         public int cantAsientos { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Intercontinental> Intercontinental { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Nacional> Nacional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Regional> Regional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiento> Asiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vuelo> Vuelo { get; set; }
     }
 }

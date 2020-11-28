@@ -24,7 +24,6 @@ namespace DataAccess.Persistencia
                     {
                         Nacional Nac = new Nacional();
                         Nac.departamento = "prueba";
-                        Nac.NumAero = dto.NumAero;
 
                         Vuelo vuel = new Vuelo();
                         vuel.numeroVuelo = dto.numeroVuelo;
@@ -33,7 +32,7 @@ namespace DataAccess.Persistencia
                         vuel.dtLlegada = dto.dtLlegada;
                         vuel.dtSalida = dto.dtSalida;
                         vuel.HorasTotales = dto.HorasTotales;
-                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;                       
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         vuel.Nacional.Add(Nac);
 
 
