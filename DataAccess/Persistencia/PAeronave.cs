@@ -46,10 +46,8 @@ namespace DataAccess.Persistencia
                                 }
          
                                 Asiento DBasiento = new Asiento();
-                                //dt.cantidad = dt.desde - dt.hasta;
                                 DBasiento = MAsiento.MapToEntity(dt);
 
-                                //Por cada tipo agregar su cantidad
                                 nuevaAeronave.Asiento.Add(DBasiento);
 
                             }
@@ -94,42 +92,31 @@ namespace DataAccess.Persistencia
         {
             DtoAsiento asientos = new DtoAsiento();
             asientos = asiento;
-
-            //using (AlasPUMEntities context = new AlasPUMEntities())
-            //{
-            //    using (TransactionScope scope = new TransactionScope())
-            //    {
-            //        try
-            //        {
-            //            Asiento nuevoAsiento = new Asiento();
-            //            nuevoAsiento.tipo = asiento.tipo;
-            //            nuevoAsiento.fila = asiento.fila;
-            //            nuevoAsiento.desde = asiento.desde;
-            //            nuevoAsiento.hasta = asiento.hasta;
-
-            //            //Mapper
-            //            DtoAsiento dto = MAsiento.MapToDto(nuevoAsiento);
-            //            lstAsientos.Add(dto);
-
-            //            context.SaveChanges();
-
-            //            scope.Complete();
-
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            scope.Dispose();
-
-            //        }
-
-            //        return asientos;
-            //    }
-
-            //}
-
+ 
             return asientos;
 
         }
+
+        public List<DtoAeronave> ListadoAeronaves()
+        {
+            List<Aeronave> lstAeroDB = new List<Aeronave>();
+            List<DtoAeronave> lstAero = new List<DtoAeronave>();
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                lstAeroDB = context.Aeronave.Select(s => s).ToList();
+
+                foreach (Aeronave item in lstAeroDB)
+                {
+                    DtoAeronave aero = MAeronave.MapToDto(item);
+                    lstAero.Add(aero);
+                }
+
+            }
+
+            return lstAero;
+        }
+            
 
 
     }

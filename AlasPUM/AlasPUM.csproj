@@ -177,6 +177,7 @@
     <Content Include="Views\Aeronave\AltaAeronave.cshtml" />
     <Content Include="Views\Aeronave\AsignarAsientos.cshtml" />
     <Content Include="Views\Vuelo\AgregarVuelo.cshtml" />
+    <Content Include="Views\Aeronave\ListadoAeronavesV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

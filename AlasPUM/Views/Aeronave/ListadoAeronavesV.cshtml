@@ -1,0 +1,65 @@
+﻿@model List<Common.DTO.DtoAeronave>
+
+@{
+    ViewBag.Title = "ListadoAeronavesV";
+}
+
+<h2>Aeronaves</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Número de aeronave
+            </th>
+            <th>
+                Año de ingreso
+            </th>
+            <th>
+                Horas de vuelo
+            </th>
+            <th>
+                Modelo
+            </th>
+            <th>
+                Cantidad de asientos
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroAeronave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.anioIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.horasVuelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantAsientos)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

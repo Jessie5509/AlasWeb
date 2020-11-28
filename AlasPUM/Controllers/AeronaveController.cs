@@ -95,5 +95,13 @@ namespace AlasPUM.Controllers
             return RedirectToAction("AsignarAsientos");
         }
 
+        public ActionResult ListadoAeronavesV()
+        {
+            List<DtoAeronave> colAero = HAeronave.getInstace().ListadoAeronaves();
+            return View(colAero);
+        }
+
+      
+
     }
 }

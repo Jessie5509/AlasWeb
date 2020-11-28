@@ -35,6 +35,13 @@ namespace BussinesLogic.Helpers
 
         }
 
+        public List<DtoAeronave> ListadoAeronaves()
+        {
+            PAeronave pe = new PAeronave();
+            return pe.ListadoAeronaves();
+        }
+
+
 
 
     }
