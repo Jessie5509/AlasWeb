@@ -7,7 +7,7 @@
 <h2>Aeronaves</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Asignar asientos", "AsignarAsientos", "Aeronave", new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <thead>
@@ -53,9 +53,9 @@
                     @Html.DisplayFor(modelItem => item.cantAsientos)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "ModificarAeronave", "Aeronave", new { id = item.numeroAeronave }, new { @class = "btn btn-primary" }) |
+                    
+                    @Html.ActionLink("Borrar", "RemoveAeronave", "Aeronave", new { id = item.numeroAeronave }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

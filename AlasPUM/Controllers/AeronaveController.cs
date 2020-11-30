@@ -101,7 +101,33 @@ namespace AlasPUM.Controllers
             return View(colAero);
         }
 
-      
+        public ActionResult RemoveAeronave(int id)
+        {
+            HAeronave.getInstace().RemoveAeronave(id);
+            return RedirectToAction("ListadoAeronavesV");
+        }
+
+        public ActionResult ConfirmarCambios(DtoAeronave dto)
+        {
+            dto.numeroAeronave = (int)Session["IdAeronave"];
+            HAeronave.getInstace().ModificarAeronave(dto);
+            Session.Clear();
+
+            return RedirectToAction("ListadoAeronavesV");
+
+        }
+
+        public ActionResult ModificarAeronave(int id)
+        {
+            Session["IdAeronave"] = id;
+            DtoAeronave aero = new DtoAeronave();
+
+            aero = HAeronave.getInstace().GetAeronaveM(id);
+
+            return View(aero);
+        }
+
+
 
     }
 }

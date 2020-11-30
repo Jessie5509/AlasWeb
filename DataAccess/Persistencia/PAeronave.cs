@@ -116,7 +116,71 @@ namespace DataAccess.Persistencia
 
             return lstAero;
         }
-            
+
+        public void removeAeronave(int id)
+        {
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Aeronave aero = context.Aeronave.FirstOrDefault(f => f.numeroAeronave == id);
+                        List<Asiento> lstAsiento = new List<Asiento>();
+
+                        foreach (Asiento item in aero.Asiento)
+                        {
+                            lstAsiento.Add(item);
+
+                        }
+
+                        foreach (Asiento a in lstAsiento)
+                        {
+                            aero.Asiento.Remove(a);
+                            context.Asiento.Remove(a);
+
+                        }
+
+                        context.Aeronave.Remove(aero);
+                        context.SaveChanges();
+
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+
+                    }
+
+                }
+            }
+        }
+        public void ModificarAeronave(DtoAeronave dto)
+        {
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                Aeronave updAero = context.Aeronave.FirstOrDefault(f => f.numeroAeronave == dto.numeroAeronave);
+                updAero.anioIngreso = dto.anioIngreso;
+                updAero.horasVuelo = dto.horasVuelo;
+                updAero.modelo = dto.modelo;
+               
+                context.SaveChanges();
+            }
+        }
+
+        public DtoAeronave GetAeronaveM(int id)
+        {
+            DtoAeronave dto = new DtoAeronave();
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                Aeronave aero = context.Aeronave.FirstOrDefault(f => f.numeroAeronave == id);
+
+                dto = MAeronave.MapToDto(aero);
+            }
+
+            return dto;
+        }
+
 
 
     }

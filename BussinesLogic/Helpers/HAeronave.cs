@@ -41,6 +41,26 @@ namespace BussinesLogic.Helpers
             return pe.ListadoAeronaves();
         }
 
+        public void RemoveAeronave(int id)
+        {
+            PAeronave pe = new PAeronave();
+            pe.removeAeronave(id);
+
+        }
+
+        public void ModificarAeronave(DtoAeronave dto)
+        {
+            PAeronave pc = new PAeronave();
+            pc.ModificarAeronave(dto);
+        }
+
+        public DtoAeronave GetAeronaveM(int id)
+        {
+            PAeronave pe = new PAeronave();
+            return pe.GetAeronaveM(id);
+
+        }
+        
 
 
 
