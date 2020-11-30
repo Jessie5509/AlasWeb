@@ -17,7 +17,7 @@ namespace AlasPUM.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddVuelo(DtoVuelo nuevovuelo)
+        public ActionResult AddVuelo(DtoVuelo nuevovuelo, List<int> days)
         {
             bool msg = HVuelo.getInstace().AddVuelo(nuevovuelo);
 
@@ -33,8 +33,38 @@ namespace AlasPUM.Controllers
             return RedirectToAction("AgregarVuelo");
         }
 
+        public ActionResult ListarVuelo(string Tipo)
+        {
 
-        
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Filtro(string Tipo)
+        {
+            
+            switch (Tipo)
+            {
+                case "Regional":
+                    List<DtoVuelo> colReg = new List<DtoVuelo>();
+                    colReg = HVuelo.getInstace().GetVuelo(Tipo);
+                    return View(colReg);
+                case "Intercontinental":
+                    List<DtoVuelo> colInter = new List<DtoVuelo>();
+                    colInter = HVuelo.getInstace().GetVuelo(Tipo);
+                    return PartialView(colInter);
+                case "Nacional":
+                    List<DtoVuelo> colNac = new List<DtoVuelo>();
+                    colNac = HVuelo.getInstace().GetVuelo(Tipo);
+                    return PartialView( colNac);
+                default:
+                    return RedirectToAction("ListarVuelo");
+
+            }
+                       
+
+        }
+
 
     }
 }
