@@ -33,6 +33,7 @@ namespace DataAccess.Persistencia
                         vuel.dtLlegada = dto.dtLlegada;
                         vuel.dtSalida = dto.dtSalida;
                         vuel.HorasTotales = dto.HorasTotales;
+                        vuel.precio = dto.precio;
                         vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         vuel.Nacional.Add(Nac);
 
@@ -59,17 +60,17 @@ namespace DataAccess.Persistencia
         }
 
 
-        public List<DtoVuelo> GetVuelo()
+        public List<DtoNacional> GetVuelo()
         {
-            List<DtoVuelo> coldtoVuelo = new List<DtoVuelo>();
+            List<DtoNacional> coldtoVuelo = new List<DtoNacional>();
             using (AlasPUMEntities context = new AlasPUMEntities())
             {
 
-                List<Vuelo> colVuelo = context.Nacional.Where(s => s.Vuelo.numeroVuelo == s.numVuelo).Select(w => w.Vuelo).ToList();
+                List<Nacional> colVuelo = context.Nacional.Select(s => s).ToList();
                 
-                foreach (Vuelo nac in colVuelo)
+                foreach (Nacional nac in colVuelo)
                 {
-                    DtoVuelo dto = MNacional.MapToDto(nac);
+                    DtoNacional dto = MNacional.MapToDto(nac);
                     coldtoVuelo.Add(dto);
                 }
             }

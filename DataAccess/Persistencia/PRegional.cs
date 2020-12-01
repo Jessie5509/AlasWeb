@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace DataAccess.Persistencia
                         vuel.dtLlegada = dto.dtLlegada;
                         vuel.dtSalida = dto.dtSalida;
                         vuel.HorasTotales = dto.HorasTotales;
+                        vuel.precio = dto.precio;
                         vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         vuel.Regional.Add(Reg);
 
@@ -58,5 +60,23 @@ namespace DataAccess.Persistencia
 
             }
         }
+
+        public List<DtoRegional> GetVuelo()
+        {
+            List<DtoRegional> coldtoVuelo = new List<DtoRegional>();
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+
+                List<Regional> colVuelo = context.Regional.Select(s => s).ToList();
+
+                foreach (Regional reg in colVuelo)
+                {
+                    DtoRegional dto = MRegional.MapToDto(reg);
+                    coldtoVuelo.Add(dto);
+                }
+            }
+            return coldtoVuelo;
+        }
+
     }
 }

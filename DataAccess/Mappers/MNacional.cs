@@ -11,31 +11,33 @@ namespace DataAccess.Mappers
 {
     public class MNacional
     {
-            public static DtoVuelo MapToDto(Vuelo entity)
+            public static DtoNacional MapToDto(Nacional entity)
         {
-            DtoVuelo dto = new DtoVuelo();
+            DtoNacional dto = new DtoNacional();
 
-            dto.numeroVuelo = entity.numeroVuelo;
-            dto.origen = entity.origen;
-            dto.destino = entity.destino;
-            dto.dtLlegada = entity.dtLlegada;
-            dto.dtSalida = entity.dtSalida;
-            dto.HorasTotales = entity.HorasTotales;
-            dto.numeroAeronaveAsignada = entity.numeroAeronaveAsignada;
+            dto.numeroVuelo = entity.numVuelo;
+            dto.origen = entity.Vuelo.origen;
+            dto.destino = entity.Vuelo.destino;
+            dto.dtLlegada = entity.Vuelo.dtLlegada;
+            dto.dtSalida = entity.Vuelo.dtSalida;
+            dto.HorasTotales = entity.Vuelo.HorasTotales;
+            dto.precio = entity.Vuelo.precio;
+            dto.numeroAeronaveAsignada = entity.Vuelo.numeroAeronaveAsignada;
 
             return dto;
         }
 
-        public static Vuelo MapToEntity(DtoVuelo dto)
+        public static Nacional MapToEntity(DtoNacional dto)
         {
-            Vuelo entity = new Vuelo();
-            entity.numeroVuelo = dto.numeroVuelo;
-            entity.origen = dto.origen;
-            entity.destino = dto.destino;
-            entity.dtLlegada = dto.dtLlegada;
-            entity.dtSalida = dto.dtSalida;
-            entity.HorasTotales = dto.HorasTotales;
-            entity.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+            Nacional entity = new Nacional();
+             entity.numVuelo = dto.numeroVuelo;
+             entity.Vuelo.origen = dto.origen;
+              entity.Vuelo.destino = dto.destino;
+              entity.Vuelo.dtLlegada = dto.dtLlegada;
+             entity.Vuelo.dtSalida = dto.dtSalida;
+              entity.Vuelo.HorasTotales = dto.HorasTotales;
+            entity.Vuelo.precio = dto.precio;
+            entity.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
 
             return entity;
         }
