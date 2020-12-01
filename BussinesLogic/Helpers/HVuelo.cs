@@ -45,6 +45,25 @@ namespace BussinesLogic.Helpers
             }
             return true;
         }
- 
+
+        public List<DtoVuelo> GetVuelo(string Tipo)
+        {
+            switch (Tipo)
+            {
+               /* case "Regional":
+                    PRegional pr = new PRegional();
+                    return pr.GetVuelo();
+
+                case "Intercontinental":
+                    PIntercontinental pi = new PIntercontinental();
+                    return pi.GetVuelo();
+               */
+                default:
+                    PNacional pn = new PNacional();
+                    return pn.GetVuelo();
+            }
+
+        }
+
     }
 }

@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="Mappers\MAeronave.cs" />
     <Compile Include="Mappers\MAsiento.cs" />
+    <Compile Include="Mappers\MNacional.cs" />
+    <Compile Include="Mappers\MRegional.cs" />
     <Compile Include="Model\Administrador.cs">
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
