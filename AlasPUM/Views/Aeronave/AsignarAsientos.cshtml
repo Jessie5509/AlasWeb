@@ -58,19 +58,60 @@
 
 <div class="form-group">
     <label class="control-label col-md-2">Tipos</label>
-    <select class="form-control" id="tipo">
+    <select class="form-control" id="tipo" name="Tasiento">
         <option value="" selected>Tipos de asientos...</option>
-        <option id="TFirst" value="First class">First class</option>
-        <option id="TBusi" value="Business">Business</option>
-        <option id="TEcon" value="Economy">Economy</option>
-        <option id="TPecon" value="Premium economy">Premium economy</option>
+
+        @if (ViewBag.First != null)
+        {
+            <option id="TFirst" value="First class" hidden> First class </option>
+        }
+        else
+        {
+            <option id="TFirst" value="First class"> First class </option>
+        }
+
+        @*--------------------------------------------------------------------------------*@
+
+        @if (ViewBag.Busi != null)
+        {
+            <option id="TBusi" value="Business" hidden>Business</option>
+        }
+        else
+        {
+            <option id="TBusi" value="Business">Business</option>
+        }
+
+        @*--------------------------------------------------------------------------------*@
+
+        @if (ViewBag.Econ != null)
+        {
+            <option id="TEcon" value="Economy" hidden>Economy</option>
+        }
+        else
+        {
+            <option id="TEcon" value="Economy">Economy</option>
+        }
+
+
+        @*--------------------------------------------------------------------------------*@
+
+        @if (ViewBag.PEcon != null)
+        {
+            <option id="TPecon" value="Premium economy" hidden>Premium economy</option>
+        }
+        else
+        {
+            <option id="TPecon" value="Premium economy">Premium economy</option>
+        }
+
+
+
+
     </select>
 
     
 
 </div>
-
-
 
     
 

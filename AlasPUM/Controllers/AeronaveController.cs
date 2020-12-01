@@ -19,7 +19,7 @@ namespace AlasPUM.Controllers
 
         public ActionResult AltaAeronave()
         {
-           
+            
             if (TempData["Message"] != null)
             {
                 ViewBag.Message = TempData["Message"].ToString();
@@ -52,21 +52,56 @@ namespace AlasPUM.Controllers
 
         public ActionResult AsignarAsientos()
         {
-         
-            if (TempData["Message"] != null)
+            if (Session["First"] != null || Session["First"] == null)
             {
-                ViewBag.Message = TempData["Message"].ToString();
+                if (Session["First"] != null)
+                {
+                    ViewBag.First = Session["First"].ToString();
 
+                    if (Session["Busi"] != null)
+                    {
+                        ViewBag.Busi = Session["Busi"].ToString();
+
+                        if (Session["Econ"] != null)
+                        {
+                            ViewBag.Econ = Session["Econ"].ToString();
+
+                            if (Session["PEcon"] != null)
+                            {
+                                ViewBag.PEcon = Session["PEcon"].ToString();
+                            }
+
+                        }
+                    }
+                }
+                
             }
-
+          
             return View();
         }
 
         [HttpPost]
-        public ActionResult AsignAsientos(DtoAsiento asiento)
+        public ActionResult AsignAsientos(DtoAsiento asiento, string Tasiento)
         {
-         
-            //string tipo = asiento.tipo;
+            asiento.tipo = Tasiento;
+
+            if (Tasiento == "First class")
+            {
+                Session["First"] = "F";
+            }
+            else if (Tasiento == "Business")
+            {
+                Session["Busi"] = "B";
+            }
+            else if (Tasiento == "Economy")
+            {
+                Session["Econ"] = "E";
+            }
+            else if (Tasiento == "Premium economy")
+            {
+                Session["PEcon"] = "PE";
+            }
+           
             List<DtoAsiento> asientos = null;
             //Usar session para mantener esa lista y luego pasarla por parametro en addaeronave.
             if (Session["lstAsientos"] == null)
