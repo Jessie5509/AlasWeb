@@ -129,6 +129,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AeronaveController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TiposVueloController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VueloController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,8 +180,9 @@
     <Content Include="Views\Vuelo\AgregarVuelo.cshtml" />
     <Content Include="Views\Aeronave\ListadoAeronavesV.cshtml" />
     <Content Include="Views\Aeronave\ModificarAeronave.cshtml" />
-    <Content Include="Views\Vuelo\ListarVuelo.cshtml" />
-    <Content Include="Views\Vuelo\ListarNacional.cshtml" />
+    <Content Include="Views\TiposVuelo\ListarNacional.cshtml" />
+    <Content Include="Views\TiposVuelo\ListarRegional.cshtml" />
+    <Content Include="Views\TiposVuelo\ListarIntercontinental.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

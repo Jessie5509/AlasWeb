@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace DataAccess.Persistencia
                     {
 
                         Intercontinental Inter = new Intercontinental();
-                        Inter.tasaInter = dto.Regional.tasaRegional;
-                        Inter.documentacion = dto.Regional.documentacion;
+                        Inter.tasaInter = dto.Intercontinental.tasaIntercontinental;
+                        Inter.documentacion = dto.Intercontinental.documentacion;
                         Inter.visa = dto.Intercontinental.visa;
 
                         Vuelo vuel = new Vuelo();
@@ -35,6 +36,7 @@ namespace DataAccess.Persistencia
                         vuel.dtLlegada = dto.dtLlegada;
                         vuel.dtSalida = dto.dtSalida;
                         vuel.HorasTotales = dto.HorasTotales;
+                        vuel.precio = dto.precio;
                         vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         vuel.Intercontinental.Add(Inter);
 
@@ -58,6 +60,24 @@ namespace DataAccess.Persistencia
                 }
 
             }
+        }
+
+
+        public List<DtoIntercontinental> GetVuelo()
+        {
+            List<DtoIntercontinental> coldtoVuelo = new List<DtoIntercontinental>();
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+
+                List<Intercontinental> colVuelo = context.Intercontinental.Select(s => s).ToList();
+
+                foreach (Intercontinental reg in colVuelo)
+                {
+                    DtoIntercontinental dto = MIntercontinental.MapToDto(reg);
+                    coldtoVuelo.Add(dto);
+                }
+            }
+            return coldtoVuelo;
         }
     }
 }

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Mappers
 {
-    public class MRegional
+    public class MIntercontinental
     {
 
-        public static DtoRegional MapToDto(Regional entity)
+        public static DtoIntercontinental MapToDto(Intercontinental entity)
         {
-            DtoRegional dto = new DtoRegional();
+            DtoIntercontinental dto = new DtoIntercontinental();
 
-            dto.numeroVuelo = entity.numVueloR;
+            dto.numeroVuelo = entity.numVueloI;
             dto.origen = entity.Vuelo.origen;
             dto.destino = entity.Vuelo.destino;
             dto.dtLlegada = entity.Vuelo.dtLlegada;
@@ -23,27 +23,28 @@ namespace DataAccess.Mappers
             dto.HorasTotales = entity.Vuelo.HorasTotales;
             dto.precio = entity.Vuelo.precio;
             dto.documentacion = entity.documentacion;
-            dto.tasaRegional = entity.tasaRegional;
+            dto.tasaIntercontinental = entity.tasaInter;
+            dto.visa = entity.visa;
             dto.numeroAeronaveAsignada = entity.Vuelo.numeroAeronaveAsignada;
-
-
 
             return dto;
         }
 
-        public static Regional MapToEntity(DtoRegional dto)
+        public static Intercontinental MapToEntity(DtoIntercontinental dto)
         {
-            Regional entity = new Regional();
-            entity.numVueloR = dto.numeroVuelo;
+            Intercontinental entity = new Intercontinental();
+            entity.numVueloI = dto.numeroVuelo;
             entity.Vuelo.origen = dto.origen;
             entity.Vuelo.destino = dto.destino;
             entity.Vuelo.dtLlegada = dto.dtLlegada;
             entity.Vuelo.dtSalida = dto.dtSalida;
             entity.Vuelo.HorasTotales = dto.HorasTotales;
             entity.Vuelo.precio = dto.precio;
-            entity.tasaRegional = dto.tasaRegional;
             entity.documentacion = dto.documentacion;
+            entity.tasaInter = dto.tasaIntercontinental;
+            entity.visa = dto.visa;
             entity.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+
             return entity;
         }
 

@@ -28,13 +28,17 @@
 
                             <li>@Html.ActionLink("Aeronave", "AsignarAsientos", "Aeronave")</li>
 
-                            <li>@Html.ActionLink("Vuelo", "AgregarVuelo", "Vuelo")</li>
+                            <li>@Html.ActionLink("Agregar Vuelos", "AgregarVuelo", "Vuelo")</li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" aria-expanded="true" href="#" data-toggle="dropdown">Listado de vuelos <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Nacional", "ListarNacional", "TiposVuelo")</li>
 
-                            <ul id="navigation" style="display:none">
-                                <li><a>Sidebar</a></li>
-                                <li><a>ContextMenu</a></li>
-                                <li><a>Accordion</a></li>
-                            </ul>
+                                    <li>@Html.ActionLink("Regional", "ListarRegional", "TiposVuelo")</li>
+
+                                    <li>@Html.ActionLink("Intercontinental", "ListarIntercontinental", "TiposVuelo")</li>
+                                </ul>
+                            </li>
 
                             <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
 

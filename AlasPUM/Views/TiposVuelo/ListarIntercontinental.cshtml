@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Common.DTO.DtoVuelo>
+﻿@model IEnumerable<Common.DTO.DtoIntercontinental>
 
-
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -26,6 +28,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.numeroAeronaveAsignada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.documentacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tasaIntercontinental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.visa)
         </th>
         <th></th>
     </tr>
@@ -55,6 +66,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.numeroAeronaveAsignada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.documentacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tasaIntercontinental)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.visa)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
