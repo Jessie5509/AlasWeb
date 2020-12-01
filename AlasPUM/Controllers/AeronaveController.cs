@@ -63,17 +63,9 @@ namespace AlasPUM.Controllers
         }
 
         [HttpPost]
-        public ActionResult AsignAsientos(DtoAsiento asiento, SelectList selectList)
+        public ActionResult AsignAsientos(DtoAsiento asiento)
         {
-            foreach (ListItem item in selectList.Items)
-            {
-                if (item.Value == asiento.tipo)
-                    item.Enabled = false;
-            }
-            
-            //selectList.Items.FindByValue(asiento.tipo).Enabled = false;
-            
-
+         
             //string tipo = asiento.tipo;
             List<DtoAsiento> asientos = null;
             //Usar session para mantener esa lista y luego pasarla por parametro en addaeronave.

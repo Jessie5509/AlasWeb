@@ -5,6 +5,37 @@
 }
 
 <h2>Asignar asientos para la aeronave</h2>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var select = document.getElementById('tipo');
+        select.addEventListener('change',
+            function () {
+                var selectedOption = this.options[select.selectedIndex];
+
+                if (selectedOption.value === "First class" || selectedOption.value == " ") {
+                    //document.getElementById("divSemanal").style.display = 'none';
+                    //document.getElementById("divMensual").style.display = 'none';
+
+                } else if (selectedOption.value === "Business") {
+                    //document.getElementById("divSemanal").style.display = 'inline';
+                    //document.getElementById("divMensual").style.display = 'none';
+
+                } else if (selectedOption.value === "Economy") {
+                    //document.getElementById("divSemanal").style.display = 'none';
+                    //document.getElementById("divMensual").style.display = 'inline';
+
+                } else if (selectedOption.value === "Premium economy"){
+                    //document.getElementById("divSemanal").style.display = 'none';
+                    //document.getElementById("divMensual").style.display = 'none';
+                }
+            });
+    });
+
+
+</script>
 
 @using (Html.BeginForm("AsignAsientos", "Aeronave")) 
 {
@@ -24,23 +55,42 @@
             </div>
         </div>*@
 
+
 <div class="form-group">
-    @{
-        var selectList = new SelectList(
-            new List<SelectListItem>
-            {
+    <label class="control-label col-md-2">Tipos</label>
+    <select class="form-control" id="tipo">
+        <option value="" selected>Tipos de asientos...</option>
+        <option id="TFirst" value="First class">First class</option>
+        <option id="TBusi" value="Business">Business</option>
+        <option id="TEcon" value="Economy">Economy</option>
+        <option id="TPecon" value="Premium economy">Premium economy</option>
+    </select>
+
+    
+
+</div>
+
+
+
+    
+
+    @*<div class="form-group">
+        @{
+            var selectList = new SelectList(
+                new List<SelectListItem>
+                {
                new SelectListItem {Text = "First class", Value = "First class"},
                new SelectListItem {Text = "Business", Value = "Business"},
                new SelectListItem {Text = "Economy", Value = "Economy"},
                new SelectListItem {Text = "Premium economy", Value = "Premium economy"},
-                                        }, "Value", "Text");
-    }
+                                                }, "Value", "Text");
+        }
 
-    @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => model.tipo, selectList, "--- Tipos de asiento ---", new { @class = "form-control" })
-    </div>
-</div>
+        @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.tipo, selectList, "--- Tipos de asiento ---", new { @class = "form-control" })
+        </div>
+    </div>*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.fila, htmlAttributes: new { @class = "control-label col-md-2" })
