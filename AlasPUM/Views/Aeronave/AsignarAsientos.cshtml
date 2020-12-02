@@ -27,7 +27,7 @@
                     //document.getElementById("divSemanal").style.display = 'none';
                     //document.getElementById("divMensual").style.display = 'inline';
 
-                } else if (selectedOption.value === "Premium economy"){
+                } else if (selectedOption.value === "Premium economy") {
                     //document.getElementById("divSemanal").style.display = 'none';
                     //document.getElementById("divMensual").style.display = 'none';
                 }
@@ -37,135 +37,140 @@
 
 </script>
 
-@using (Html.BeginForm("AsignAsientos", "Aeronave")) 
+@using (Html.BeginForm("AsignAsientos", "Aeronave"))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
 
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
 
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-<div class="form-group">
-    <label class="control-label col-md-2">Tipos</label>
-    <select class="form-control" id="tipo" name="Tasiento">
-        <option value="" selected>Tipos de asientos...</option>
-
-        @if (ViewBag.First != null)
-        {
-            <option id="TFirst" value="First class" hidden> First class </option>
-        }
-        else
-        {
-            <option id="TFirst" value="First class"> First class </option>
-        }
-
-        @*--------------------------------------------------------------------------------*@
-
-        @if (ViewBag.Busi != null)
-        {
-            <option id="TBusi" value="Business" hidden>Business</option>
-        }
-        else
-        {
-            <option id="TBusi" value="Business">Business</option>
-        }
-
-        @*--------------------------------------------------------------------------------*@
-
-        @if (ViewBag.Econ != null)
-        {
-            <option id="TEcon" value="Economy" hidden>Economy</option>
-        }
-        else
-        {
-            <option id="TEcon" value="Economy">Economy</option>
-        }
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
 
-        @*--------------------------------------------------------------------------------*@
+        <div class="form-group">
+            <label class="control-label col-md-2">Tipos</label>
+            <select class="form-control" id="tipo" name="Tasiento">
+                <option value="" selected>Tipos de asientos...</option>
 
-        @if (ViewBag.PEcon != null)
-        {
-            <option id="TPecon" value="Premium economy" hidden>Premium economy</option>
-        }
-        else
-        {
-            <option id="TPecon" value="Premium economy">Premium economy</option>
-        }
-
-
-
-
-    </select>
-
-    
-
-</div>
-
-    
-
-    @*<div class="form-group">
-        @{
-            var selectList = new SelectList(
-                new List<SelectListItem>
+                @if (ViewBag.First != null)
                 {
-               new SelectListItem {Text = "First class", Value = "First class"},
-               new SelectListItem {Text = "Business", Value = "Business"},
-               new SelectListItem {Text = "Economy", Value = "Economy"},
-               new SelectListItem {Text = "Premium economy", Value = "Premium economy"},
-                                                }, "Value", "Text");
-        }
+                    <option id="TFirst" value="First class" hidden> First class </option>
+                }
+                else
+                {
+                    <option id="TFirst" value="First class"> First class </option>
+                }
 
-        @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.tipo, selectList, "--- Tipos de asiento ---", new { @class = "form-control" })
+                @*--------------------------------------------------------------------------------*@
+
+                @if (ViewBag.Busi != null)
+                {
+                    <option id="TBusi" value="Business" hidden>Business</option>
+                }
+                else
+                {
+                    <option id="TBusi" value="Business">Business</option>
+                }
+
+                @*--------------------------------------------------------------------------------*@
+
+                @if (ViewBag.Econ != null)
+                {
+                    <option id="TEcon" value="Economy" hidden>Economy</option>
+                }
+                else
+                {
+                    <option id="TEcon" value="Economy">Economy</option>
+                }
+
+
+                @*--------------------------------------------------------------------------------*@
+
+                @if (ViewBag.PEcon != null)
+                {
+                    <option id="TPecon" value="Premium economy" hidden>Premium economy</option>
+                }
+                else
+                {
+                    <option id="TPecon" value="Premium economy">Premium economy</option>
+                }
+
+
+
+
+            </select>
+
+
+
         </div>
-    </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.fila, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.fila, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.fila, "", new { @class = "text-danger" })
+
+
+        @*<div class="form-group">
+                @{
+                    var selectList = new SelectList(
+                        new List<SelectListItem>
+                        {
+                       new SelectListItem {Text = "First class", Value = "First class"},
+                       new SelectListItem {Text = "Business", Value = "Business"},
+                       new SelectListItem {Text = "Economy", Value = "Economy"},
+                       new SelectListItem {Text = "Premium economy", Value = "Premium economy"},
+                                                        }, "Value", "Text");
+                }
+
+                @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.tipo, selectList, "--- Tipos de asiento ---", new { @class = "form-control" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fila, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fila, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fila, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.desde, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.desde, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.desde, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hasta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hasta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hasta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Asignar" class="btn btn-success" />
+                @Html.ActionLink("Listado de aeronaves", "ListadoAeronavesV", "Aeronave", new { @class = "btn btn-info" })
+            </div>
         </div>
     </div>
+}
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.desde, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.desde, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.desde, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.hasta, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.hasta, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.hasta, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Asignar" class="btn btn-success" />
-            @Html.ActionLink("Listado de aeronaves", "ListadoAeronavesV", "Aeronave", new { @class = "btn btn-info" })
-        </div>
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-    }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

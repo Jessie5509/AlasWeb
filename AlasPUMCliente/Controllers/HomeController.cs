@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +15,13 @@ namespace AlasPUMCliente.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult VueloInfo(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            DtoVuelo vuelo = new DtoVuelo();
+            vuelo = HVuelo.getInstace().GetProductoInfo(id);
 
-            return View();
+            return View(vuelo);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

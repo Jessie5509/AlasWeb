@@ -1,31 +1,90 @@
-﻿@{
+﻿@model List<Common.DTO.DtoVuelo>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Alas PUM</h1>
+    <p>Vuelos hacia todo el mundo!</p>
+
 </div>
 
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script>
+
+    //$(document).ready(function () {
+
+    //    $("#id_DropDownList").change(function () {
+    //        var familiaSelect = $("#id_DropDownList").val();
+
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "https://localhost:44377/Home/FiltrarFamilia?familia=" + familiaSelect,
+    //            success: function (data) {
+
+    //                $('#searchable-container').html(data);
+    //            }
+    //        });
+    //    });
+    //});
+
+
+
+
+</script>
+
+
+
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div>
+        <h2>Vuelos</h2>
+
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+
+
+        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:0.8%; margin-left:75%">
+            <ul class="nav navbar-nav">
+                <li>@Html.TextBox("SearchString", null, new { @class = "search_input form-control" })</li>
+                <li><input type="submit" value="Buscar" class="btn btn-primary" placeholder="Buscar" /></li>
+            </ul>
+        </div>
+
+
+
+        <div id="FamiliS">
+            <div class="col-md-10">
+                @Html.DropDownList("id_DropDownList", (ICollection<SelectListItem>)ViewBag.colFamilias, "-- Familia --", new { @class = "form-control" })
+            </div>
+            <br />
+
+        </div>
+
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            @Html.ActionLink("Ordenar por precios", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary" })
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+
+
+
+
+    }
+
+    <div>
+        <div class="row" style="height:5000px; background-color: rgb(226, 226, 238);">
+            <div class="container" id="searchable-container">
+
+                @{
+                    Html.RenderPartial("_listaVuelos");
+
+                }
+
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
+<br />
