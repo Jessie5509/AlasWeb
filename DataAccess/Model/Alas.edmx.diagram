@@ -16,10 +16,10 @@
         <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.625" PointY="0.875" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
-        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="9" PointY="5.75" />
+        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="9.625" PointY="5.75" />
         <EntityTypeShape EntityType="AlasPUMModel.Nacional" Width="1.5" PointX="8.125" PointY="2.25" />
-        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="6.75" PointY="8.25" />
-        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="6.75" PointY="4.5" />
+        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="9.25" PointY="8.75" />
+        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="7.125" PointY="4.5" />
         <AssociationConnector Association="AlasPUMModel.FKAero_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />
