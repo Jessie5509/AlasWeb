@@ -30,52 +30,64 @@
             @Html.DisplayNameFor(model => model.numeroAeronaveAsignada)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.desde)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hasta)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.documentacion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.tasaRegional)
         </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.numeroVuelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.origen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.destino)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtLlegada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dtSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HorasTotales)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numeroAeronaveAsignada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.documentacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tasaRegional)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.numeroVuelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.origen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.destino)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dtLlegada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dtSalida)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HorasTotales)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.numeroAeronaveAsignada)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.documentacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tasaRegional)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.desde)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.hasta)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
 }
 
 </table>

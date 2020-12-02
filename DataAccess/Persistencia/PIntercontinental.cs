@@ -38,6 +38,8 @@ namespace DataAccess.Persistencia
                         vuel.HorasTotales = dto.HorasTotales;
                         vuel.precio = dto.precio;
                         vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vuel.desde = dto.desde;
+                        vuel.hasta = dto.hasta;
                         vuel.Intercontinental.Add(Inter);
 
 
