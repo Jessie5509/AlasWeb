@@ -45,11 +45,11 @@ namespace Common.DTO
         [DisplayName("Número aeronave asignada")]
         public Nullable<int> numeroAeronaveAsignada { get; set; }
 
-        [DisplayName("desde")]
+        [DisplayName("Desde")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public int desde { get; set; }
 
-        [DisplayName("hasta")]
+        [DisplayName("Hasta")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public int hasta { get; set; }
     }
