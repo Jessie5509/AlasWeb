@@ -70,7 +70,13 @@
                 <br />
                 @if (ViewBag.Message != null)
                 {
-                    <h4>@Html.Label("", (string)ViewBag.Message, new { @class = "label label-primary" })</h4>
+            
+                    <div class="alert alert-info" role="alert">
+
+
+                         <h4>@Html.Label("", (string)ViewBag.Message)</h4>
+
+                    </div>
                 }
             </div>
         </div>
