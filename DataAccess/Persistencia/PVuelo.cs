@@ -70,7 +70,8 @@ namespace DataAccess.Persistencia
 
                 if (vuelo.Nacional != null)
                 {
-                    vuelo.ti
+                    vuelo.tipo = "Nacional";
+                    vuelo.
 
                 }
                 else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
