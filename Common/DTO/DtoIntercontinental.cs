@@ -11,59 +11,51 @@ namespace Common.DTO
     public class DtoIntercontinental
     {
 
-        [DisplayName("numero Vuelo")]
+        [DisplayName("Número vuelo")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(75, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string numeroVuelo { get; set; }
 
-        [DisplayName("origen")]
+        [DisplayName("Origen")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string origen { get; set; }
 
-        [DisplayName("destino")]
+        [DisplayName("Destino")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string destino { get; set; }
 
-        [DisplayName("dtLlegada")]
+        [DisplayName("Fecha de llegada")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public System.DateTime dtLlegada { get; set; }
 
-        [DisplayName("dtSalida")]
+        [DisplayName("Fecha de salida")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public System.DateTime dtSalida { get; set; }
 
-        [DisplayName("HorasTotales")]
+        [DisplayName("Horas totales")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double HorasTotales { get; set; }
 
 
-        [DisplayName("destino")]
+        [DisplayName("Destino")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double precio { get; set; }
 
-        [DisplayName("numero Aeronave Asignada")]
+        [DisplayName("Número aeronave asignada")]
         public Nullable<int> numeroAeronaveAsignada { get; set; }
 
-        [DisplayName("desde")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        public int desde { get; set; }
-
-        [DisplayName("hasta")]
-        [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
-        public int hasta { get; set; }
-
-        [DisplayName("documentacion")]
+        [DisplayName("Documentación")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(75, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string documentacion { get; set; }
 
-        [DisplayName("tasaInter")]
+        [DisplayName("Tasa Intercontinental")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double tasaIntercontinental { get; set; }
 
-        [DisplayName("visa")]
+        [DisplayName("Visa")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string visa { get; set; }

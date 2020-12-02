@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -121,6 +121,7 @@
           <Property Name="numeroAeronaveAsignada" Type="int" />
           <Property Name="desde" Type="int" Nullable="false" />
           <Property Name="hasta" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FKAero_Vuelo">
           <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="0..1" />
@@ -396,7 +397,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -488,6 +489,7 @@
           <Property Name="numeroAeronaveAsignada" Type="Int32" />
           <Property Name="desde" Type="Int32" Nullable="false" />
           <Property Name="hasta" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Vuelo" ToRole="Aeronave" />
           <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Vuelo" ToRole="Intercontinental" />
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
@@ -662,6 +664,7 @@
           <EntitySetMapping Name="Vuelo">
             <EntityTypeMapping TypeName="AlasPUMModel.Vuelo">
               <MappingFragment StoreEntitySet="Vuelo">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="hasta" ColumnName="hasta" />
                 <ScalarProperty Name="desde" ColumnName="desde" />
                 <ScalarProperty Name="numeroAeronaveAsignada" ColumnName="numeroAeronaveAsignada" />
