@@ -23,7 +23,7 @@ namespace BussinesLogic.Helpers
         }
 
        public bool AddVuelo(DtoVuelo dto)
-        {
+       {
             if (dto.Regional.documentacion != null && dto.Regional.tasaRegional != 0)
             {
 
@@ -44,9 +44,16 @@ namespace BussinesLogic.Helpers
 
             }
             return true;
-        }
+       }
 
-       
+        public DtoVuelo GetVueloInfo(int id)
+        {
+            PVuelo pp = new PVuelo();
+            return pp.GetVueloInfo(id);
+        }
+        
+
+
 
     }
 }

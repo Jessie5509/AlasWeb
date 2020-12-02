@@ -32,6 +32,7 @@ namespace DataAccess.Model
         public Nullable<int> numeroAeronaveAsignada { get; set; }
         public int desde { get; set; }
         public int hasta { get; set; }
+        public string tipo { get; set; }
     
         public virtual Aeronave Aeronave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

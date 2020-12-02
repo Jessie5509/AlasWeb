@@ -11,7 +11,7 @@ namespace DataAccess.Mappers
 {
     public class MNacional
     {
-            public static DtoNacional MapToDto(Nacional entity)
+        public static DtoNacional MapToDto(Nacional entity)
         {
             DtoNacional dto = new DtoNacional();
 
