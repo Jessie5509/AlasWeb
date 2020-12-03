@@ -45,14 +45,14 @@ namespace BussinesLogic.Helpers
             }
             return true;
        }
-
+/*
         public DtoVuelo GetVueloInfo(int id)
         {
             PVuelo pp = new PVuelo();
             return pp.GetVueloInfo(id);
         }
         
-
+        */
 
 
     }
