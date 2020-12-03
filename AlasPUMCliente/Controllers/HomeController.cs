@@ -14,14 +14,14 @@ namespace AlasPUMCliente.Controllers
         {
             return View();
         }
-/*
+
         public ActionResult VueloInfo(int id)
         {
             DtoVuelo vuelo = new DtoVuelo();
-            vuelo = HVuelo.getInstace().GetProductoInfo(id);
+            vuelo = HVuelo.getInstace().GetVueloInfo(id);
 
             return View(vuelo);
         }
-*/
+
     }
 }
