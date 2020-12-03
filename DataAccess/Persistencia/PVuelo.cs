@@ -31,8 +31,7 @@ namespace DataAccess.Persistencia
                         vc.dtLlegada = dto.dtLlegada;
                         vc.dtSalida = dto.dtSalida;
                         vc.HorasTotales = dto.HorasTotales;
-
-
+                        vc.imagen = dto.imagen;
 
                         context.Vuelo.Add(vc);
                         context.SaveChanges();
@@ -54,13 +53,13 @@ namespace DataAccess.Persistencia
             }
         }
 
-        public DtoVuelo GetVueloInfo(int id)
+        public DtoVuelo GetVueloInfo(string id)
         {
             DtoVuelo dto = new DtoVuelo();
 
             using (AlasPUMEntities context = new AlasPUMEntities())
             {
-                Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id.ToString());
+                Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id);
                 
                 if (vuelo.Nacional != null)
                 {
@@ -75,11 +74,12 @@ namespace DataAccess.Persistencia
                     dto.numeroAeronaveAsignada = vuelo.numeroAeronaveAsignada;
                     dto.desde = vuelo.desde;
                     dto.hasta = vuelo.hasta;
+                    dto.imagen = vuelo.imagen;
 
                 }
                 else if (vuelo.Intercontinental != null)
                 {
-                    Intercontinental inter = context.Intercontinental.FirstOrDefault(f => f.numVueloI == id.ToString());
+                    Intercontinental inter = context.Intercontinental.FirstOrDefault(f => f.numVueloI == id);
 
                     dto.tipo = "Intercontinental";
                     dto.numeroVuelo = vuelo.numeroVuelo;
@@ -95,11 +95,12 @@ namespace DataAccess.Persistencia
                     dto.documentacion = inter.documentacion;
                     dto.tasaIntercontinental = inter.tasaInter;
                     dto.visa = inter.visa;
+                    dto.imagen = vuelo.imagen;
 
                 }
                 else if (vuelo.Regional != null)
                 {
-                    Regional re = context.Regional.FirstOrDefault(f => f.numVueloR == id.ToString());
+                    Regional re = context.Regional.FirstOrDefault(f => f.numVueloR == id);
 
                     dto.tipo = "Regional";
                     dto.numeroVuelo = vuelo.numeroVuelo;
@@ -114,7 +115,8 @@ namespace DataAccess.Persistencia
                     dto.hasta = vuelo.hasta;
                     dto.documentacion = re.documentacion;
                     dto.tasaRegional = re.tasaRegional;
-                    
+                    dto.imagen = vuelo.imagen;
+
 
                 }
 
@@ -122,6 +124,25 @@ namespace DataAccess.Persistencia
 
             return dto;
 
+        }
+
+        public List<DtoVuelo> GetVuelo()
+        {
+            List<DtoVuelo> colDtoVuelo = new List<DtoVuelo>();
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+
+                List<Vuelo> colVuelos = context.Vuelo.Select(s => s).ToList();
+
+                foreach (Vuelo vue in colVuelos)
+                {
+                    DtoVuelo dto = MVuelo.MapToDto(vue);
+                    colDtoVuelo.Add(dto);
+                }
+            }
+
+            return colDtoVuelo;
         }
 
 

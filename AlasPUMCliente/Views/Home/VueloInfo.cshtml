@@ -177,21 +177,26 @@
 
                 <div class="col-md-7">
 
-                    <div class="product-title">@Html.DisplayFor(model => model.origen)</div>
+                    <div class="product-title">Vuelo a @Html.DisplayFor(model => model.destino)</div>
                     <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
                     <hr>
                     <div class="product-price"> $ @Html.DisplayFor(model => model.precio)</div>
+                    <br />
+                    <div class="product-desc"> Origen: @Html.DisplayFor(model => model.origen)</div>
+                    <div class="product-desc"> Destino: @Html.DisplayFor(model => model.destino)</div>
+                    <div class="product-desc"> Fecha de salida: @Html.DisplayFor(model => model.dtSalida)</div>
+                    <div class="product-desc"> Fecha de llegada: @Html.DisplayFor(model => model.dtLlegada)</div>
 
 
                     <hr>
                     <div class="btn-group cart">
-                        @Html.ActionLink("Comprar", "CarritoV", "Vuelo", new { id = @Html.DisplayFor(model => model.numeroVuelo) }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Elegir asientos", "SelectAsientosV", "Compra", new { id = @Html.DisplayFor(model => model.numeroVuelo) }, new { @class = "btn btn-primary" })
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <!--<div class="container-fluid">
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
 
@@ -204,17 +209,17 @@
 
                         <section class="container product-info">
 
-                            <h3>Descripcion del @Html.DisplayFor(model => model.origen) :</h3>
+                            <h3>Descripcion del @Html.DisplayFor(model => model.origen) :</h3>-->
                             @*<li>@Html.DisplayFor(model => model.ProDescripcion)</li>*@
 
-                        </section>
+                        <!--</section>
 
                     </div>
 
                 </div>
                 <hr>
             </div>
-        </div>
+        </div>-->
 
     </div>
 </div>

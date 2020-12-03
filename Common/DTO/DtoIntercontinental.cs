@@ -68,6 +68,8 @@ namespace Common.DTO
         [StringLength(125, ErrorMessage = "El {0} del vuelo no debe superar los {1} caracteres")]
         public string visa { get; set; }
 
+        public string imagen { get; set; }
+
 
     }
 }

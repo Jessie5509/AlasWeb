@@ -62,6 +62,8 @@ namespace Common.DTO
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public double tasaRegional { get; set; }
 
+        public string imagen { get; set; }
+
 
     }
 }

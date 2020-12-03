@@ -23,6 +23,7 @@ namespace DataAccess.Mappers
             dto.HorasTotales = entity.Vuelo.HorasTotales;
             dto.precio = entity.Vuelo.precio;
             dto.numeroAeronaveAsignada = entity.Vuelo.numeroAeronaveAsignada;
+            dto.imagen = entity.Vuelo.imagen;
 
             return dto;
         }
@@ -30,14 +31,15 @@ namespace DataAccess.Mappers
         public static Nacional MapToEntity(DtoNacional dto)
         {
             Nacional entity = new Nacional();
-             entity.numVuelo = dto.numeroVuelo;
-             entity.Vuelo.origen = dto.origen;
-              entity.Vuelo.destino = dto.destino;
-              entity.Vuelo.dtLlegada = dto.dtLlegada;
-             entity.Vuelo.dtSalida = dto.dtSalida;
-              entity.Vuelo.HorasTotales = dto.HorasTotales;
+            entity.numVuelo = dto.numeroVuelo;
+            entity.Vuelo.origen = dto.origen;
+            entity.Vuelo.destino = dto.destino;
+            entity.Vuelo.dtLlegada = dto.dtLlegada;
+            entity.Vuelo.dtSalida = dto.dtSalida;
+            entity.Vuelo.HorasTotales = dto.HorasTotales;
             entity.Vuelo.precio = dto.precio;
             entity.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+            entity.Vuelo.imagen = dto.imagen;
 
             return entity;
         }

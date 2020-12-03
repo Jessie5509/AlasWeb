@@ -40,9 +40,8 @@ namespace DataAccess.Persistencia
                         vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
                         vuel.desde = dto.desde;
                         vuel.hasta = dto.hasta;
+                        vuel.imagen = dto.imagen;
                         vuel.Intercontinental.Add(Inter);
-
-
 
                         context.Vuelo.Add(vuel);
                         context.SaveChanges();

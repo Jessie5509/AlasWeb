@@ -22,7 +22,7 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-       public bool AddVuelo(DtoVuelo dto)
+        public bool AddVuelo(DtoVuelo dto)
        {
             if (dto.Regional.documentacion != null && dto.Regional.tasaRegional != 0)
             {
@@ -46,12 +46,17 @@ namespace BussinesLogic.Helpers
             return true;
        }
 
-        public DtoVuelo GetVueloInfo(int id)
+        public DtoVuelo GetVueloInfo(string id)
         {
             PVuelo pp = new PVuelo();
             return pp.GetVueloInfo(id);
         }
 
+        public List<DtoVuelo> GetVuelo()
+        {
+            PVuelo pc = new PVuelo();
+            return pc.GetVuelo();
+        }
 
 
 

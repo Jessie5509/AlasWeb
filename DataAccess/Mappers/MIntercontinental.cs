@@ -26,6 +26,7 @@ namespace DataAccess.Mappers
             dto.tasaIntercontinental = entity.tasaInter;
             dto.visa = entity.visa;
             dto.numeroAeronaveAsignada = entity.Vuelo.numeroAeronaveAsignada;
+            dto.imagen = entity.Vuelo.imagen;
 
             return dto;
         }
@@ -44,6 +45,7 @@ namespace DataAccess.Mappers
             entity.tasaInter = dto.tasaIntercontinental;
             entity.visa = dto.visa;
             entity.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+            entity.Vuelo.imagen = dto.imagen;
 
             return entity;
         }

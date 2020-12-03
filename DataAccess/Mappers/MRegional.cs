@@ -25,6 +25,7 @@ namespace DataAccess.Mappers
             dto.documentacion = entity.documentacion;
             dto.tasaRegional = entity.tasaRegional;
             dto.numeroAeronaveAsignada = entity.Vuelo.numeroAeronaveAsignada;
+            dto.imagen = entity.Vuelo.imagen;
 
 
 
@@ -44,6 +45,8 @@ namespace DataAccess.Mappers
             entity.tasaRegional = dto.tasaRegional;
             entity.documentacion = dto.documentacion;
             entity.Vuelo.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+            entity.Vuelo.imagen = dto.imagen;
+
             return entity;
         }
 

@@ -4,7 +4,7 @@
     ViewBag.Title = "AgregarVuelo";
 }
 
-<h2>AgregarVuelo</h2>
+<h2>Agregar vuelos</h2>
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
 
@@ -115,7 +115,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>DtoVuelo</h4>
+
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -198,6 +198,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="custom-control custom-radio">
             <input type="radio" onclick="function1()" checked class="custom-control-input" id="defaultGroupExample1" value="Nacional" name="tipoVuelo">
             <label class="custom-control-label" for="defaultGroupExample1">Nacional</label>
@@ -272,7 +280,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Agregar" class="btn btn-success" />
         </div>
     </div>
 </div>

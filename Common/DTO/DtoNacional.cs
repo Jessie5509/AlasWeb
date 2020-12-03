@@ -52,5 +52,7 @@ namespace Common.DTO
         [DisplayName("Hasta")]
         [Required(ErrorMessage = "El {0} de el vuelo es requerido!")]
         public int hasta { get; set; }
+
+        public string imagen { get; set; }
     }
 }

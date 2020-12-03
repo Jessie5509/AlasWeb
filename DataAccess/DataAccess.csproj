@@ -60,6 +60,7 @@
     <Compile Include="Mappers\MIntercontinental.cs" />
     <Compile Include="Mappers\MNacional.cs" />
     <Compile Include="Mappers\MRegional.cs" />
+    <Compile Include="Mappers\MVuelo.cs" />
     <Compile Include="Model\Administrador.cs">
       <DependentUpon>Alas.tt</DependentUpon>
     </Compile>
