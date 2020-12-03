@@ -73,6 +73,8 @@ namespace Common.DTO
 
         public string tipo { get; set; }
 
+        public string imagen { get; set; }
+
         public DtoIntercontinental Intercontinental { get; set; }
 
         public DtoRegional Regional { get; set; }

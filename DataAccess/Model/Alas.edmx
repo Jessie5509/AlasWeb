@@ -122,6 +122,7 @@
           <Property Name="desde" Type="int" Nullable="false" />
           <Property Name="hasta" Type="int" Nullable="false" />
           <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="imagen" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FKAero_Vuelo">
           <End Role="Aeronave" Type="Self.Aeronave" Multiplicity="0..1" />
@@ -490,6 +491,7 @@
           <Property Name="desde" Type="Int32" Nullable="false" />
           <Property Name="hasta" Type="Int32" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Vuelo" ToRole="Aeronave" />
           <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Vuelo" ToRole="Intercontinental" />
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
@@ -664,6 +666,7 @@
           <EntitySetMapping Name="Vuelo">
             <EntityTypeMapping TypeName="AlasPUMModel.Vuelo">
               <MappingFragment StoreEntitySet="Vuelo">
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="hasta" ColumnName="hasta" />
                 <ScalarProperty Name="desde" ColumnName="desde" />

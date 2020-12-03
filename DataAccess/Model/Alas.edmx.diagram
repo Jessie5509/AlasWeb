@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="39cfa60a6d2043f6b73817f3e8f0a07b" Name="Diagram1">
+      <Diagram DiagramId="39cfa60a6d2043f6b73817f3e8f0a07b" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="AlasPUMModel.Aeronave" Width="1.5" PointX="3.125" PointY="6" IsExpanded="true" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Compra" Width="1.5" PointX="3.125" PointY="3.25" IsExpanded="true" />
@@ -16,10 +16,10 @@
         <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.625" PointY="0.875" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Aeronave" />
         <AssociationConnector Association="AlasPUMModel.FKAsiento_Compra" />
-        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="9.625" PointY="5.75" />
-        <EntityTypeShape EntityType="AlasPUMModel.Nacional" Width="1.5" PointX="8.125" PointY="2.25" />
-        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="9.25" PointY="8.75" />
-        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="7" PointY="4.875" />
+        <EntityTypeShape EntityType="AlasPUMModel.Intercontinental" Width="1.5" PointX="9.25" PointY="1.5" />
+        <EntityTypeShape EntityType="AlasPUMModel.Nacional" Width="1.5" PointX="7.625" PointY="1.5" />
+        <EntityTypeShape EntityType="AlasPUMModel.Regional" Width="1.5" PointX="10.875" PointY="1.5" />
+        <EntityTypeShape EntityType="AlasPUMModel.Vuelo" Width="1.5" PointX="9.25" PointY="4.25" />
         <AssociationConnector Association="AlasPUMModel.FKAero_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />

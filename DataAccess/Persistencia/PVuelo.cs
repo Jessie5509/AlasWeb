@@ -54,42 +54,76 @@ namespace DataAccess.Persistencia
             }
         }
 
-        //public DtoVuelo GetVueloInfo(int id)
-        //{ 
-        //    DtoVuelo dto = new DtoVuelo();
-       
-        //    using (AlasPUMEntities context = new AlasPUMEntities())
-        //    {
-        //        Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id.ToString());
-        //        //bool existe = context.Vuelo.Any(a => a.Nacional != null);
+        public DtoVuelo GetVueloInfo(int id)
+        {
+            DtoVuelo dto = new DtoVuelo();
 
-        //        if (vuelo.Nacional != null)
-        //        {
-        //            vuelo.tipo = "Nacional";
-        //            vuelo.
-
-        //        }
-        //        else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
-        //        {
-        //            PIntercontinental pi = new PIntercontinental();
-        //            return pi.VueloInternacional(dto);
-
-        //        }
-           
-
-              
-
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id.ToString());
                 
+                if (vuelo.Nacional != null)
+                {
+                    dto.tipo = "Nacional";
+                    dto.numeroVuelo = vuelo.numeroVuelo;
+                    dto.origen = vuelo.origen;
+                    dto.destino = vuelo.destino;
+                    dto.dtLlegada = vuelo.dtLlegada;
+                    dto.dtSalida = vuelo.dtSalida;
+                    dto.HorasTotales = vuelo.HorasTotales;
+                    dto.precio = vuelo.precio;
+                    dto.numeroAeronaveAsignada = vuelo.numeroAeronaveAsignada;
+                    dto.desde = vuelo.desde;
+                    dto.hasta = vuelo.hasta;
 
+                }
+                else if (vuelo.Intercontinental != null)
+                {
+                    Intercontinental inter = context.Intercontinental.FirstOrDefault(f => f.numVueloI == id.ToString());
 
+                    dto.tipo = "Intercontinental";
+                    dto.numeroVuelo = vuelo.numeroVuelo;
+                    dto.origen = vuelo.origen;
+                    dto.destino = vuelo.destino;
+                    dto.dtLlegada = vuelo.dtLlegada;
+                    dto.dtSalida = vuelo.dtSalida;
+                    dto.HorasTotales = vuelo.HorasTotales;
+                    dto.precio = vuelo.precio;
+                    dto.numeroAeronaveAsignada = vuelo.numeroAeronaveAsignada;
+                    dto.desde = vuelo.desde;
+                    dto.hasta = vuelo.hasta;
+                    dto.documentacion = inter.documentacion;
+                    dto.tasaIntercontinental = inter.tasaInter;
+                    dto.visa = inter.visa;
 
+                }
+                else if (vuelo.Regional != null)
+                {
+                    Regional re = context.Regional.FirstOrDefault(f => f.numVueloR == id.ToString());
 
-        //    }
+                    dto.tipo = "Regional";
+                    dto.numeroVuelo = vuelo.numeroVuelo;
+                    dto.origen = vuelo.origen;
+                    dto.destino = vuelo.destino;
+                    dto.dtLlegada = vuelo.dtLlegada;
+                    dto.dtSalida = vuelo.dtSalida;
+                    dto.HorasTotales = vuelo.HorasTotales;
+                    dto.precio = vuelo.precio;
+                    dto.numeroAeronaveAsignada = vuelo.numeroAeronaveAsignada;
+                    dto.desde = vuelo.desde;
+                    dto.hasta = vuelo.hasta;
+                    dto.documentacion = re.documentacion;
+                    dto.tasaRegional = re.tasaRegional;
+                    
 
-        //    return dto;
+                }
 
-        //}
-        
+            }
+
+            return dto;
+
+        }
+
 
     }
 }
