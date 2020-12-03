@@ -54,32 +54,27 @@ namespace DataAccess.Persistencia
             }
         }
 
-        public DtoVuelo GetVueloInfo(int id)
-        { 
-            DtoVuelo dto = new DtoVuelo();
+        //public DtoVuelo GetVueloInfo(int id)
+        //{ 
+        //    DtoVuelo dto = new DtoVuelo();
        
-            using (AlasPUMEntities context = new AlasPUMEntities())
-            {
-                Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id.ToString());
-                //bool existe = context.Vuelo.Any(a => a.Nacional != null);
+        //    using (AlasPUMEntities context = new AlasPUMEntities())
+        //    {
+        //        Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id.ToString());
+        //        //bool existe = context.Vuelo.Any(a => a.Nacional != null);
 
+        //        if (vuelo.Nacional != null)
+        //        {
+        //            vuelo.tipo = "Nacional";
+        //            vuelo.
 
+        //        }
+        //        else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
+        //        {
+        //            PIntercontinental pi = new PIntercontinental();
+        //            return pi.VueloInternacional(dto);
 
-
-
-
-                if (vuelo.Nacional != null)
-                {
-                    vuelo.tipo = "Nacional";
-                    vuelo.
-
-                }
-                else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
-                {
-                    PIntercontinental pi = new PIntercontinental();
-                    return pi.VueloInternacional(dto);
-
-                }
+        //        }
            
 
               
@@ -89,11 +84,11 @@ namespace DataAccess.Persistencia
 
 
 
-            }
+        //    }
 
-            return dto;
+        //    return dto;
 
-        }
+        //}
         
 
     }
