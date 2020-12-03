@@ -80,7 +80,7 @@ namespace DataAccess.Persistencia
         }
 
         /*
-                public bool Frecuencia(DtoVuelo dto)
+                public bool Frecuencia(DtoVuelo dto,List<int>days)
                 {
                     bool msg = true;
 
@@ -138,7 +138,7 @@ namespace DataAccess.Persistencia
                     }
                 }
 
-                */
+            */    
 
 
     }

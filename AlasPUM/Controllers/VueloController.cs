@@ -16,9 +16,19 @@ namespace AlasPUM.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddVuelo(DtoVuelo nuevovuelo, List<int> days)
+        public ActionResult Frecuencia(List<int> days)
         {
+
+            bool msg = true;
+            TempData["days"] = days; 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddVuelo(DtoVuelo nuevovuelo)
+        {
+
+            List<int> days = (List<int>)TempData["days"];
             bool msg = HVuelo.getInstace().AddVuelo(nuevovuelo);
 
             if (msg == true)
