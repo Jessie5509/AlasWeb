@@ -13,7 +13,7 @@ namespace DataAccess.Persistencia
    public class PNacional
     {
 
-        public bool VueloNacional( DtoVuelo dto)
+        public bool VueloNacional( DtoVuelo dto,List<string> days)
         {
             bool msg = true;
 
@@ -80,8 +80,8 @@ namespace DataAccess.Persistencia
             return coldtoVuelo;
         }
 
-        /*
-                public bool Frecuencia(DtoVuelo dto,List<int>days)
+        
+                public bool Frecuencia(DtoVuelo dto,List<string>days)
                 {
                     bool msg = true;
 
@@ -96,13 +96,13 @@ namespace DataAccess.Persistencia
                                 TimeSpan diferencia = fechaLL - fechaS;
 
                                 List<DateTime> colDate = new List<DateTime>();
-                                for (int i = 0; i < 90; i++)
+                                for (int i = 0; i < 10; i++)
                                 {
                                     fechaS = fechaS.AddHours(24);
                                     colDate.Add(fechaS);
                                 }
 
-                                if ( days.Count == 0) // Diario Para tres Meses
+                                if ( days.Contains("Diario")) // Diario Para tres Meses
                                 {
                                     vueloDiario(colDate, dto, context, diferencia);
                                 }
@@ -139,8 +139,119 @@ namespace DataAccess.Persistencia
                     }
                 }
 
-            */    
+            
 
 
+
+        private void vueloDiario(List<DateTime> colDate, DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia)
+        {
+           
+            for (int i = 1; i <= 30; i++)
+            {
+                Nacional Nac = new Nacional();
+                Nac.departamento = "prueba";
+                int numero = Int32.Parse(dto.numeroVuelo) + i;
+
+                Vuelo vuel = new Vuelo();
+
+                vuel.numeroVuelo = numero.ToString();
+                vuel.origen = dto.origen;
+                vuel.destino = dto.destino;
+                vuel.dtLlegada = dto.dtLlegada;
+                vuel.dtSalida = dto.dtSalida;
+                vuel.HorasTotales = dto.HorasTotales;
+                vuel.precio = dto.precio;
+                vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                vuel.desde = dto.desde;
+                vuel.hasta = dto.hasta;
+                vuel.imagen = dto.imagen;
+                vuel.Nacional.Add(Nac);
+
+
+                vuel.dtSalida = (colDate[i]);
+                vuel.dtLlegada = (colDate[i] + diferencia);                
+
+                context.Vuelo.Add(vuel);
+               
+            }
+            context.SaveChanges();
+        }
+        
+        private void vueloSemanal(List<string> days, List<DateTime> colDate, DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia)
+        {
+            
+            foreach (string item in days)
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    if (item == colDate[i].DayOfWeek.ToString())
+                    {
+                        Nacional Nac = new Nacional();
+                        Nac.departamento = "prueba";
+                        int numero = Int32.Parse(dto.numeroVuelo) + i;
+
+                        Vuelo vuel = new Vuelo();
+
+                        vuel.numeroVuelo = numero.ToString();
+                        vuel.origen = dto.origen;
+                        vuel.destino = dto.destino;
+                        vuel.dtLlegada = dto.dtLlegada;
+                        vuel.dtSalida = dto.dtSalida;
+                        vuel.HorasTotales = dto.HorasTotales;
+                        vuel.precio = dto.precio;
+                        vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                        vuel.desde = dto.desde;
+                        vuel.hasta = dto.hasta;
+                        vuel.imagen = dto.imagen;
+                        vuel.Nacional.Add(Nac);
+
+
+                        vuel.dtSalida = (colDate[i]);
+                        vuel.dtLlegada = (colDate[i] + diferencia);
+
+                        context.Vuelo.Add(vuel);
+
+                    }
+                }
+                context.SaveChanges();
+            }
+           
+        }
+        
+        private void vueloMensual(DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia, DateTime myDate)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+
+                Nacional Nac = new Nacional();
+                Nac.departamento = "prueba";
+                int numero = Int32.Parse(dto.numeroVuelo) + i;
+
+                Vuelo vuel = new Vuelo();
+
+                vuel.numeroVuelo = numero.ToString();
+                vuel.origen = dto.origen;
+                vuel.destino = dto.destino;
+                vuel.dtLlegada = dto.dtLlegada;
+                vuel.dtSalida = dto.dtSalida;
+                vuel.HorasTotales = dto.HorasTotales;
+                vuel.precio = dto.precio;
+                vuel.numeroAeronaveAsignada = dto.numeroAeronaveAsignada;
+                vuel.desde = dto.desde;
+                vuel.hasta = dto.hasta;
+                vuel.imagen = dto.imagen;
+                vuel.Nacional.Add(Nac);
+
+                vuel.dtSalida = myDate.AddMonths(i);
+                vuel.dtLlegada = (myDate.AddMonths(i) + diferencia);
+
+                context.Vuelo.Add(vuel);
+
+
+                
+            }
+            context.SaveChanges();
+        }
+        
     }
 }

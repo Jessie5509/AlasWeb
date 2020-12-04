@@ -16,7 +16,7 @@ namespace AlasPUM.Controllers
             return View();
         }
 
-        public ActionResult Frecuencia(List<int> days)
+        public ActionResult Frecuencia(List<string> days)
         {
 
             bool msg = true;
@@ -28,8 +28,8 @@ namespace AlasPUM.Controllers
         public ActionResult AddVuelo(DtoVuelo nuevovuelo)
         {
 
-            List<int> days = (List<int>)TempData["days"];
-            bool msg = HVuelo.getInstace().AddVuelo(nuevovuelo);
+            List<string> days = (List<string>)TempData["days"];
+            bool msg = HVuelo.getInstace().AddVuelo(nuevovuelo, days);
 
             if (msg == true)
             {

@@ -13,7 +13,7 @@ namespace DataAccess.Persistencia
     public class PRegional
     {
        
-        public bool VueloRegional(DtoVuelo dto)
+        public bool VueloRegional(DtoVuelo dto, List<string> days)
         {
             bool msg = true;
 

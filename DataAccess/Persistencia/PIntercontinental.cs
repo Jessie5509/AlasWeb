@@ -13,7 +13,7 @@ namespace DataAccess.Persistencia
     public class PIntercontinental
     {
         
-      public bool VueloInternacional(DtoVuelo dto)
+      public bool VueloInternacional(DtoVuelo dto, List<string> days)
         {
             bool msg = true;
 
