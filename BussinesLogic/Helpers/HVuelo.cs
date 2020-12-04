@@ -28,13 +28,13 @@ namespace BussinesLogic.Helpers
             {
 
                 PRegional pr = new PRegional();
-                return pr.VueloRegional(dto, days);
+                return pr.Frecuencia(dto, days);
 
             }
             else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
             {
                 PIntercontinental pi = new PIntercontinental();
-               return pi.VueloInternacional(dto, days);
+               return pi.Frecuencia(dto, days);
 
             }
             else if (dto.Intercontinental.documentacion == null && dto.Intercontinental.tasaIntercontinental == 0 && dto.Intercontinental.visa == null && dto.Regional.documentacion == null && dto.Regional.tasaRegional == 0)
