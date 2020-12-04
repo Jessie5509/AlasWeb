@@ -22,25 +22,25 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public bool AddVuelo(DtoVuelo dto)
+        public bool AddVuelo(DtoVuelo dto, List<string> days)
        {
             if (dto.Regional.documentacion != null && dto.Regional.tasaRegional != 0)
             {
 
                 PRegional pr = new PRegional();
-                return pr.VueloRegional(dto);
+                return pr.Frecuencia(dto, days);
 
             }
             else if (dto.Intercontinental.documentacion != null && dto.Intercontinental.tasaIntercontinental != 0 && dto.Intercontinental.visa != null)
             {
                 PIntercontinental pi = new PIntercontinental();
-               return pi.VueloInternacional(dto);
+               return pi.Frecuencia(dto, days);
 
             }
             else if (dto.Intercontinental.documentacion == null && dto.Intercontinental.tasaIntercontinental == 0 && dto.Intercontinental.visa == null && dto.Regional.documentacion == null && dto.Regional.tasaRegional == 0)
             {
                 PNacional pn = new PNacional();
-                return pn.VueloNacional(dto);
+                return pn.Frecuencia(dto, days);
 
             }
             return true;

@@ -54,7 +54,8 @@
         frecuencia = frecuencia.options[frecuencia.selectedIndex].value;
 
         if (frecuencia === "Diario") {
-            days == null;
+            var diario = "Diario";
+            days.push(diario);
         } else if (frecuencia === "Semanal") {
             var arr = $('[name="semanal"]:checked').map(function () {
                 return this.value;
@@ -68,9 +69,9 @@
             document.getElementById('Sabado').checked = false;
             document.getElementById('Domingo').checked = false;
         } else if (frecuencia === "Mensual") {
-            var mensual = $("#mensualInput").val();
+            var mensual =document.getElementById('mens').value;
+
             days.push(mensual);
-            $("#mensualInput").val(null);
         }
         console.log(days);
         $.ajax({
@@ -268,7 +269,7 @@
 
         <div id="divMensual" style="display:none;">
             <label class="form-check-label">Dia del mes</label>
-            <input type="text" id="Domingo" />
+            <input type="number" id="mens" />
 
         </div>
     </div>
