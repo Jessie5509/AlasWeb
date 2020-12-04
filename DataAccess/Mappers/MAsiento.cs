@@ -19,7 +19,9 @@ namespace DataAccess.Mappers
             dto.tipo = entity.tipo;
             dto.fila = entity.fila;
             dto.cantidad = entity.cantidad;
-
+            dto.precio = entity.precio;
+            dto.seleccionado = entity.seleccionado;
+        
             return dto;
         }
 
@@ -32,6 +34,8 @@ namespace DataAccess.Mappers
             entity.tipo = dto.tipo;
             entity.fila = dto.fila;
             entity.cantidad = dto.cantidad;
+            entity.precio = dto.precio;
+            entity.seleccionado = dto.seleccionado;
             
             return entity;
         }

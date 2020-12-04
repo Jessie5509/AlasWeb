@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Persistencia\PAdmin.cs" />
     <Compile Include="Persistencia\PAeronave.cs" />
+    <Compile Include="Persistencia\PCompra.cs" />
     <Compile Include="Persistencia\PIntercontinental.cs" />
     <Compile Include="Persistencia\PNacional.cs" />
     <Compile Include="Persistencia\PRegional.cs" />

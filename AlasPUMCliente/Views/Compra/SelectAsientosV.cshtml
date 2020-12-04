@@ -1,7 +1,30 @@
-﻿
+﻿@model List<Common.DTO.DtoAsiento>
+
 @{
     ViewBag.Title = "SelectAsientosV";
 }
 
-<h2>SelectAsientosV</h2>
+<h2>Asientos disponibles</h2>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+@foreach (Common.DTO.DtoAsiento item in Model)
+{
+   
+     @*<div id="divAsiento" style="display:none;">
+
+         <div class="form-check">
+
+             <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+             <label class="form-check-label">Asientos</label>
+
+         </div>
+    
+   
+     </div>*@
+
+
+
+
+
+}
 
