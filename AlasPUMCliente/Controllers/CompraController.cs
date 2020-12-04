@@ -19,6 +19,13 @@ namespace AlasPUMCliente.Controllers
             return View(lstAsientos);
         }
 
+        public ActionResult Comprar()
+        {
+
+
+            return View();
+        }
+
 
     }
 }

@@ -18,7 +18,8 @@ namespace DataAccess.Persistencia
             using (AlasPUMEntities context = new AlasPUMEntities())
             {
                 Vuelo vuelo = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == id);
-                Aeronave aero = context.Aeronave.FirstOrDefault(f => f.numeroAeronave == vuelo.numeroAeronaveAsignada);
+                int? numAero = vuelo.numeroAeronaveAsignada;
+                Aeronave aero = context.Aeronave.FirstOrDefault(f => f.numeroAeronave == numAero);
 
                 foreach (Asiento item in aero.Asiento)
                 {

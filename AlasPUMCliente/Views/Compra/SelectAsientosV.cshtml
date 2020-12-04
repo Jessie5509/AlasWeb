@@ -9,19 +9,82 @@
 
 @foreach (Common.DTO.DtoAsiento item in Model)
 {
-   
-     @*<div id="divAsiento" style="display:none;">
 
-         <div class="form-check">
 
-             <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
-             <label class="form-check-label">Asientos</label>
+    if (item.seleccionado == false)
+    {
+        <br />
+        if (item.tipo == "First class")
+        {
+            <div id="divAsiento" style="display:inline; width:120px;">
 
-         </div>
-    
-   
-     </div>*@
+                <div class="form-check">
 
+          
+                    <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+
+                    <label class="form-check-label">@Html.DisplayFor(modelItem => item.tipo, new { numAsiento = item.numeroAsiento })</label>
+
+                </div>
+
+            </div>
+        }
+        else if (item.tipo == "Business")
+        {
+            <div id="divAsiento" style="display:inline; width:120px; ">
+
+                <div class="form-check">
+
+                    <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+                    <label class="form-check-label">@Html.DisplayFor(modelItem => item.tipo)</label>
+
+                </div>
+
+            </div>
+        }
+        else if (item.tipo == "Economy")
+        {
+            <div id="divAsiento" style="display:inline; width:120px; ">
+
+                <div class="form-check">
+
+                    <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+                    <label class="form-check-label">@Html.DisplayFor(modelItem => item.tipo)</label>
+
+                </div>
+
+            </div>
+        }
+        else if (item.tipo == "Premium economy")
+        {
+            <div id="divAsiento" style="display:inline; width:120px; ">
+
+                <div class="form-check">
+
+                    <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+                    <label class="form-check-label">@Html.DisplayFor(modelItem => item.tipo)</label>
+
+                </div>
+
+            </div>
+        }
+
+
+
+
+    }
+    else
+    {
+        <div id="divAsiento" style="display:none;">
+            <div class="form-check">
+
+                <input type="checkbox" name="asiento" class="form-check-input" id="Asiento" value="Asiento" />
+                <label class="form-check-label">@Html.DisplayFor(modelItem => item.tipo)</label>
+
+            </div>
+
+        </div>
+    }
 
 
 

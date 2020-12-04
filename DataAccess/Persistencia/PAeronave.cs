@@ -46,6 +46,7 @@ namespace DataAccess.Persistencia
                                 }
          
                                 Asiento DBasiento = new Asiento();
+                                DBasiento.seleccionado = false;
                                 DBasiento = MAsiento.MapToEntity(dt);
 
                                 nuevaAeronave.Asiento.Add(DBasiento);
