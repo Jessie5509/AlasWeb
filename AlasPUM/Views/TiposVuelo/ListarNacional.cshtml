@@ -1,74 +1,88 @@
-﻿@model IEnumerable<Common.DTO.DtoNacional>
+﻿@model List<Common.DTO.DtoNacional>
+
+<h2>Vuelos nacionales</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar vuelos", "AgregarVuelo", "Vuelo", new { @class = "btn btn-primary" })
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.numeroVuelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.origen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.destino)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtLlegada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dtSalida)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HorasTotales)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.desde)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hasta)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                Número de vuelo
+            </th>
+            <th>
+                Origen
+            </th>
+            <th>
+                Destino
+            </th>
+            <th>
+                Fecha de llegada
+            </th>
+            <th>
+                Fecha de salida
+            </th>
+            <th>
+                Horas totales
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Desde
+            </th>
+            <th>
+                Hasta
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.numeroVuelo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.origen)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.destino)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.dtLlegada)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.dtSalida)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.HorasTotales)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.precio)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.desde)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.hasta)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
-</tr>
-}
+    </thead>
+
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroVuelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.origen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dtLlegada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dtSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorasTotales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desde)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hasta)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Cancelar", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
 
 </table>
