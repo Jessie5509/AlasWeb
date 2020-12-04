@@ -26,7 +26,16 @@
                         {
                             <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
 
-                            <li>@Html.ActionLink("Aeronave", "AsignarAsientos", "Aeronave")</li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" aria-expanded="true" href="#" data-toggle="dropdown">Aeronave <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Alta aeronave", "AsignarAsientos", "Aeronave")</li>
+
+                                    <li>@Html.ActionLink("Lista de aeronaves", "ListadoAeronavesV", "Aeronave")</li>
+
+                                </ul>
+                            </li>
+
 
                             <li>@Html.ActionLink("Agregar Vuelos", "AgregarVuelo", "Vuelo")</li>
                             <li class="dropdown">
@@ -39,6 +48,19 @@
                                     <li>@Html.ActionLink("Intercontinental", "ListarIntercontinental", "TiposVuelo")</li>
                                 </ul>
                             </li>
+
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" aria-expanded="true" href="#" data-toggle="dropdown">Reportes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Porcentaje de vuelos", "PorcentajeVuelos", "Reporte")</li>
+
+                                    <li>@Html.ActionLink("Cliente con más reservas", "ClienteMasReservas", "Reporte")</li>
+
+                                    <li>@Html.ActionLink("Reporte de vuelos", "VuelosMasAsientosVacios", "Reporte")</li>
+                                </ul>
+                            </li>
+
 
                             <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
 
