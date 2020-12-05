@@ -52,6 +52,13 @@ namespace BussinesLogic.Helpers
             return pp.GetVueloInfo(id);
         }
 
+        public List<DtoVuelo> Getcant(int cant, List<DtoVuelo> colVuelo)
+        {
+            PVuelo pp = new PVuelo();
+            return pp.Getcant(cant, colVuelo);
+        }
+
+
         public List<DtoVuelo> GetVuelo()
         {
             PVuelo pc = new PVuelo();

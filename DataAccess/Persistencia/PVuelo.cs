@@ -146,5 +146,26 @@ namespace DataAccess.Persistencia
         }
 
 
+        public List<DtoVuelo> Getcant(int cant, List<DtoVuelo> colVuelo)
+        {
+            using(AlasPUMEntities context = new AlasPUMEntities())
+                {
+                List<Vuelo> vuel = new List<Vuelo>();
+                DtoVuelo dto = new DtoVuelo();
+                
+                colVuelo.Clear();
+
+                vuel = context.Vuelo.Where(w => w.Aeronave.cantAsientos == cant).ToList();
+                foreach (Vuelo item in vuel)
+                {
+                    dto = MVuelo.MapToDto(item);
+                    colVuelo.Add(dto);
+                }
+
+            }
+
+            return colVuelo;
+        }
+
     }
 }

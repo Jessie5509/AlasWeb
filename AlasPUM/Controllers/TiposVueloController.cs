@@ -15,9 +15,20 @@ namespace AlasPUM.Controllers
         {
             return View();
         }
+/*
+        public ActionResult ModificarNacional(int numero)
+        {
+            DtoVuelo nac = new DtoVuelo();
+
+            nac = HVuelo.getInstace().GetVuelo(numero);
 
 
-        public ActionResult ListarNacional()
+
+            return View(nac);
+        }
+*/
+    
+    public ActionResult ListarNacional()
         {
             List<DtoNacional> ColNac = new List<DtoNacional>();
             ColNac = HTipo.getInstace().GetNacional();
