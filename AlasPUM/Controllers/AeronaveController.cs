@@ -19,7 +19,6 @@ namespace AlasPUM.Controllers
 
         public ActionResult AltaAeronave()
         {
-            
             if (TempData["Message"] != null)
             {
                 ViewBag.Message = TempData["Message"].ToString();

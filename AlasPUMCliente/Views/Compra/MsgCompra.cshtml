@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "MsgCompra";
+}
+
+@Html.AntiForgeryToken()
+<div class="text-center form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+
+        @if (ViewBag.Compra != null)
+        {
+            <h2>@Html.Label("", (string)ViewBag.Compra, new { @class = "label label-success" })</h2>
+        }
+        <br />
+        
+
+    </div>
+</div>
+

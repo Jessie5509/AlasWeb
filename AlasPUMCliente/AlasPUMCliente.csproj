@@ -171,6 +171,8 @@
     <Content Include="Views\Shared\_listaVuelos.cshtml" />
     <Content Include="Views\Compra\SelectAsientosV.cshtml" />
     <Content Include="Views\Compra\ConfirmarAsientos.cshtml" />
+    <Content Include="Views\Compra\DatosClienteV.cshtml" />
+    <Content Include="Views\Compra\MsgCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

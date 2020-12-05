@@ -55,23 +55,64 @@ namespace AlasPUMCliente.Controllers
         public ActionResult ConfirmarAsientos()
         {
             List<DtoAsiento> AsientosConfirmados = (List<DtoAsiento>)Session["AsientosComprados"];
+            float precio = 0;
+
+            foreach (DtoAsiento item in AsientosConfirmados)
+            {
+                precio = (float)(precio + item.precio);
+            }
+
+            TempData["Precio"] = precio;
 
             return View(AsientosConfirmados);
         }
 
         public ActionResult DatosClienteV()
         {
-            
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
+
             return View();
         }
 
-        public ActionResult RellenarCompra()
+        public ActionResult RellenarCompra(DtoCliente dto)
         {
             string idVuelo = (string)Session["idVuelo"];
+            List<DtoAsiento> AsientosConfirmados2 = (List<DtoAsiento>)Session["AsientosComprados"];
 
+            bool msg = HCompra.getInstace().AddClienteCompra(dto, idVuelo, AsientosConfirmados2);
+
+            //TempData Messages
+            if (msg == true)
+            {
+                TempData["Compra"] = "¡Compra realizada con éxito!";
+                Session.Clear();
+                return RedirectToAction("MsgCompra");
+            }
+            else
+            {
+                TempData["Message"] = "Completa todos los campos por favor!";
+                Session.Clear();
+                return RedirectToAction("DatosClienteV");
+            }
+
+        }
+
+        public ActionResult MsgCompra()
+        {
+            if (TempData["Compra"] != null)
+            {
+                ViewBag.Compra = TempData["Compra"].ToString();
+
+            }
 
             return View();
         }
+
+
 
 
 
