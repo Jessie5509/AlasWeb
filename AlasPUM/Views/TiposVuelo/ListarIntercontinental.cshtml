@@ -98,8 +98,7 @@
                     @Html.DisplayFor(modelItem => item.visa)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "ModificarVuelo", new { numero = item.numeroVuelo, tipo="Inter" }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

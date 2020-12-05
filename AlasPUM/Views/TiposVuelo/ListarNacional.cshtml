@@ -76,8 +76,7 @@
                     @Html.DisplayFor(modelItem => item.hasta)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Cancelar", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "ModificarVuelo", new { numero = item.numeroVuelo, tipo = "Nac" }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

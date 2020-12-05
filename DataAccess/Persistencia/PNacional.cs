@@ -146,8 +146,10 @@ namespace DataAccess.Persistencia
         private void vueloDiario(List<DateTime> colDate, DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia)
         {
            
-            for (int i = 1; i <= 30; i++)
+            for (int i = 1; i <= 7; i++)
             {
+                Precio(dto, context);
+
                 Nacional Nac = new Nacional();
                 Nac.departamento = "prueba";
                 int numero = Int32.Parse(dto.numeroVuelo) + i;
@@ -184,6 +186,8 @@ namespace DataAccess.Persistencia
             {
                 for (int i = 1; i <= 5; i++)
                 {
+
+                    Precio(dto, context);
                     if (item == colDate[i].DayOfWeek.ToString())
                     {
                         Nacional Nac = new Nacional();
@@ -222,6 +226,7 @@ namespace DataAccess.Persistencia
         {
             for (int i = 0; i < 3; i++)
             {
+                Precio(dto, context);
 
                 Nacional Nac = new Nacional();
                 Nac.departamento = "prueba";
@@ -252,6 +257,38 @@ namespace DataAccess.Persistencia
             }
             context.SaveChanges();
         }
-        
+
+        public void Precio(DtoVuelo dto, AlasPUMEntities context)
+        {
+
+            Aeronave aero = context.Aeronave.Where(s => s.numeroAeronave == dto.numeroAeronaveAsignada).FirstOrDefault();
+            foreach (Asiento item in aero.Asiento)
+            {
+
+                if (item.tipo == "Economy")
+                {
+
+                    item.precio = dto.precio ;
+                }
+                else if (item.tipo == "Premium economy")
+                {
+
+                    item.precio = Math.Round(dto.precio + (dto.precio / 3)) ;
+                }
+                else if (item.tipo == "Business")
+                {
+
+                    item.precio = Math.Round(dto.precio + (dto.precio / 2)) ;
+                }
+                else if (item.tipo == "First class")
+                {
+
+                    item.precio = dto.precio + dto.precio ;
+                }
+
+            }
+
+        }
+
     }
 }

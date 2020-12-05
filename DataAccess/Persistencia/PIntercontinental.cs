@@ -147,9 +147,9 @@ namespace DataAccess.Persistencia
         private void vueloDiario(List<DateTime> colDate, DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia)
         {
 
-            for (int i = 1; i <= 30; i++)
+            for (int i = 1; i <= 7; i++)
             {
-             
+                Precio(dto, context);
 
                 Intercontinental Inter = new Intercontinental();
                 Inter.tasaInter = dto.Intercontinental.tasaIntercontinental;
@@ -159,7 +159,7 @@ namespace DataAccess.Persistencia
                 int numero = Int32.Parse(dto.numeroVuelo) + i;
 
                 Vuelo vuel = new Vuelo();
-                vuel.numeroVuelo = dto.numeroVuelo;
+                vuel.numeroVuelo = numero.ToString();
                 vuel.origen = dto.origen;
                 vuel.destino = dto.destino;
                 vuel.dtLlegada = dto.dtLlegada;
@@ -189,6 +189,8 @@ namespace DataAccess.Persistencia
             {
                 for (int i = 1; i <= 5; i++)
                 {
+                    Precio(dto, context);
+
                     if (item == colDate[i].DayOfWeek.ToString())
                     {
                         Intercontinental Inter = new Intercontinental();
@@ -199,7 +201,7 @@ namespace DataAccess.Persistencia
                         int numero = Int32.Parse(dto.numeroVuelo) + i;
 
                         Vuelo vuel = new Vuelo();
-                        vuel.numeroVuelo = dto.numeroVuelo;
+                        vuel.numeroVuelo = numero.ToString();
                         vuel.origen = dto.origen;
                         vuel.destino = dto.destino;
                         vuel.dtLlegada = dto.dtLlegada;
@@ -225,10 +227,43 @@ namespace DataAccess.Persistencia
 
         }
 
+        public void Precio(DtoVuelo dto, AlasPUMEntities context)
+        {
+
+            Aeronave aero = context.Aeronave.Where(s => s.numeroAeronave == dto.numeroAeronaveAsignada).FirstOrDefault();
+            foreach (Asiento item in aero.Asiento)
+            {
+
+                if (item.tipo == "Economy")
+                {
+
+                    item.precio = dto.precio + dto.Intercontinental.tasaIntercontinental;
+                }
+                else if (item.tipo == "Premium economy")
+                {
+
+                    item.precio = Math.Round(dto.precio + (dto.precio / 3)) + dto.Intercontinental.tasaIntercontinental;
+                }
+                else if (item.tipo == "Business")
+                {
+
+                    item.precio = Math.Round(dto.precio + (dto.precio / 2)) + dto.Intercontinental.tasaIntercontinental;
+                }
+                else if (item.tipo == "First class")
+                {
+
+                    item.precio = dto.precio + dto.precio + dto.Intercontinental.tasaIntercontinental;
+                }
+
+            }
+
+        }
+
         private void vueloMensual(DtoVuelo dto, AlasPUMEntities context, TimeSpan diferencia, DateTime myDate)
         {
             for (int i = 0; i < 3; i++)
             {
+                Precio( dto,context);
 
                 Intercontinental Inter = new Intercontinental();
                 Inter.tasaInter = dto.Intercontinental.tasaIntercontinental;
@@ -238,7 +273,7 @@ namespace DataAccess.Persistencia
                 int numero = Int32.Parse(dto.numeroVuelo) + i;
 
                 Vuelo vuel = new Vuelo();
-                vuel.numeroVuelo = dto.numeroVuelo;
+                vuel.numeroVuelo = numero.ToString();
                 vuel.origen = dto.origen;
                 vuel.destino = dto.destino;
                 vuel.dtLlegada = dto.dtLlegada;
