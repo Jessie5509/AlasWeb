@@ -1,18 +1,13 @@
 ﻿@model List<Common.DTO.DtoAsiento>
 
 @{
-    ViewBag.Title = "SelectAsientosV";
+    ViewBag.Title = "ConfirmarAsientos";
 }
 
-<h2>Asientos disponibles</h2>
+<h2>Asientos escogidos</h2>
 
-<p>
-    @Html.ActionLink("Página principal", "Index", "Home", new { @class = "btn btn-primary" })
-</p>
-
-@using (Html.BeginForm("ConfirmarAsientos", "Compra"))
+@using (Html.BeginForm("DatosClienteV", "Compra"))
 {
-
     <table class="table">
         <thead>
             <tr>
@@ -29,16 +24,12 @@
                     Precio
                 </th>
 
-                <th>
-                    Opciones
-                </th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (Common.DTO.DtoAsiento item in Model)
+            @foreach (var item in Model)
             {
-
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.numeroAsiento)
@@ -49,28 +40,24 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.tipo)
                     </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.precio)
                     </td>
 
-                    <td>
-                        @Html.ActionLink("Comprar pasaje", "ComprarPasaje", "Compra", new { id = item.numeroAsiento }, new { @class = "btn btn-info" })
 
-                    </td>
+
                 </tr>
-
-
             }
         </tbody>
-
     </table>
 
-    <br />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+<br />
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
 
-            <input type="submit" value="Confirmar asientos" class="btn btn-success" />
+        <input type="submit" value="Rellenar datos de compra" class="btn btn-success" />
 
-        </div>
     </div>
+</div>
 }

@@ -126,9 +126,6 @@ namespace AlasPUM.Controllers
 
             Session["lstAsientos"] = asientos;
 
-            //Remove select values
-
-
             return RedirectToAction("AsignarAsientos");
         }
 

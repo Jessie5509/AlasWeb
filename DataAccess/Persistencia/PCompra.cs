@@ -23,13 +23,36 @@ namespace DataAccess.Persistencia
 
                 foreach (Asiento item in aero.Asiento)
                 {
-                    DtoAsiento asiento = MAsiento.MapToDto(item);
-                    lstAsientos.Add(asiento);
+                    if (item.seleccionado == false)
+                    {
+                        DtoAsiento asiento = MAsiento.MapToDto(item);
+                        lstAsientos.Add(asiento);
+                    }
+                    
                 }
 
             }
 
             return lstAsientos;
+        }
+
+        public DtoAsiento asientoComprado(int id)
+        {
+            DtoAsiento asientos = new DtoAsiento();
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                Asiento asiento = context.Asiento.FirstOrDefault(f => f.numeroAsiento == id);
+                asiento.seleccionado = true;
+
+                asientos = MAsiento.MapToDto(asiento);
+
+                context.SaveChanges();
+
+            }
+
+            return asientos;
+
         }
 
     }

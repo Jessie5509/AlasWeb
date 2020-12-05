@@ -26,5 +26,13 @@ namespace BussinesLogic.Helpers
             PCompra pe = new PCompra();
             return pe.AsientosByVuelo(id);
         }
+
+        public DtoAsiento asientoComprado(int id)
+        {
+            PCompra pe = new PCompra();
+            return pe.asientoComprado(id);
+        }
+        
+
     }
 }
