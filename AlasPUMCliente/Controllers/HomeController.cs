@@ -1,5 +1,7 @@
 ﻿using BussinesLogic.Helpers;
 using Common.DTO;
+using DataAccess.Mappers;
+using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,51 +12,30 @@ namespace AlasPUMCliente.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string Destino, string Origen, string FechaSalida, string Fechallegada, string cant)
         {
             //ViewBag.PriceSort = sortOrder == "Price" ? "price_desc" : "Price";
 
             List<DtoVuelo> colVuelo = new List<DtoVuelo>();
-
+            List<DtoAeronave> colAero = new List<DtoAeronave>();
 
             colVuelo = HVuelo.getInstace().GetVuelo();
+            
             //Buscador por nombre de producto
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    colProducto = colProducto.Where(s => s.Descripcion.Contains(searchString)).ToList();
-            //}
-            //else
-            //{
-
-            //    colProducto = HProducto.getInstace().GetProducto();
-            //}
-            //Filtrado por precio
-            //switch (sortOrder)
-            //{
-
-            //    case "Price":
-            //        colProducto = colProducto.OrderBy(s => s.PrecioVenta).ToList();
-            //        break;
-            //    default:
-            //        colProducto = colProducto.OrderByDescending(s => s.PrecioVenta).ToList();
-            //        break;
-            //}
-
-            //Cargar viebag de familia
-            //List<DtoCategoria> colTipos = HCategoria.getInstace().GetCategoria();
-
-            //List<SelectListItem> colSelectItems = new List<SelectListItem>();
-
-            //foreach (DtoCategoria item in colTipos)
-            //{
-            //    SelectListItem opcion = new SelectListItem();
-            //    opcion.Text = item.Nombre;
-            //    opcion.Value = item.Nombre;
-            //    colSelectItems.Add(opcion);
-            //}
-
-            //ViewBag.colFamilias = colSelectItems;
-
+            if (!String.IsNullOrEmpty(Destino) && !String.IsNullOrEmpty(Origen))
+            {
+                colVuelo = colVuelo.Where(s => s.destino == Destino && s.origen == Origen).ToList();
+            }
+            else if (!String.IsNullOrEmpty(FechaSalida) && !String.IsNullOrEmpty(Fechallegada))
+            {
+                colVuelo = colVuelo.Where(s => s.dtLlegada == DateTime.Parse(Fechallegada) && s.dtSalida == DateTime.Parse(FechaSalida)).ToList();
+            }
+            
+            else if (!String.IsNullOrEmpty(cant) )
+            {
+                int id = int.Parse(cant);
+                colVuelo = HVuelo.getInstace().Getcant(id, colVuelo);
+            }
 
 
             return View(colVuelo);

@@ -80,5 +80,7 @@ namespace Common.DTO
 
         public DtoRegional Regional { get; set; }
         public DtoNacional Nacional { get; set; }
+
+        public DtoAeronave Aeronave { get; set; }
     }
 }
