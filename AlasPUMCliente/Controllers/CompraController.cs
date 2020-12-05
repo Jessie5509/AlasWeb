@@ -13,18 +13,66 @@ namespace AlasPUMCliente.Controllers
         // GET: Compra
         public ActionResult SelectAsientosV(string id)
         {
+            if (id == null)
+            {
+                id = (string)Session["idVuelo"];
+            }
+
+            Session["idVuelo"] = id;
+
             List<DtoAsiento> lstAsientos = new List<DtoAsiento>();
             lstAsientos = HCompra.getInstace().getAsientos(id);
 
             return View(lstAsientos);
         }
-
-        public ActionResult Comprar()
+        
+        public ActionResult ComprarPasaje(int id)
         {
+            List<DtoAsiento> lstasientosComprados = null;
+
+            if (Session["AsientosComprados"] == null)
+            {
+                lstasientosComprados = new List<DtoAsiento>();
+
+            }
+            else
+            {
+                lstasientosComprados = (List<DtoAsiento>)Session["AsientosComprados"];
+
+            }
+
+            DtoAsiento asientos = new DtoAsiento();
+            asientos = HCompra.getInstace().asientoComprado(id);
+
+            lstasientosComprados.Add(asientos);
+
+            Session["AsientosComprados"] = lstasientosComprados;
+
+
+            return RedirectToAction("SelectAsientosV");
+        }
+
+        public ActionResult ConfirmarAsientos()
+        {
+            List<DtoAsiento> AsientosConfirmados = (List<DtoAsiento>)Session["AsientosComprados"];
+
+            return View(AsientosConfirmados);
+        }
+
+        public ActionResult DatosClienteV()
+        {
+            
+            return View();
+        }
+
+        public ActionResult RellenarCompra()
+        {
+            string idVuelo = (string)Session["idVuelo"];
 
 
             return View();
         }
+
 
 
     }

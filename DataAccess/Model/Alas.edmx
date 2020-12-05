@@ -50,6 +50,7 @@
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pasaporte" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="visa" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Compra">
           <Key>
@@ -281,17 +282,6 @@
           <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
           <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Aeronave" ToRole="Vuelo" />
         </EntityType>
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="documento" />
-          </Key>
-          <Property Name="documento" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pasaporte" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Compra" Relationship="Self.FKCompra_Cliente" FromRole="Cliente" ToRole="Compra" />
-        </EntityType>
         <EntityType Name="Compra">
           <Key>
             <PropertyRef Name="idCompra" />
@@ -301,9 +291,9 @@
           <Property Name="dtCompra" Type="DateTime" Precision="3" />
           <Property Name="precioTotal" Type="Double" Nullable="false" />
           <Property Name="DocumentoCli" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FKCompra_Cliente" FromRole="Compra" ToRole="Cliente" />
           <NavigationProperty Name="Pago" Relationship="Self.FKPago_Compra" FromRole="Compra" ToRole="Pago" />
           <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Compra" FromRole="Compra" ToRole="Asiento" />
+          <NavigationProperty Name="Cliente" Relationship="AlasPUMModel.FKCompra_Cliente" FromRole="Compra" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -325,18 +315,6 @@
           <Property Name="precio" Type="Double" />
           <Property Name="visitas" Type="Double" />
         </EntityType>
-        <Association Name="FKCompra_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="documento" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="DocumentoCli" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKPago_Compra">
           <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -351,14 +329,9 @@
         </Association>
         <EntityContainer Name="AlasPUMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Aeronave" EntityType="Self.Aeronave" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Compra" EntityType="Self.Compra" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
           <EntitySet Name="Video" EntityType="Self.Video" />
-          <AssociationSet Name="FKCompra_Cliente" Association="Self.FKCompra_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Compra" EntitySet="Compra" />
-          </AssociationSet>
           <AssociationSet Name="FKPago_Compra" Association="Self.FKPago_Compra">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Pago" EntitySet="Pago" />
@@ -392,6 +365,11 @@
           <AssociationSet Name="FKReg_Vuelo" Association="AlasPUMModel.FKReg_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Regional" EntitySet="Regional" />
+          </AssociationSet>
+          <EntitySet Name="Cliente" EntityType="AlasPUMModel.Cliente" />
+          <AssociationSet Name="FKCompra_Cliente" Association="AlasPUMModel.FKCompra_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Administrador">
@@ -545,6 +523,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="documento" />
+          </Key>
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pasaporte" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="visa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKCompra_Cliente" FromRole="Cliente" ToRole="Compra" />
+        </EntityType>
+        <Association Name="FKCompra_Cliente">
+          <End Type="AlasPUMModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="AlasPUMModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="DocumentoCli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -559,17 +561,6 @@
                 <ScalarProperty Name="horasVuelo" ColumnName="horasVuelo" />
                 <ScalarProperty Name="modelo" ColumnName="modelo" />
                 <ScalarProperty Name="cantAsientos" ColumnName="cantAsientos" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="AlasPUMModel.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="documento" ColumnName="documento" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
-                <ScalarProperty Name="pasaporte" ColumnName="pasaporte" />
-                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -678,6 +669,18 @@
                 <ScalarProperty Name="destino" ColumnName="destino" />
                 <ScalarProperty Name="origen" ColumnName="origen" />
                 <ScalarProperty Name="numeroVuelo" ColumnName="numeroVuelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="AlasPUMModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="visa" ColumnName="visa" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pasaporte" ColumnName="pasaporte" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

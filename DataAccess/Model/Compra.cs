@@ -27,10 +27,10 @@ namespace DataAccess.Model
         public double precioTotal { get; set; }
         public string DocumentoCli { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pago> Pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asiento> Asiento { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

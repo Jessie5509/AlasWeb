@@ -170,6 +170,7 @@
     <Content Include="Views\Home\VueloInfo.cshtml" />
     <Content Include="Views\Shared\_listaVuelos.cshtml" />
     <Content Include="Views\Compra\SelectAsientosV.cshtml" />
+    <Content Include="Views\Compra\ConfirmarAsientos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
