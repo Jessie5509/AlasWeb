@@ -155,7 +155,7 @@ namespace DataAccess.Persistencia
                 
                 colVuelo.Clear();
 
-                vuel = context.Vuelo.Where(w => w.Aeronave.cantAsientos == cant).ToList();
+                vuel = context.Vuelo.Where(w => w.Aeronave.cantAsientos >= cant).ToList();
                 foreach (Vuelo item in vuel)
                 {
                     dto = MVuelo.MapToDto(item);
