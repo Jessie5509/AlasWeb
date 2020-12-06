@@ -89,8 +89,8 @@ namespace AlasPUMCliente.Controllers
             if (msg == true)
             {
                 TempData["Compra"] = "¡Compra realizada con éxito!";
-                TempData["Cliente"] = dto;
-                Session.Clear();
+                Session["Cliente"] = dto.documento;
+                
                 return RedirectToAction("MsgCompra");
             }
             else

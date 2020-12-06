@@ -20,17 +20,20 @@ namespace AlasPUMCliente.Controllers
 
         public ActionResult VerVideo()
         {
+            string docu = (string)Session["Cliente"];
             DtoCliente dto = new DtoCliente();
-            dto.documento = "12345";
+            dto.documento = docu;
+            
             IVideo videoproxy = new ProxyVideo(new ClaseVideo());
             string video = videoproxy.AgregarVideo(dto);
             ViewBag.UrlVideo = video;
 
             if (!string.IsNullOrEmpty(video))
             {
+                Session.Clear();
                 return Redirect(video);
             }
-
+            Session.Clear();
             return View();
 
 
