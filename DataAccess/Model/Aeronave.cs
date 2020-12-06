@@ -17,8 +17,8 @@ namespace DataAccess.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Aeronave()
         {
-            this.Asiento = new HashSet<Asiento>();
             this.Vuelo = new HashSet<Vuelo>();
+            this.Asiento = new HashSet<Asiento>();
         }
     
         public int numeroAeronave { get; set; }
@@ -26,11 +26,12 @@ namespace DataAccess.Model
         public Nullable<int> horasVuelo { get; set; }
         public string modelo { get; set; }
         public int cantAsientos { get; set; }
+        public string url { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Asiento> Asiento { get; set; }
+        public virtual Video Video { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vuelo> Vuelo { get; set; }
-        public virtual Video Video { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Asiento> Asiento { get; set; }
     }
 }

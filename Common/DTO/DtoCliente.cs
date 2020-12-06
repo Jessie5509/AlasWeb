@@ -39,5 +39,7 @@ namespace Common.DTO
         [StringLength(100, ErrorMessage = "La {0} no debe superar los {1} carácteres")]
         public string visa { get; set; }
 
+        public virtual ICollection<DtoCompra> Compra { get; set; }
+
     }
 }

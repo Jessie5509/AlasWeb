@@ -25,7 +25,7 @@ namespace DataAccess.Model
         public int desde { get; set; }
         public int hasta { get; set; }
     
-        public virtual Aeronave Aeronave { get; set; }
         public virtual Compra Compra { get; set; }
+        public virtual Aeronave Aeronave { get; set; }
     }
 }

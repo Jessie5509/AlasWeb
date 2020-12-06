@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -25,6 +25,7 @@
           <Property Name="horasVuelo" Type="int" />
           <Property Name="modelo" Type="varchar" MaxLength="75" />
           <Property Name="cantAsientos" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Asiento">
           <Key>
@@ -286,19 +287,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlasPUMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Aeronave">
-          <Key>
-            <PropertyRef Name="numeroAeronave" />
-          </Key>
-          <Property Name="numeroAeronave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="anioIngreso" Type="Int32" />
-          <Property Name="horasVuelo" Type="Int32" />
-          <Property Name="modelo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="cantAsientos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
-          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Aeronave" ToRole="Vuelo" />
-          <NavigationProperty Name="Video" Relationship="AlasPUMModel.FK_Aeronave" FromRole="Aeronave" ToRole="Video" />
-        </EntityType>
         <EntityType Name="Compra">
           <Key>
             <PropertyRef Name="idCompra" />
@@ -336,7 +324,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AlasPUMEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Aeronave" EntityType="Self.Aeronave" />
           <EntitySet Name="Compra" EntityType="Self.Compra" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
           <AssociationSet Name="FKPago_Compra" Association="Self.FKPago_Compra">
@@ -345,10 +332,6 @@
           </AssociationSet>
           <EntitySet Name="Administrador" EntityType="AlasPUMModel.Administrador" />
           <EntitySet Name="Asiento" EntityType="AlasPUMModel.Asiento" />
-          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Asiento" EntitySet="Asiento" />
-          </AssociationSet>
           <AssociationSet Name="FKAsiento_Compra" Association="AlasPUMModel.FKAsiento_Compra">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="Asiento" EntitySet="Asiento" />
@@ -357,10 +340,6 @@
           <EntitySet Name="Nacional" EntityType="AlasPUMModel.Nacional" />
           <EntitySet Name="Regional" EntityType="AlasPUMModel.Regional" />
           <EntitySet Name="Vuelo" EntityType="AlasPUMModel.Vuelo" />
-          <AssociationSet Name="FKAero_Vuelo" Association="AlasPUMModel.FKAero_Vuelo">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Vuelo" EntitySet="Vuelo" />
-          </AssociationSet>
           <AssociationSet Name="FKInt_Vuelo" Association="AlasPUMModel.FKInt_Vuelo">
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Intercontinental" EntitySet="Intercontinental" />
@@ -373,22 +352,31 @@
             <End Role="Vuelo" EntitySet="Vuelo" />
             <End Role="Regional" EntitySet="Regional" />
           </AssociationSet>
+          <EntitySet Name="Video" EntityType="AlasPUMModel.Video" />
+          <EntitySet Name="Aeronave" EntityType="AlasPUMModel.Aeronave" />
+          <AssociationSet Name="FK_Aeronave" Association="AlasPUMModel.FK_Aeronave">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FKAero_Vuelo" Association="AlasPUMModel.FKAero_Vuelo">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Vuelo" EntitySet="Vuelo" />
+          </AssociationSet>
+          <AssociationSet Name="FKAsiento_Aeronave" Association="AlasPUMModel.FKAsiento_Aeronave">
+            <End Role="Aeronave" EntitySet="Aeronave" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
           <EntitySet Name="Cliente" EntityType="AlasPUMModel.Cliente" />
           <AssociationSet Name="FKCompra_Cliente" Association="AlasPUMModel.FKCompra_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Compra" EntitySet="Compra" />
-          </AssociationSet>
-          <EntitySet Name="Video" EntityType="AlasPUMModel.Video" />
-          <AssociationSet Name="FK_Aeronave" Association="AlasPUMModel.FK_Aeronave">
-            <End Role="Aeronave" EntitySet="Aeronave" />
-            <End Role="Video" EntitySet="Video" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -409,21 +397,9 @@
           <Property Name="fila" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="desde" Type="Int32" Nullable="false" />
           <Property Name="hasta" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Asiento" ToRole="Aeronave" />
           <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKAsiento_Compra" FromRole="Asiento" ToRole="Compra" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Asiento" ToRole="Aeronave" />
         </EntityType>
-        <Association Name="FKAsiento_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Asiento">
-              <PropertyRef Name="aeronaveNum" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKAsiento_Compra">
           <End Type="AlasPUMModel.Compra" Role="Compra" Multiplicity="0..1" />
           <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
@@ -482,23 +458,11 @@
           <Property Name="hasta" Type="Int32" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Vuelo" ToRole="Aeronave" />
           <NavigationProperty Name="Intercontinental" Relationship="AlasPUMModel.FKInt_Vuelo" FromRole="Vuelo" ToRole="Intercontinental" />
           <NavigationProperty Name="Nacional" Relationship="AlasPUMModel.FKNacional_Vuelo" FromRole="Vuelo" ToRole="Nacional" />
           <NavigationProperty Name="Regional" Relationship="AlasPUMModel.FKReg_Vuelo" FromRole="Vuelo" ToRole="Regional" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Vuelo" ToRole="Aeronave" />
         </EntityType>
-        <Association Name="FKAero_Vuelo">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="0..1" />
-          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Vuelo">
-              <PropertyRef Name="numeroAeronaveAsignada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKInt_Vuelo">
           <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="1" />
           <End Type="AlasPUMModel.Intercontinental" Role="Intercontinental" Multiplicity="*" />
@@ -535,6 +499,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="numAeronave" />
+          </Key>
+          <Property Name="UrlAeronave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Double" />
+          <Property Name="visitas" Type="Double" />
+          <Property Name="numAeronave" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FK_Aeronave" FromRole="Video" ToRole="Aeronave" />
+        </EntityType>
+        <EntityType Name="Aeronave">
+          <Key>
+            <PropertyRef Name="numeroAeronave" />
+          </Key>
+          <Property Name="numeroAeronave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anioIngreso" Type="Int32" />
+          <Property Name="horasVuelo" Type="Int32" />
+          <Property Name="modelo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="cantAsientos" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Video" Relationship="AlasPUMModel.FK_Aeronave" FromRole="Aeronave" ToRole="Video" />
+          <NavigationProperty Name="Vuelo" Relationship="AlasPUMModel.FKAero_Vuelo" FromRole="Aeronave" ToRole="Vuelo" />
+          <NavigationProperty Name="Asiento" Relationship="AlasPUMModel.FKAsiento_Aeronave" FromRole="Aeronave" ToRole="Asiento" />
+        </EntityType>
+        <Association Name="FK_Aeronave">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
+          <End Type="AlasPUMModel.Video" Role="Video" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="numAeronave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAero_Vuelo">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="0..1" />
+          <End Type="AlasPUMModel.Vuelo" Role="Vuelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Vuelo">
+              <PropertyRef Name="numeroAeronaveAsignada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKAsiento_Aeronave">
+          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
+          <End Type="AlasPUMModel.Asiento" Role="Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aeronave">
+              <PropertyRef Name="numeroAeronave" />
+            </Principal>
+            <Dependent Role="Asiento">
+              <PropertyRef Name="aeronaveNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="documento" />
@@ -559,45 +583,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Video">
-          <Key>
-            <PropertyRef Name="numAeronave" />
-          </Key>
-          <Property Name="UrlAeronave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="precio" Type="Double" />
-          <Property Name="visitas" Type="Double" />
-          <Property Name="numAeronave" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Aeronave" Relationship="AlasPUMModel.FK_Aeronave" FromRole="Video" ToRole="Aeronave" />
-        </EntityType>
-        <Association Name="FK_Aeronave">
-          <End Type="AlasPUMModel.Aeronave" Role="Aeronave" Multiplicity="1" />
-          <End Type="AlasPUMModel.Video" Role="Video" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Aeronave">
-              <PropertyRef Name="numeroAeronave" />
-            </Principal>
-            <Dependent Role="Video">
-              <PropertyRef Name="numAeronave" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AlasPUMModelStoreContainer" CdmEntityContainer="AlasPUMEntities">
-          <EntitySetMapping Name="Aeronave">
-            <EntityTypeMapping TypeName="AlasPUMModel.Aeronave">
-              <MappingFragment StoreEntitySet="Aeronave">
-                <ScalarProperty Name="numeroAeronave" ColumnName="numeroAeronave" />
-                <ScalarProperty Name="anioIngreso" ColumnName="anioIngreso" />
-                <ScalarProperty Name="horasVuelo" ColumnName="horasVuelo" />
-                <ScalarProperty Name="modelo" ColumnName="modelo" />
-                <ScalarProperty Name="cantAsientos" ColumnName="cantAsientos" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Compra">
             <EntityTypeMapping TypeName="AlasPUMModel.Compra">
               <MappingFragment StoreEntitySet="Compra">
@@ -696,6 +687,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Video">
+            <EntityTypeMapping TypeName="AlasPUMModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="numAeronave" ColumnName="numAeronave" />
+                <ScalarProperty Name="visitas" ColumnName="visitas" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="UrlAeronave" ColumnName="UrlAeronave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aeronave">
+            <EntityTypeMapping TypeName="AlasPUMModel.Aeronave">
+              <MappingFragment StoreEntitySet="Aeronave">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="cantAsientos" ColumnName="cantAsientos" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="horasVuelo" ColumnName="horasVuelo" />
+                <ScalarProperty Name="anioIngreso" ColumnName="anioIngreso" />
+                <ScalarProperty Name="numeroAeronave" ColumnName="numeroAeronave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="AlasPUMModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
@@ -705,16 +718,6 @@
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="documento" ColumnName="documento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Video">
-            <EntityTypeMapping TypeName="AlasPUMModel.Video">
-              <MappingFragment StoreEntitySet="Video">
-                <ScalarProperty Name="numAeronave" ColumnName="numAeronave" />
-                <ScalarProperty Name="visitas" ColumnName="visitas" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="UrlAeronave" ColumnName="UrlAeronave" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

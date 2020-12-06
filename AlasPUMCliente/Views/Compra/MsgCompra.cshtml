@@ -13,6 +13,7 @@
         @if (ViewBag.Compra != null)
         {
             <h2>@Html.Label("", (string)ViewBag.Compra, new { @class = "label label-success" })</h2>
+            @Html.ActionLink("Ver video", "VerVideo", "Video" , new {dto = TempData["Cliente"] });
         }
         <br />
         

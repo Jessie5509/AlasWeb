@@ -35,12 +35,12 @@ namespace DataAccess.Model
         public string tipo { get; set; }
         public string imagen { get; set; }
     
-        public virtual Aeronave Aeronave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intercontinental> Intercontinental { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nacional> Nacional { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Regional> Regional { get; set; }
+        public virtual Aeronave Aeronave { get; set; }
     }
 }

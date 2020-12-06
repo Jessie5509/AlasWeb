@@ -45,12 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\ClaseVideo.cs" />
     <Compile Include="Helpers\HAdmin.cs" />
     <Compile Include="Helpers\HAeronave.cs" />
     <Compile Include="Helpers\HCompra.cs" />
     <Compile Include="Helpers\HTipo.cs" />
+    <Compile Include="Helpers\HVideo.cs" />
     <Compile Include="Helpers\HVuelo.cs" />
+    <Compile Include="interfaces\IVideo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Clases\ProxyVideo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

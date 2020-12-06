@@ -26,5 +26,7 @@ namespace Common.DTO
         [Required(ErrorMessage = "La {0} de la aeronave es requerida!")]
         public int cantAsientos { get; set; }
 
+
+        public  DtoVideo Video { get; set; }
     }
 }

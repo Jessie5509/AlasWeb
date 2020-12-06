@@ -194,6 +194,7 @@
     <Folder Include="Views\Nacional\" />
     <Folder Include="Views\Regional\" />
     <Folder Include="Views\Reporte\" />
+    <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

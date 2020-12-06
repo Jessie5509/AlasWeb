@@ -42,10 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clase\CIntercontinental.cs" />
-    <Compile Include="Clase\CNacional.cs" />
-    <Compile Include="Clase\CRegional.cs" />
-    <Compile Include="Clase\Vuelo.cs" />
     <Compile Include="DTO\DtoAdm.cs" />
     <Compile Include="DTO\DtoAeronave.cs" />
     <Compile Include="DTO\DtoAsiento.cs" />
@@ -62,6 +58,8 @@
     <Compile Include="DTO\DtoVuelosMasAsientosVacios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Clase\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

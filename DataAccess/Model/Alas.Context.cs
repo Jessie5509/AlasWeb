@@ -25,7 +25,6 @@ namespace DataAccess.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Aeronave> Aeronave { get; set; }
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
         public virtual DbSet<Administrador> Administrador { get; set; }
@@ -34,7 +33,8 @@ namespace DataAccess.Model
         public virtual DbSet<Nacional> Nacional { get; set; }
         public virtual DbSet<Regional> Regional { get; set; }
         public virtual DbSet<Vuelo> Vuelo { get; set; }
-        public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Video> Video { get; set; }
+        public virtual DbSet<Aeronave> Aeronave { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
     }
 }

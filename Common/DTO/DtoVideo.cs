@@ -9,10 +9,10 @@ namespace Common.DTO
     public class DtoVideo
     {
 
-        public int idVideo { get; set; }
         public string UrlAeronave { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<double> visitas { get; set; }
+        public int numAeronave { get; set; }
 
     }
 }

@@ -116,6 +116,7 @@
     <Compile Include="Persistencia\PIntercontinental.cs" />
     <Compile Include="Persistencia\PNacional.cs" />
     <Compile Include="Persistencia\PRegional.cs" />
+    <Compile Include="Persistencia\PVideo.cs" />
     <Compile Include="Persistencia\PVuelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

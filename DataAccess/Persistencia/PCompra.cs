@@ -150,6 +150,30 @@ namespace DataAccess.Persistencia
         }
 
 
+        public string TieneVideo(DtoCliente dto)
+        {
+            string tiene = null;
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                Compra compra = context.Compra.OrderByDescending(o => o.dtCompra).FirstOrDefault(f => f.DocumentoCli == dto.documento);
+                tiene = context.Vuelo.FirstOrDefault(a => a.numeroVuelo == compra.numeroVuelo).Aeronave.url;
+                Aeronave aero = context.Vuelo.FirstOrDefault(f => f.numeroVuelo == compra.numeroVuelo).Aeronave;
+                Video video = context.Video.FirstOrDefault(a => a.numAeronave == aero.numeroAeronave);
+
+                aero.url = video.UrlAeronave;
+                double? visitas = video.visitas + 1;
+                video.visitas = visitas;
+
+                context.SaveChanges();
+
+                
+            }
+
+
+                return tiene;
+        }
+
 
     }
 }

@@ -44,7 +44,11 @@ namespace BussinesLogic.Helpers
             PCompra pe = new PCompra();
             return pe.getCompras();
         }
-
+        public string TieneVideo(DtoCliente dto)
+        {
+            PCompra pe = new PCompra();
+            return pe.TieneVideo(dto);
+        }
 
     }
 }
