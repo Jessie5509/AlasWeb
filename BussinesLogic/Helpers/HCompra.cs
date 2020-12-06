@@ -38,7 +38,12 @@ namespace BussinesLogic.Helpers
             PCompra pe = new PCompra();
             return pe.AddClienteCompra(dto, idVuelo, colAsientos);
         }
-        
+
+        public List<DtoCompra> getCompras()
+        {
+            PCompra pe = new PCompra();
+            return pe.getCompras();
+        }
 
 
     }

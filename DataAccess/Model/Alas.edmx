@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
@@ -50,7 +50,7 @@
           <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pasaporte" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="75" Nullable="false" />
-          <Property Name="isa" Type="varchar" MaxLength="100" />
+          <Property Name="visa" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Compra">
           <Key>
@@ -103,7 +103,6 @@
           <Key>
             <PropertyRef Name="numAeronave" />
           </Key>
-          <Property Name="idVideo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UrlAeronave" Type="varchar" MaxLength="255" />
           <Property Name="precio" Type="float" />
           <Property Name="visitas" Type="float" />
@@ -389,7 +388,7 @@
           <Key>
             <PropertyRef Name="documento" />
           </Key>
-          <Property Name="documento" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -547,7 +546,6 @@
           <Property Name="email" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="visa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Compra" Relationship="AlasPUMModel.FKCompra_Cliente" FromRole="Cliente" ToRole="Compra" />
-          <Property Name="isa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FKCompra_Cliente">
           <End Type="AlasPUMModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -565,7 +563,6 @@
           <Key>
             <PropertyRef Name="numAeronave" />
           </Key>
-          <Property Name="idVideo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UrlAeronave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Double" />
           <Property Name="visitas" Type="Double" />
@@ -702,7 +699,7 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="AlasPUMModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="isa" ColumnName="isa" />
+                <ScalarProperty Name="visa" ColumnName="visa" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="pasaporte" ColumnName="pasaporte" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
@@ -718,7 +715,6 @@
                 <ScalarProperty Name="visitas" ColumnName="visitas" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="UrlAeronave" ColumnName="UrlAeronave" />
-                <ScalarProperty Name="idVideo" ColumnName="idVideo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

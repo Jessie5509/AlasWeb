@@ -1,0 +1,57 @@
+﻿@model List<Common.DTO.DtoCompra>
+
+@{
+    ViewBag.Title = "pasajesRealizados";
+}
+
+<h2>Compras realizadas</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código de compra
+            </th>
+            <th>
+                Número de vuelo
+            </th>
+            <th>
+                Fecha de compra
+            </th>
+            <th>
+               Precio total
+            </th>
+            <th>
+                Documento del cliente
+            </th>
+      
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroVuelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dtCompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precioTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentoCli)
+                </td>
+             
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -51,6 +51,7 @@
     <Compile Include="DTO\DtoAsiento.cs" />
     <Compile Include="DTO\DtoCliente.cs" />
     <Compile Include="DTO\DtoClienteMasReservas.cs" />
+    <Compile Include="DTO\DtoCompra.cs" />
     <Compile Include="DTO\DtoIntercontinental.cs" />
     <Compile Include="DTO\DtoLogin.cs" />
     <Compile Include="DTO\DtoNacional.cs" />

@@ -127,5 +127,29 @@ namespace DataAccess.Persistencia
 
         }
 
+        public List<DtoCompra> getCompras()
+        {
+            List<Compra> lstCompraDB = new List<Compra>();
+            List<DtoCompra> lstCompra = new List<DtoCompra>();
+
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                lstCompraDB = context.Compra.Select(s => s).ToList();
+
+                foreach (Compra item in lstCompraDB)
+                {
+                    DtoCompra compra = MCompra.MapToDto(item);
+                    lstCompra.Add(compra);
+                }
+
+            }
+
+            return lstCompra;
+
+
+        }
+
+
+
     }
 }

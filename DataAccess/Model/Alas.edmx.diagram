@@ -21,7 +21,7 @@
         <AssociationConnector Association="AlasPUMModel.FKInt_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKNacional_Vuelo" />
         <AssociationConnector Association="AlasPUMModel.FKReg_Vuelo" />
-        <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.875" PointY="3.25" />
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" />
         <EntityTypeShape EntityType="AlasPUMModel.Video" Width="1.5" PointX="5.375" PointY="6.25" />
         <AssociationConnector Association="AlasPUMModel.FK_Aeronave" />

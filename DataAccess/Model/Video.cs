@@ -14,7 +14,6 @@ namespace DataAccess.Model
     
     public partial class Video
     {
-        public int idVideo { get; set; }
         public string UrlAeronave { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<double> visitas { get; set; }

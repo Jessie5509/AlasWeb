@@ -129,6 +129,7 @@
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AeronaveController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PasajesController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\TiposVueloController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -184,6 +185,7 @@
     <Content Include="Views\TiposVuelo\ListarNacional.cshtml" />
     <Content Include="Views\TiposVuelo\ListarRegional.cshtml" />
     <Content Include="Views\TiposVuelo\ListarIntercontinental.cshtml" />
+    <Content Include="Views\Pasajes\pasajesRealizados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
