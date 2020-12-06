@@ -57,8 +57,12 @@ namespace BussinesLogic.Helpers
             PVuelo pp = new PVuelo();
             return pp.Getcant(cant, colVuelo);
         }
-
-
+        public List<DtoVuelo> GetTodos(int cant, List<DtoVuelo> colVuelo, string Origen, string Destino, string FechaSalida, string Fechallegada)
+        {
+            PVuelo pp = new PVuelo();
+            return pp.GetTodos(cant, colVuelo, Origen, Destino, FechaSalida, Fechallegada);
+        }
+        
         public List<DtoVuelo> GetVuelo()
         {
             PVuelo pc = new PVuelo();

@@ -18,5 +18,8 @@ namespace DataAccess.Model
         public string UrlAeronave { get; set; }
         public Nullable<double> precio { get; set; }
         public Nullable<double> visitas { get; set; }
+        public int numAeronave { get; set; }
+    
+        public virtual Aeronave Aeronave { get; set; }
     }
 }

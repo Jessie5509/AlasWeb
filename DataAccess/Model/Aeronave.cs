@@ -31,5 +31,6 @@ namespace DataAccess.Model
         public virtual ICollection<Asiento> Asiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vuelo> Vuelo { get; set; }
+        public virtual Video Video { get; set; }
     }
 }

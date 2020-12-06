@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="AlasPUMModel.Aeronave" Width="1.5" PointX="3.125" PointY="6" IsExpanded="true" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="AlasPUMModel.Compra" Width="1.5" PointX="3.125" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AlasPUMModel.Pago" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlasPUMModel.Video" Width="1.5" PointX="2.25" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="AlasPUMModel.FKPago_Compra" ManuallyRouted="false" />
         <EntityTypeShape EntityType="AlasPUMModel.Administrador" Width="1.5" PointX="0.5" PointY="0.5" />
         <EntityTypeShape EntityType="AlasPUMModel.Asiento" Width="1.5" PointX="5.625" PointY="0.875" />
@@ -24,6 +23,8 @@
         <AssociationConnector Association="AlasPUMModel.FKReg_Vuelo" />
         <EntityTypeShape EntityType="AlasPUMModel.Cliente" Width="1.5" PointX="0.75" PointY="3.25" />
         <AssociationConnector Association="AlasPUMModel.FKCompra_Cliente" />
+        <EntityTypeShape EntityType="AlasPUMModel.Video" Width="1.5" PointX="5.375" PointY="6.25" />
+        <AssociationConnector Association="AlasPUMModel.FK_Aeronave" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

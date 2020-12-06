@@ -167,5 +167,27 @@ namespace DataAccess.Persistencia
             return colVuelo;
         }
 
+        public List<DtoVuelo> GetTodos(int cant, List<DtoVuelo> colVuelo, string Origen, string Destino, string FechaSalida, string Fechallegada)
+        {
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                List<Vuelo> vuel = new List<Vuelo>();
+                DtoVuelo dto = new DtoVuelo();
+
+                colVuelo.Clear();
+                DateTime llegada = DateTime.Parse(Fechallegada);
+                DateTime salida = DateTime.Parse(FechaSalida);
+                vuel = context.Vuelo.Where(w => w.Aeronave.cantAsientos >= cant && w.origen == Origen && w.destino == Destino && w.dtSalida == salida && w.dtLlegada == llegada).ToList();
+                foreach (Vuelo item in vuel)
+                {
+                    dto = MVuelo.MapToDto(item);
+                    colVuelo.Add(dto);
+                }
+
+            }
+
+            return colVuelo;
+        }
+
     }
 }

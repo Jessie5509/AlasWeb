@@ -46,36 +46,21 @@
     {
 
 
-        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:5%; margin-left:45%">
+        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:5%; margin-left:85%">
             <ul class="nav navbar-nav">
-                <li><label> Origen</label>@Html.TextBox("Origen", null, new { @class = "search_input form-control" })</li>
+                <li><label> Origen</label>@Html.TextBox("Origen", null, new { @class = "search_input form-control" })</li><br />
                 <li><label> Destino</label>@Html.TextBox("Destino", null, new { @class = "search_input form-control" })</li><br />
-                <li><label> Fecha Salida</label>   @Html.TextBox("FechaSalida", "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "search_input form-control", @type = "datetime-local".ToString() })</li>
+                <li><label> Fecha Salida</label>   @Html.TextBox("FechaSalida", "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "search_input form-control", @type = "datetime-local".ToString() })</li><br />
                 <li> <label> Fecha Llegada</label>  @Html.TextBox("FechaLLegada", "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "search_input form-control", @type = "datetime-local".ToString() })</li><br />
-                <li> <label> Cantidad de asientos</label>   @Html.TextBox("cant", null, new { @class = "search_input form-control", @type = "number".ToString() })</li>
+                <li> <label> Cantidad de asientos</label>   @Html.TextBox("cant", null, new { @class = "search_input form-control", @type = "number".ToString() })</li><br />
 
                 <li></li><br />
             </ul>
         </div>
-        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:13%; margin-left:75%">
+        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:23%; margin-left:90%">
 
             <input type="submit" value="Buscar" class="btn btn-primary" placeholder="Buscar" />
         </div>
-
-
-
-        @*<div id="FamiliS">
-            <div class="col-md-10">
-                @Html.DropDownList("id_DropDownList", (ICollection<SelectListItem>)ViewBag.colFamilias, "-- Familia --", new { @class = "form-control" })
-            </div>
-            <br />
-
-        </div>*@
-
-        @*<p>
-            @Html.ActionLink("Ordenar por precios", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary" })
-        </p>*@
-
 
 
 

@@ -20,9 +20,16 @@ namespace AlasPUMCliente.Controllers
             List<DtoAeronave> colAero = new List<DtoAeronave>();
 
             colVuelo = HVuelo.getInstace().GetVuelo();
-            
+
             //Buscador por nombre de producto
-            if (!String.IsNullOrEmpty(Destino) && !String.IsNullOrEmpty(Origen))
+            if (!String.IsNullOrEmpty(Destino) && !String.IsNullOrEmpty(Origen) && !String.IsNullOrEmpty(FechaSalida) && !String.IsNullOrEmpty(Fechallegada) && !String.IsNullOrEmpty(cant))
+            {
+
+                int id = int.Parse(cant);
+                colVuelo = HVuelo.getInstace().GetTodos(id, colVuelo, Origen, Destino, FechaSalida, Fechallegada);
+
+            }
+            else if (!String.IsNullOrEmpty(Destino) && !String.IsNullOrEmpty(Origen))
             {
                 colVuelo = colVuelo.Where(s => s.destino == Destino && s.origen == Origen).ToList();
             }
@@ -30,12 +37,13 @@ namespace AlasPUMCliente.Controllers
             {
                 colVuelo = colVuelo.Where(s => s.dtLlegada == DateTime.Parse(Fechallegada) && s.dtSalida == DateTime.Parse(FechaSalida)).ToList();
             }
-            
-            else if (!String.IsNullOrEmpty(cant) )
+
+            else if (!String.IsNullOrEmpty(cant))
             {
                 int id = int.Parse(cant);
                 colVuelo = HVuelo.getInstace().Getcant(id, colVuelo);
             }
+           
 
 
             return View(colVuelo);

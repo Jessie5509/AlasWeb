@@ -26,6 +26,7 @@ namespace DataAccess.Model
         public string pasaporte { get; set; }
         public string email { get; set; }
         public string visa { get; set; }
+        public string isa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Compra> Compra { get; set; }
