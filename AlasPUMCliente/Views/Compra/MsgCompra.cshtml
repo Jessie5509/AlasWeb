@@ -13,7 +13,7 @@
         @if (ViewBag.Compra != null)
         {
             <h2>@Html.Label("", (string)ViewBag.Compra, new { @class = "label label-success" })</h2>
-            @Html.ActionLink("Ver video", "VerVideo", "Video" , null, null);
+            @Html.ActionLink("Ver video", "VerVideo", "Video" , null, new { target = "_blank"});
         }
         <br />
         
