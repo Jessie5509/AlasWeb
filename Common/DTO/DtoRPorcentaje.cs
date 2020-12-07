@@ -11,6 +11,5 @@ namespace Common.DTO
         public DateTime fechaInicio { get; set; }
         public DateTime fechaFin { get; set; }
 
-        public int cantAsientos { get; set; }
     }
 }

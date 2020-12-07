@@ -1,5 +1,6 @@
 ﻿using Common.DTO;
 using DataAccess.Model;
+using NPOI.SS.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,10 @@ namespace DataAccess.Persistencia
             using (AlasPUMEntities context = new AlasPUMEntities())
             {
                 List<Compra> compraDT = context.Compra.Where(w => w.dtCompra >= dto.fechaInicio && w.dtCompra <= dto.fechaFin).ToList();
-
+                
                 foreach (Compra item in compraDT)
                 {
-                
+                    Cliente cliente = context.Cliente.Where(s => s.documento == item.Cliente.documento).Max();
 
                 }
 
@@ -29,6 +30,25 @@ namespace DataAccess.Persistencia
 
 
            return getCliente;
+        }
+
+        public int PorcentajeVuelos(DtoRPorcentaje dto)
+        {
+
+            double porcentaje = 0;
+            using (AlasPUMEntities context = new AlasPUMEntities())
+            {
+                int vuelos = context.Vuelo.Select(s => s).Count();
+
+                List<Vuelo> colVuelo = context.Vuelo.Where(w => w.dtLlegada == dto.fechaInicio && w.dtSalida == dto.fechaFin).ToList();
+                int eso = colVuelo.Count();
+
+                porcentaje = (vuelos * eso) / 100;
+
+            }
+            DecimalFormat df = new DecimalFormat("#.00");
+
+            return getCliente;
         }
 
         public List<DtoVuelo> getVuelosMasAsientos(DtoVuelosMasAsientosVacios dto)
