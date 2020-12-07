@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,17 +30,35 @@ namespace AlasPUM.Controllers
 
         //Reporte 2
 
-        public ActionResult ClienteMasReservas()
+        public ActionResult ClienteMasReservasV()
         {
 
             return View();
         }
 
+        public ActionResult ClienteMasReservas(DtoClienteMasReservas dto)
+        {
+            DtoCliente reporte = new DtoCliente();
+            reporte = HReporte.getInstace().getClienteMasReservas(dto);
+
+            return View();
+        }
+
+
         //Reporte 3
 
-        public ActionResult VuelosMasAsientosVacios()
+        public ActionResult VuelosMasAsientosVaciosV()
         {
+
             return View();        
+        }
+
+        public ActionResult VuelosMasAsientosVacios(DtoVuelosMasAsientosVacios dto)
+        {
+            List<DtoVuelo> lstVuelosMasAsientos = new List<DtoVuelo>();
+            lstVuelosMasAsientos = HReporte.getInstace().getVuelosMasAsientos(dto);
+
+            return View(lstVuelosMasAsientos);
         }
 
     }

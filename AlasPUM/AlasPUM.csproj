@@ -186,6 +186,10 @@
     <Content Include="Views\TiposVuelo\ListarRegional.cshtml" />
     <Content Include="Views\TiposVuelo\ListarIntercontinental.cshtml" />
     <Content Include="Views\Pasajes\pasajesRealizados.cshtml" />
+    <Content Include="Views\Reporte\PorcentajeVuelos.cshtml" />
+    <Content Include="Views\Reporte\ClienteMasReservasV.cshtml" />
+    <Content Include="Views\Reporte\VuelosMasAsientosVaciosV.cshtml" />
+    <Content Include="Views\Reporte\VuelosMasAsientosVacios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -193,7 +197,6 @@
     <Folder Include="Views\Intercontinental\" />
     <Folder Include="Views\Nacional\" />
     <Folder Include="Views\Regional\" />
-    <Folder Include="Views\Reporte\" />
     <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>

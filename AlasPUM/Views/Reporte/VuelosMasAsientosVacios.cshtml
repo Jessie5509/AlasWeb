@@ -1,0 +1,80 @@
+﻿@model List<Common.DTO.DtoVuelo>
+
+@{
+    ViewBag.Title = "VuelosMasAsientosVacios";
+}
+
+<h2>Vuelos con más asientos vacios</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Número de vuelo
+            </th>
+            <th>
+               Origen
+            </th>
+            <th>
+                Destino
+            </th>
+            <th>
+                Fecha de llegada
+            </th>
+            <th>
+               Fecha de salida
+            </th>
+            <th>
+                Horas totales
+            </th>
+            <th>
+                Precio
+            </th>
+        
+    
+            <th>
+                Tipo
+            </th>
+          
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroVuelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.origen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.destino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dtLlegada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dtSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorasTotales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipo)
+                </td>
+            
+         
+            </tr>
+        }
+
+    </tbody>
+
+</table>

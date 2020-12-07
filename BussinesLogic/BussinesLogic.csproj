@@ -49,6 +49,7 @@
     <Compile Include="Helpers\HAdmin.cs" />
     <Compile Include="Helpers\HAeronave.cs" />
     <Compile Include="Helpers\HCompra.cs" />
+    <Compile Include="Helpers\HReporte.cs" />
     <Compile Include="Helpers\HTipo.cs" />
     <Compile Include="Helpers\HVideo.cs" />
     <Compile Include="Helpers\HVuelo.cs" />
