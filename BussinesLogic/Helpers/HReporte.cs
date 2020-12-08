@@ -21,7 +21,7 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public DtoCliente getClienteMasReservas(DtoClienteMasReservas dto)
+        public List<DtoCliente> getClienteMasReservas(DtoClienteMasReservas dto)
         {
             PReporte pe = new PReporte();
             return pe.getClienteMasReservas(dto);

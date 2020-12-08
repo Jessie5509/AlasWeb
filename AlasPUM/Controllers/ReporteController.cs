@@ -40,10 +40,10 @@ namespace AlasPUM.Controllers
 
         public ActionResult ClienteMasReservas(DtoClienteMasReservas dto)
         {
-            DtoCliente reporte = new DtoCliente();
+            List<DtoCliente> reporte = new List<DtoCliente>();
             reporte = HReporte.getInstace().getClienteMasReservas(dto);
 
-            return View();
+            return View(reporte);
         }
 
 

@@ -11,9 +11,9 @@ namespace DataAccess.Persistencia
 {
     public class PReporte
     {
-        public DtoCliente getClienteMasReservas(DtoClienteMasReservas dto)
+        public List<DtoCliente> getClienteMasReservas(DtoClienteMasReservas dto)
         {
-            DtoCliente getCliente = new DtoCliente();
+            List<DtoCliente> getCliente = new List<DtoCliente>();
             int cantidad = 0;
             string doc = null;
 
@@ -39,11 +39,12 @@ namespace DataAccess.Persistencia
                 }
 
                 Cliente cliente = context.Cliente.FirstOrDefault(f => f.documento == doc);
-                getCliente.documento = cliente.documento;
-                getCliente.nombre = cliente.nombre;
-                getCliente.apellido = cliente.apellido;
-           
+                DtoCliente dto3 = new DtoCliente();
+                dto3.documento = cliente.documento;
+                dto3.nombre = cliente.nombre;
+                dto3.apellido = cliente.apellido;
 
+                getCliente.Add(dto3);
 
             }
 
@@ -124,9 +125,8 @@ namespace DataAccess.Persistencia
 
 
                 }
-
             }
-
+            
 
             return colDto;
         }
