@@ -23,8 +23,10 @@ namespace AlasPUM.Controllers
             return View();
         }
 
-        public ActionResult Reporte1()
+        public ActionResult Reporte1(DtoRPorcentaje dto)
         {
+            double porcentaje = HReporte.getInstace().PorcentajeVuelos(dto);
+
             return RedirectToAction("PorcentajeVuelos");
         }
 
@@ -55,7 +57,7 @@ namespace AlasPUM.Controllers
 
         public ActionResult VuelosMasAsientosVacios(DtoVuelosMasAsientosVacios dto)
         {
-            List<DtoVuelo> lstVuelosMasAsientos = new List<DtoVuelo>();
+            List<DtoVuelosMasAsientosVacios> lstVuelosMasAsientos = new List<DtoVuelosMasAsientosVacios>();
             lstVuelosMasAsientos = HReporte.getInstace().getVuelosMasAsientos(dto);
 
             return View(lstVuelosMasAsientos);

@@ -1,42 +1,28 @@
-﻿@model List<Common.DTO.DtoVuelo>
+﻿@model List<Common.DTO.DtoVuelosMasAsientosVacios>
 
 @{
     ViewBag.Title = "VuelosMasAsientosVacios";
 }
 
-<h2>Vuelos con más asientos vacios</h2>
+<h2>Vuelos con más asientos vacíos</h2>
 
 
 <table class="table">
     <thead>
         <tr>
+       
+            <th>
+                Cantidad
+            </th>
             <th>
                 Número de vuelo
             </th>
             <th>
-               Origen
+                Más asientos vacíos
             </th>
             <th>
-                Destino
+                Menos asientos vacíos
             </th>
-            <th>
-                Fecha de llegada
-            </th>
-            <th>
-               Fecha de salida
-            </th>
-            <th>
-                Horas totales
-            </th>
-            <th>
-                Precio
-            </th>
-        
-    
-            <th>
-                Tipo
-            </th>
-          
             
         </tr>
     </thead>
@@ -45,36 +31,21 @@
         @foreach (var item in Model)
         {
             <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.numeroVuelo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.origen)
+                    @Html.DisplayFor(modelItem => item.mas)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.destino)
+                    @Html.DisplayFor(modelItem => item.menos)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dtLlegada)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dtSalida)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HorasTotales)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipo)
-                </td>
-            
-         
+           
             </tr>
         }
-
     </tbody>
-
 </table>

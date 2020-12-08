@@ -28,13 +28,20 @@ namespace BussinesLogic.Helpers
 
         }
 
-        public List<DtoVuelo> getVuelosMasAsientos(DtoVuelosMasAsientosVacios dto)
+        public List<DtoVuelosMasAsientosVacios> getVuelosMasAsientos(DtoVuelosMasAsientosVacios dto)
         {
             PReporte pe = new PReporte();
             return pe.getVuelosMasAsientos(dto);
 
         }
-        
+
+        public double PorcentajeVuelos(DtoRPorcentaje dto)
+        {
+            PReporte pe = new PReporte();
+            return pe.PorcentajeVuelos(dto);
+
+        }
+
 
     }
 }
