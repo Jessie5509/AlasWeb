@@ -22,9 +22,10 @@ namespace DataAccess.Persistencia
                 {
                     try
                     {
+                        
                         Aeronave nuevaAeronave = new Aeronave();
                         int cantA = 0;
-                        int num = 1;
+                        int num = context.Asiento.Select(s => s.numeroAsiento).Max() +1;
 
                         //Agregar la lista de asientos.
 
